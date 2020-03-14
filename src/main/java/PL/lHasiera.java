@@ -1,6 +1,7 @@
 package PL;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
@@ -11,6 +12,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Date;
 
+import javax.swing.BoxLayout;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -44,13 +46,15 @@ public lHasiera()
 		this.setTitle("Sartu");
 		//Panel orokorra
 		JPanel pOrokorra = new JPanel(new BorderLayout());
-		JPanel pErdia = new JPanel(new GridLayout(12,12));
-		JPanel pGoi = new JPanel(new GridLayout(5,5));
-		JPanel pBehe = new JPanel(new GridLayout(5,5));
+		JPanel pErdia = new JPanel(new GridLayout(12,3));
+		JPanel pBehe = new JPanel();
+		pBehe.setLayout(new BoxLayout(pBehe,BoxLayout.Y_AXIS));
 
-
+		
 		JLabel erab = new JLabel("Erabiltzailea");
 		erab.setHorizontalAlignment(JLabel.CENTER);
+		System.out.println(erab.getBounds().width);
+
 		JTextField erab1 = new JTextField();
 		JLabel psht = new JLabel("Pasahitza");
 		psht.setHorizontalAlignment(JLabel.CENTER);
@@ -63,7 +67,16 @@ public lHasiera()
 
 		JButton bSartu = new JButton();
 		bSartu.setText("Sartu");
-	
+		bSartu.setAlignmentX(Component.CENTER_ALIGNMENT);
+		bSartu.addMouseListener(new MouseAdapter() {
+            
+            public void mouseClicked(MouseEvent e) {
+          	  lOrokorra leihoa = new lOrokorra();
+          	  leihoa.setVisible(true);
+            }
+
+        });
+		
 		JLabel izEman = new JLabel("Izena eman");
 		izEman.setHorizontalAlignment(JLabel.CENTER);
 
@@ -71,19 +84,18 @@ public lHasiera()
 		  izEman.addMouseListener(new MouseAdapter() {
             
               public void mouseClicked(MouseEvent e) {
-            	  IErregistratu leihoa = new IErregistratu();
+            	  lErregistratu leihoa = new lErregistratu();
             	  leihoa.setVisible(true);
               }
 
           });
+		  
 	
 		pBehe.add(bSartu);
 		pBehe.add(izEman);
 
 		
 
-		
-		pOrokorra.add(pGoi, BorderLayout.NORTH);
 		pOrokorra.add(pErdia, BorderLayout.CENTER);
 		pOrokorra.add(pBehe, BorderLayout.SOUTH);
 		
@@ -93,3 +105,4 @@ public lHasiera()
 		
 	}
 }
+

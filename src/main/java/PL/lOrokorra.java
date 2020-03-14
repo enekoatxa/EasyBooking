@@ -32,8 +32,12 @@ public class lOrokorra extends JFrame{
 	
 	public static void main(String[]args)
 	{
-		lHasiera login = new lHasiera();
-		login.setVisible(true);
+		LERREG l= new LERREG();
+		l.setVisible(true);
+		LHASI A= new LHASI();
+		A.setVisible(true);
+//		lHasiera login = new lHasiera();
+//		login.setVisible(true);
 		//lOrokorra leihoa = new lOrokorra();
 		//leihoa.setVisible(true);
 	}

@@ -29,12 +29,12 @@ import DL.aireportua;
 import DL.hegaldia;
 
 
-public class IErregistratu extends JFrame{
+public class lErregistratu extends JFrame{
 	
 	Dimension pantailaTamaina = Toolkit.getDefaultToolkit().getScreenSize();
 
 	
-public IErregistratu()
+public lErregistratu()
 	{
 		
 		//UIManager.setLookAndFeel("com.jtattoo.plaf.smart.SmartLookAndFeel");
