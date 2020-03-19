@@ -12,6 +12,8 @@ import java.awt.GridBagConstraints;
 import javax.swing.JTextField;
 import java.awt.Insets;
 import java.awt.Toolkit;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -69,9 +71,28 @@ public class LHASI extends JFrame {
 		btnSartu.setBounds((pantailaTamaina.width/4)-(a/2), 270, a, 20);
 		contentPane.add(btnSartu);
 		
+		btnSartu.addMouseListener(new MouseAdapter() {
+            
+            public void mouseClicked(MouseEvent e) {
+          	  lOrokorra leihoa = new lOrokorra();
+          	  leihoa.setVisible(true);
+            }
+
+        });
+		
 		JLabel lblIzenaEman = new JLabel("Izena eman");
 		a=pantailaTamaina.width/28;
 		lblIzenaEman.setBounds((pantailaTamaina.width/4)-(a/2), 300, a, 20);
 		contentPane.add(lblIzenaEman);
+		
+		 lblIzenaEman.addMouseListener(new MouseAdapter() {
+	            
+             public void mouseClicked(MouseEvent e) {
+           	  LERREG leihoa = new LERREG();
+           	  leihoa.setVisible(true);
+             }
+
+         });
+		  
 	}
 }

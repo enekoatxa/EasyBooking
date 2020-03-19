@@ -12,6 +12,8 @@ import java.awt.GridBagConstraints;
 import javax.swing.JTextField;
 import java.awt.Insets;
 import java.awt.Toolkit;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -83,14 +85,24 @@ public class LERREG extends JFrame {
 		textField_1.setBounds((pantailaTamaina.width/4)-(a/2), 260, a, 20);
 		contentPane.add(textField_1);
 		
-		JButton btnSartu = new JButton("Sartu");
+		JButton btnIzEman = new JButton("Izena eman");
 		a=pantailaTamaina.width/14;
-		btnSartu.setBounds((pantailaTamaina.width/4)-(a/2), 340, a, 20);
-		contentPane.add(btnSartu);
+		btnIzEman.setBounds((pantailaTamaina.width/4)-(a/2), 340, a, 20);
+		contentPane.add(btnIzEman);
 		
-		JLabel lblIzenaEman = new JLabel("Izena eman");
+		JLabel lblSartu = new JLabel("Sartu");
 		a=pantailaTamaina.width/28;
-		lblIzenaEman.setBounds((pantailaTamaina.width/4)-(a/2), 370, a, 20);
-		contentPane.add(lblIzenaEman);
+		lblSartu.setBounds((pantailaTamaina.width/4)-(a/2), 370, a, 20);
+		contentPane.add(lblSartu);
+		
+		lblSartu.addMouseListener(new MouseAdapter() {
+	            
+             public void mouseClicked(MouseEvent e) {
+           	  LHASI leihoa = new LHASI();
+           	  leihoa.setVisible(true);
+             }
+
+         });
+		  
 	}
 }
