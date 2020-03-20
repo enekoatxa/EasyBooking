@@ -212,6 +212,10 @@ public class IOrokor extends JFrame
 		sDenboraMax.setBackground(Color.WHITE);
 		contentPane.add(sDenboraMax);
 			
+		JButton bBilatu2 = new JButton("Bilatu");
+		bBilatu2.setBounds(luzea/13, altuera-(altuera/6), luzea/16, altuera/30);
+		contentPane.add(bBilatu2);
+		
 		JLabel logoa = new JLabel("");
 		logoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/logoa.jpg")));
 		logoa.setBounds(luzea/100, altuera/2+altuera/16, 500, 360);
@@ -224,7 +228,57 @@ public class IOrokor extends JFrame
 		panE.setLayout(null);
 		contentPane.add(panE);
 		
+		JPanel panBeltza1 = new JPanel();
+		panBeltza1.setBounds(luzea/70+luzea/5, altuera/6, luzea/300, altuera/2+altuera/5);
+		panBeltza1.setOpaque(true);
+		panBeltza1.setBackground(new java.awt.Color(0, 0, 0));
+		contentPane.add(panBeltza1);
 		
+		JPanel panBeltza2 = new JPanel();
+		panBeltza2.setBounds(luzea/60+luzea/5, altuera/6, luzea/300, altuera/2+altuera/5);
+		panBeltza2.setOpaque(true);
+		panBeltza2.setBackground(new java.awt.Color(131, 214, 247));
+		contentPane.add(panBeltza2);
+		
+		JPanel panBeltza3 = new JPanel();
+		panBeltza3.setBounds(luzea/2+luzea/5+luzea/260, altuera/6, luzea/300, altuera/2+altuera/5);
+		panBeltza3.setOpaque(true);
+		panBeltza3.setBackground(new java.awt.Color(0, 0, 0));
+		contentPane.add(panBeltza3);
+		
+		JPanel panBeltza4 = new JPanel();
+		panBeltza4.setBounds(luzea/2+luzea/5, altuera/6, luzea/300, altuera/2+altuera/5);
+		panBeltza4.setOpaque(true);
+		panBeltza4.setBackground(new java.awt.Color(131, 214, 247));
+		contentPane.add(panBeltza4);
+		
+		Font fuente = new Font("Arial", Font.PLAIN, 12);
+		
+		JLabel aero1 = new JLabel("AEROLINEA");
+		aero1.setBounds(luzea/4, altuera/20, 500, 360);
+		aero1.setFont(fuente);
+		contentPane.add(aero1);
+		
+		
+		JLabel ryanair = new JLabel("");
+		ryanair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ryanair.jpg")));
+		ryanair.setBounds(luzea/4, altuera/12, 500, 360);
+		contentPane.add(ryanair);
+		
+		JLabel ryanair2 = new JLabel("");
+		ryanair2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ryanair.jpg")));
+		ryanair2.setBounds(luzea/2+luzea/10, altuera/12, 500, 360);
+		contentPane.add(ryanair2);
+		
+		JLabel iberia = new JLabel("");
+		iberia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iberia.png")));
+		iberia.setBounds(luzea/2+luzea/10, altuera/3, 500, 360);
+		contentPane.add(iberia);
+		
+		JLabel iberia2 = new JLabel("");
+		iberia2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iberia.png")));
+		iberia2.setBounds(luzea/4, altuera/3, 500, 360);
+		contentPane.add(iberia2);
 		
 		
 		

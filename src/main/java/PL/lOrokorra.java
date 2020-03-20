@@ -1,11 +1,13 @@
 package PL;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.util.Date;
+
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -32,14 +34,15 @@ public class lOrokorra extends JFrame{
 	
 	public static void main(String[]args)
 	{
+		
 //		LERREG l= new LERREG();
 //		l.setVisible(true);
-		LHASI A= new LHASI();
-		A.setVisible(true);
+//		LHASI A= new LHASI();
+//		A.setVisible(true);
 //		lHasiera login = new lHasiera();
 //		login.setVisible(true);
-		//lOrokorra leihoa = new lOrokorra();
-		//leihoa.setVisible(true);
+		lOrokorra leihoa = new lOrokorra();
+		leihoa.setVisible(true);
 	}
 	
 	public lOrokorra()
@@ -54,6 +57,7 @@ public class lOrokorra extends JFrame{
 		
 		//Panel orokorra
 		JPanel pOrokorra = new JPanel(new BorderLayout());
+	
 		
 		//Ezkerrean kokatutako filtrorako konponenteak
 		JPanel pFiltroa = new JPanel(new GridLayout(9, 1));
@@ -88,6 +92,7 @@ public class lOrokorra extends JFrame{
 		
 		JList<String> lAerolineak = new JList<String>(aerolineakModel);
 		
+		
 		pFiltroa.add(bFiltratu);
 		pFiltroa.add(lblPrezioaMin);
 		pFiltroa.add(sPrezioaMin);
@@ -117,6 +122,7 @@ public class lOrokorra extends JFrame{
 		JSpinner spinner = new JSpinner(modelKopurua);
 		JLabel lDataIrt = new JLabel("Irteera data");
 		JTextField calendar = new JTextField("JCalendar jarri");
+		
 		
 		pBilaketa.add(lIrteera);
 		pBilaketa.add(cIrteera);
@@ -152,6 +158,7 @@ public class lOrokorra extends JFrame{
 		pOrokorra.add(pErdia, BorderLayout.CENTER);
 		pOrokorra.add(pBilaketa, BorderLayout.NORTH);
 		pOrokorra.add(pFiltroa, BorderLayout.WEST);
+		
 		this.add(pOrokorra);
 	}
 }
