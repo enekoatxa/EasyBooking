@@ -21,6 +21,9 @@ import javax.swing.JSpinner;
 import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
 
+import com.toedter.calendar.JCalendar;
+import com.toedter.calendar.JDateChooser;
+
 import DL.aerolinea;
 import DL.aireportua;
 import DL.hegaldia;
@@ -121,8 +124,7 @@ public class lOrokorra extends JFrame{
 		SpinnerNumberModel modelKopurua = new SpinnerNumberModel(1, 1, 10, 1);
 		JSpinner spinner = new JSpinner(modelKopurua);
 		JLabel lDataIrt = new JLabel("Irteera data");
-		JTextField calendar = new JTextField("JCalendar jarri");
-		
+		JDateChooser calendar = new JDateChooser();
 		
 		pBilaketa.add(lIrteera);
 		pBilaketa.add(cIrteera);
