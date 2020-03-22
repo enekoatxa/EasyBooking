@@ -1,12 +1,18 @@
 package DL;
 
+import javax.jdo.annotations.*;
+
+@PersistenceCapable
+@Inheritance(strategy=InheritanceStrategy.SUBCLASS_TABLE)
 abstract class pertsona 
 {
+	@PrimaryKey
 	private String nan;
 	private String izena;
+	@NotPersistent
 	private String abizena;
+	@NotPersistent
 	private int adina;
-	
 	
 	public String getNan() {
 		return nan;

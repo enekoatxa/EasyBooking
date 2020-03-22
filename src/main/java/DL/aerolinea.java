@@ -1,7 +1,10 @@
 package DL;
 
+import javax.jdo.annotations.*;
+@PersistenceCapable
 public class aerolinea {
 
+	@PrimaryKey
 	private String kodea;
 	private String izena;
 	

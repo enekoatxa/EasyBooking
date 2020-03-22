@@ -1,12 +1,17 @@
 package DL;
 
-import java.util.ArrayList;
+import javax.jdo.annotations.*;
 
+@PersistenceCapable
 public class erabiltzailea extends pertsona
 {
+	@NotPersistent
 	private String emaila;
+	@NotPersistent
 	private String nick;
+	@NotPersistent
 	private String pasahitza;
+	@Column(name="GUSTOKO_AIREPORTUA")
 	private aireportua gustokoAir;
 	
 	public erabiltzailea(String nan, String izena, String abizena, int adina, String emaila, String nick, String pasahitza, aireportua gustokoAir){

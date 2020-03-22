@@ -1,8 +1,11 @@
 package DL;
 
+import javax.jdo.annotations.*;
+@PersistenceCapable
 public class aireportua {
-
+	@PrimaryKey
 	private String kodea;
+	
 	private String izena;
 	
 	public aireportua(String kodea, String izena) {
