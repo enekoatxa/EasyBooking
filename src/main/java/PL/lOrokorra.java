@@ -126,6 +126,7 @@ public class lOrokorra extends JFrame{
 		JLabel lDataIrt = new JLabel("Irteera data");
 		JDateChooser calendar = new JDateChooser();
 		
+	
 		pBilaketa.add(lIrteera);
 		pBilaketa.add(cIrteera);
 		pBilaketa.add(lHelmuga);
