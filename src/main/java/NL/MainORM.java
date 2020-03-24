@@ -32,7 +32,7 @@ public class MainORM {
 			    transaction.begin();
 				aireportua a1 = new aireportua("a001", "Heathrow");
 				aireportua a2 = new aireportua("a002", "Barajas");
-				erabiltzailea e1 = new erabiltzailea("73037449Y", "Eneko", "Atxa", 21, "eneko.atxa@opendeusto.es", "enekoatxa", "enekoatxa", a1);
+				erabiltzailea e1 = new erabiltzailea("73037449Y", "Eneko", "Atxa", 21, "eneko.atxa@opendeusto.es", "enekoatxa", "enekoatxa");
 				aerolinea l1 = new aerolinea("l001", "Iberia");
 				hegaldia h1 = new hegaldia("h001", a1, a2, 1.5, 50, new java.util.Date(), 20, l1);
 				erreserba r1 = new erreserba("r001", 50, h1, e1, null, l1);

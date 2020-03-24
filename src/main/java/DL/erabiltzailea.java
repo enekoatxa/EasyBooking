@@ -11,10 +11,8 @@ public class erabiltzailea extends pertsona
 	private String nick;
 	@NotPersistent
 	private String pasahitza;
-	@Column(name="GUSTOKO_AIREPORTUA")
-	private aireportua gustokoAir;
 	
-	public erabiltzailea(String nan, String izena, String abizena, int adina, String emaila, String nick, String pasahitza, aireportua gustokoAir){
+	public erabiltzailea(String nan, String izena, String abizena, int adina, String emaila, String nick, String pasahitza){
 		this.setNan(nan);
 		this.setIzena(izena);
 		this.setAbizena(abizena);
@@ -22,7 +20,6 @@ public class erabiltzailea extends pertsona
 		this.emaila=emaila;
 		this.nick=nick;
 		this.pasahitza=pasahitza;
-		this.gustokoAir=gustokoAir;
 	}
 
 	public String getEmaila() {
@@ -47,14 +44,6 @@ public class erabiltzailea extends pertsona
 
 	public void setPasahitza(String pasahitza) {
 		this.pasahitza = pasahitza;
-	}
-
-	public aireportua getGustokoAir() {
-		return gustokoAir;
-	}
-
-	public void setGustokoAir(aireportua gustokoAir) {
-		this.gustokoAir = gustokoAir;
 	}
 	
 	
