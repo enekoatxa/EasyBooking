@@ -4,7 +4,7 @@ import javax.jdo.annotations.*;
 
 @PersistenceCapable
 @Inheritance(strategy=InheritanceStrategy.SUBCLASS_TABLE)
-abstract class pertsona 
+public abstract class pertsona 
 {
 	@PrimaryKey
 	private String nan;

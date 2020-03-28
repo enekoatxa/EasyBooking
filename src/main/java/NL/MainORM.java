@@ -1,11 +1,10 @@
 package NL;
 
-import java.sql.Date;
+import java.util.ArrayList;
 
 import javax.jdo.JDOHelper;
 import javax.jdo.PersistenceManager;
 import javax.jdo.PersistenceManagerFactory;
-import javax.jdo.Query;
 import javax.jdo.Transaction;
 
 import DL.aerolinea;
@@ -13,6 +12,7 @@ import DL.aireportua;
 import DL.erabiltzailea;
 import DL.erreserba;
 import DL.hegaldia;
+import DL.pertsona;
 
 public class MainORM {
 
@@ -33,10 +33,15 @@ public class MainORM {
 			    transaction.begin();
 				aireportua a1 = new aireportua("a001", "Heathrow");
 				aireportua a2 = new aireportua("a002", "Barajas");
-				erabiltzailea e1 = new erabiltzailea("73037449Y", "Eneko", "Atxa", 21, "eneko.atxa@opendeusto.es", "enekoatxa", "enekoatxa", a1);
+				erabiltzailea e1 = new erabiltzailea("73037449Y", "Eneko", "Atxa", 21, "eneko.atxa@opendeusto.es", "enekoatxa", "enekoatxa");
 				aerolinea l1 = new aerolinea("l001", "Iberia");
 				hegaldia h1 = new hegaldia("h001", a1, a2, 1.5, 50, new java.util.Date(), 20, l1);
-			//	erreserba r1 = new erreserba("r001", 50, h1, e1, null, l1);
+
+				ArrayList<pertsona>bidaiariak=new ArrayList<pertsona>();
+				bidaiariak.add(e1);
+				erreserba r1 = new erreserba("r001", 50, h1, e1, bidaiariak, l1);
+			    	    
+
 			    persistentManager.makePersistent(a1);
 			    System.out.println(a1.getIzena() +"Aireportua sartuta");
 			    persistentManager.makePersistent(a2);
@@ -55,6 +60,7 @@ public class MainORM {
             catch(Exception ex)
 			{
 				System.err.println("* Exception inserting data into db: " + ex.getMessage());
+				System.err.println("1. err");
 			}
 			
 			finally
@@ -71,6 +77,7 @@ public class MainORM {
 		catch(Exception ex)
 		{
 			System.err.println("* Exception inserting data into db: " + ex.getMessage());
+			System.err.println("2. err");
 		}
 	}
 }

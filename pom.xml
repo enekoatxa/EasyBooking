@@ -159,5 +159,23 @@
 
     </plugins>
 </build>
+<profiles>
+       <!-- run as 'mvn exec:java -PprobaORM' -->
+       <profile>
+           <id>probaORM</id>
+           <build>
+               <plugins>
+                   <plugin>
+                       <groupId>org.codehaus.mojo</groupId>
+                       <artifactId>exec-maven-plugin</artifactId>
+                       <version>1.2.1</version>
+                       <configuration>
+                           <mainClass>NL.MainORM</mainClass>
+                       </configuration>
+                   </plugin>
+               </plugins>
+           </build>
+       </profile>
+</profiles>
 
 </project>

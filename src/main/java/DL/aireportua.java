@@ -1,5 +1,7 @@
 package DL;
 
+import java.util.Collection;
+
 import javax.jdo.annotations.*;
 @PersistenceCapable
 public class aireportua {
@@ -7,6 +9,9 @@ public class aireportua {
 	private String kodea;
 	
 	private String izena;
+	
+	@Element(column="GUSTOKO_AIR")
+    Collection<erabiltzailea> erabiltzaileak;
 	
 	public aireportua(String kodea, String izena) {
 		super();

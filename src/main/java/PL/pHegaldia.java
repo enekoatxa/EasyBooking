@@ -26,7 +26,7 @@ public class pHegaldia extends JPanel{
 		JLabel denbora = new JLabel(Double.toString(h.getDenbora()) + " minutu");
 		denbora.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 34));
 		
-		JLabel prezioa = new JLabel(Double.toString(h.getPrezioa()) + " €");
+		JLabel prezioa = new JLabel(Double.toString(h.getPrezioa()) + " euro");
 		prezioa.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 34));
 		
 		SimpleDateFormat format = new SimpleDateFormat("MM-dd");
