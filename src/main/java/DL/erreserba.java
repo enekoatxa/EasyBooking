@@ -16,13 +16,13 @@ public class erreserba
 	@Column(name="ID_ERABILTZAILEA")
 	private erabiltzailea erabiltzailea;
 	@NotPersistent
-	private ArrayList<bidaiaria> bidaiariak;
+	private ArrayList<pertsona> bidaiariak;
 	private int bidaiariKopurua;
 	@Column(name="ID_AEROLINEA")
 	private aerolinea aerolinea;
 	
 	public erreserba(String kodea, int prezioa, hegaldia heg, DL.erabiltzailea erabiltzailea,
-			ArrayList<bidaiaria> bidaiariak, aerolinea aerolinea) {
+			ArrayList<pertsona> bidaiariak, aerolinea aerolinea) {
 		super();
 		this.kodea = kodea;
 		this.prezioa = prezioa;
@@ -86,11 +86,11 @@ public class erreserba
 		this.erabiltzailea = erabiltzailea;
 	}
 
-	public ArrayList<bidaiaria> getBidaiariak() {
+	public ArrayList<pertsona> getBidaiariak() {
 		return bidaiariak;
 	}
 
-	public void setBidaiariak(ArrayList<bidaiaria> bidaiariak) {
+	public void setBidaiariak(ArrayList<pertsona> bidaiariak) {
 		this.bidaiariak = bidaiariak;
 	}
 
