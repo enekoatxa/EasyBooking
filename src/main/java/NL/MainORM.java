@@ -39,7 +39,7 @@ public class MainORM {
 
 				ArrayList<pertsona>bidaiariak=new ArrayList<pertsona>();
 				bidaiariak.add(e1);
-				erreserba r1 = new erreserba("r001", 50, h1, e1, bidaiariak, l1);
+				
 			    	    
 
 			    persistentManager.makePersistent(a1);
@@ -50,8 +50,7 @@ public class MainORM {
 			    System.out.println(e1.getIzena() +"Erabiltzailea sartuta");
 			    persistentManager.makePersistent(l1);
 			    System.out.println(l1.getIzena() +"Aerolinea sartuta");
-			    //persistentManager.makePersistent(r1);
-			    //System.out.println(r1.getKodea() +"Kodedun erreserba sartuta");
+			 
 			    			    
 			    transaction.commit();
 			    
