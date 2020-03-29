@@ -1,6 +1,6 @@
 package DL;
 
-import java.util.Collection;
+import java.util.ArrayList;
 
 import javax.jdo.annotations.*;
 @PersistenceCapable
@@ -11,10 +11,11 @@ public class aireportua {
 	private String izena;
 	
 	@Element(column="GUSTOKO_AIR")
-    Collection<erabiltzailea> erabiltzaileak;
+    private ArrayList<erabiltzailea> erabiltzaileak;
 	
 	public aireportua(String kodea, String izena) {
 		super();
+		erabiltzaileak= new ArrayList<erabiltzailea>();
 		this.kodea = kodea;
 		this.izena = izena;
 	}
@@ -40,5 +41,20 @@ public class aireportua {
 		return izena + " (" + kodea + ")" ;
 	}
 	
+	public void addErabiltzailea(erabiltzailea e) {
+		erabiltzaileak.add(e);
+	}
+
+	public ArrayList<erabiltzailea> getErabiltzaileak() {
+		return erabiltzaileak;
+	}
+
+	public void setErabiltzaileak(ArrayList<erabiltzailea> erabiltzaileak) {
+		this.erabiltzaileak = erabiltzaileak;
+	}
+	
+	public void gehituErabiltzailea(erabiltzailea e) {
+		erabiltzaileak.add(e);
+	}
 	
 }

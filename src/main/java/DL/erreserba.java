@@ -13,21 +13,24 @@ public class erreserba
 	private int prezioa;
 	@NotPersistent
 	private hegaldia heg;
-	
 	@NotPersistent
 	private ArrayList<pertsona> bidaiariak;
 	private int bidaiariKopurua;
-
+	@NotPersistent
+	private erabiltzailea erabiltzailea;
 	
 	public erreserba(String kodea, int prezioa, hegaldia heg, 
-			ArrayList<pertsona> bidaiariak) {
+			ArrayList<pertsona> bidaiariak, erabiltzailea erabiltzailea) {
 		super();
 		this.kodea = kodea;
 		this.prezioa = prezioa;
 		this.heg = heg;
 		this.bidaiariak = bidaiariak;
 		this.bidaiariKopurua= bidaiariak.size();
-
+		this.erabiltzailea=erabiltzailea;
+		erabiltzailea.addErreserba(this);
+		heg.getAerolinea().addErreserba(this);
+		
 	}
 
 	
@@ -73,7 +76,4 @@ public class erreserba
 		this.bidaiariak = bidaiariak;
 	}
 
-	
-	
-	
 }

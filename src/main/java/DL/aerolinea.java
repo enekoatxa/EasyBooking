@@ -1,6 +1,6 @@
 package DL;
 
-import java.util.Collection;
+import java.util.ArrayList;
 
 import javax.jdo.annotations.*;
 @PersistenceCapable
@@ -10,13 +10,14 @@ public class aerolinea {
 	private String kodea;
 	private String izena;
 	
-	@Element(column="Aerolinea_ID")
-    Collection<erreserba> Aerolinea;
+	@Element(column="AEROLINEA_ID")
+    private ArrayList<erreserba> erreserbak;
     
 	public aerolinea(String kodea, String izena) {
 		super();
 		this.kodea = kodea;
 		this.izena = izena;
+		this.erreserbak= new ArrayList<erreserba>();
 	}
 
 	public String getKodea() {
@@ -40,5 +41,16 @@ public class aerolinea {
 		return izena + " (" + kodea +")";
 	}
 	
+	public void addErreserba(erreserba e) {
+		erreserbak.add(e);
+	}
+
+	public ArrayList<erreserba> getErreserbak() {
+		return erreserbak;
+	}
+
+	public void setErreserbak(ArrayList<erreserba> erreserbak) {
+		this.erreserbak = erreserbak;
+	}
 	
 }

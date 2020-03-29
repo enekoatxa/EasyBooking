@@ -1,5 +1,6 @@
 package DL;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.jdo.annotations.*;
@@ -14,8 +15,8 @@ public class erabiltzailea extends pertsona
 	@NotPersistent
 	private String pasahitza;
 	
-	@Element(column="Erabiltzailea_ID")
-    Collection<erreserba> erreserbak;
+	@Element(column="ERABILTZAILEA_ID")
+    ArrayList<erreserba> erreserbak;
 	
 	public erabiltzailea(String nan, String izena, String abizena, int adina, String emaila, String nick, String pasahitza){
 		this.setNan(nan);
@@ -25,6 +26,7 @@ public class erabiltzailea extends pertsona
 		this.emaila=emaila;
 		this.nick=nick;
 		this.pasahitza=pasahitza;
+		erreserbak = new ArrayList<erreserba>();
 	}
 
 	public String getEmaila() {
@@ -51,6 +53,12 @@ public class erabiltzailea extends pertsona
 		this.pasahitza = pasahitza;
 	}
 	
+	public void addErreserba(erreserba e) {
+		erreserbak.add(e);
+	}
 	
+	public void addGustokoAireportua(aireportua a) {
+		a.gehituErabiltzailea(this);
+	}
 
 }
