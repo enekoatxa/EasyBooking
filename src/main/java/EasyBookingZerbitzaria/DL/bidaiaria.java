@@ -1,4 +1,4 @@
-package DL;
+package EasyBookingZerbitzaria.DL;
 
 public class bidaiaria extends pertsona {
 

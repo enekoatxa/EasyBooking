@@ -1,7 +1,6 @@
-package PL;
+package EasyBookingKlientea.PL;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
@@ -18,15 +17,11 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
 import javax.swing.JSpinner;
-import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
 
-import com.toedter.calendar.JCalendar;
 import com.toedter.calendar.JDateChooser;
 
-import DL.aerolinea;
-import DL.aireportua;
-import DL.hegaldia;
+import EasyBookingZerbitzaria.DL.*;
 
 
 public class lOrokorra extends JFrame{

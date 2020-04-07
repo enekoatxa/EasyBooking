@@ -1,13 +1,9 @@
-package NL;
+package EasyBookingZerbitzaria.NL;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 
-import DL.aerolinea;
-import DL.aireportua;
-import DL.hegaldia;
-import PL.IOrokor;
+import EasyBookingZerbitzaria.DL.*;
 
 public class HegaldiKudeaketa 
 {
