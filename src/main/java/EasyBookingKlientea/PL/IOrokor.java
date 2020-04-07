@@ -1,33 +1,17 @@
-package PL;
+package EasyBookingKlientea.PL;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.GridLayout;
-import java.awt.Toolkit;
-import java.util.Date;
 
-
-import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
 import javax.swing.JSpinner;
-import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
-
-import DL.aerolinea;
-import DL.aireportua;
-import DL.hegaldia;
-
-
-import javax.swing.JFrame;
 
 public class IOrokor extends JFrame
 {

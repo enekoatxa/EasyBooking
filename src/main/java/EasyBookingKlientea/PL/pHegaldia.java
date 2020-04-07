@@ -1,4 +1,4 @@
-package PL;
+package EasyBookingKlientea.PL;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -9,7 +9,7 @@ import java.text.SimpleDateFormat;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import DL.hegaldia;
+import EasyBookingZerbitzaria.DL.*;
 
 public class pHegaldia extends JPanel{
 	

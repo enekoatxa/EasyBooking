@@ -1,7 +1,6 @@
-package DL;
+package EasyBookingZerbitzaria.DL;
 
 import java.util.ArrayList;
-import java.util.Collection;
 
 import javax.jdo.annotations.*;
 

@@ -1,8 +1,8 @@
-package DL;
+package EasyBookingZerbitzaria.DL;
 
 import java.util.Date;
 
-public class hegaldia {
+public class hegaldia implements Comparable<hegaldia>{
 
 	private String kodea;
 	private aireportua irteera;
@@ -105,6 +105,17 @@ public class hegaldia {
 
 	public void setAerolinea(aerolinea aerolinea) {
 		this.aerolinea = aerolinea;
+	}
+
+
+	public int compareTo(hegaldia o) {
+		 if (this.prezioa < o.prezioa) {
+             return -1;
+         }
+         if (this.prezioa > o.prezioa) {
+             return 1;
+         }
+         return 0;
 	}
 	
 	
