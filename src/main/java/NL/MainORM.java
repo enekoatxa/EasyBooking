@@ -202,7 +202,8 @@ public class MainORM {
 			        {
 					    transaction.begin();
 					    @SuppressWarnings("unchecked")
-						Query<erreserba> erreserbaQuerya = persistentManager.newQuery("SELECT FROM " + erreserba.class.getName() + " WHERE bidaiariKopurua > 2 ORDER BY bidaiariKopurua ASC");
+						Query<erreserba> erreserbaQuerya = persistentManager.newQuery("SELECT FROM " 
+					    + erreserba.class.getName() + " WHERE bidaiariKopurua > 2 ORDER BY bidaiariKopurua ASC");
 					    System.out.println("Querya erabiltzen duen datu ezabaketa");
 					    System.out.println("2 bidaiari baino gehiagoko erreserbak ezabatuko dira");
 					    for (erreserba e : erreserbaQuerya.executeList()) 
