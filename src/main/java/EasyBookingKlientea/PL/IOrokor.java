@@ -6,7 +6,10 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.util.Date;
 
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -19,12 +22,16 @@ import javax.swing.SpinnerNumberModel;
 
 import com.toedter.calendar.JDateChooser;
 
+import EasyBookingZerbitzaria.DL.aerolinea;
+import EasyBookingZerbitzaria.DL.aireportua;
+import EasyBookingZerbitzaria.DL.hegaldia;
+
 public class IOrokor extends JFrame 
 {
 	private JPanel contentPane;
-	int luzea = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
-    int altuera = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
-
+	private int luzea = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
+    private int altuera = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
+    private final String pathLogoa = "src/main/resources/logoa.jpg";
 	
 	public static void main(String[]args)
 	{
@@ -200,13 +207,13 @@ public class IOrokor extends JFrame
 		sDenboraMax.setBackground(Color.WHITE);
 		contentPane.add(sDenboraMax);
 			
-		JButton bBilatu2 = new JButton("Bilatu");
+		JButton bBilatu2 = new JButton("Filtratu");
 		bBilatu2.setBounds(luzea/13, altuera-(altuera/6), luzea/16, altuera/30);
 		contentPane.add(bBilatu2);
 		
-		JLabel logoa = new JLabel("");
-		logoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/logoa.jpg")));
-		logoa.setBounds(luzea/100, altuera/2+altuera/16, 500, 360);
+		Icon logo = new ImageIcon(pathLogoa);
+		JLabel logoa = new JLabel(logo);
+		logoa.setBounds(luzea/100, altuera/2+altuera/16, 400, 288);
 		contentPane.add(logoa);
 		
 		JPanel panE = new JPanel();
@@ -260,35 +267,45 @@ public class IOrokor extends JFrame
 //		g_pscrollpane.columnWeights= new double[] (Double.MIN_VALUE);
 //		g_pscrollpane.rowWeights = new double [] (Double.MIN_VALUE);
 		
-		PscrollPane.setLayout(g_pscrollpane);
+		PscrollPane.setLayout(g_pscrollpane);		
 		
+		//Panelak sartzeko probako kodea
+		aerolinea lineaProba = new aerolinea("IBER", "Iberia");
+		aireportua portuaProba = new aireportua("HTRW", "Heathrow");
+		Date dataProba = new Date();
+		hegaldia hProba = new hegaldia("ABC", portuaProba, portuaProba, 3, 45, dataProba, 56, lineaProba);
 		
+		pHegaldia panelProba = new pHegaldia(hProba);
+		pHegaldia panelProba2 = new pHegaldia(hProba);
+		pHegaldia panelProba3 = new pHegaldia(hProba);
+		pHegaldia panelProba4 = new pHegaldia(hProba);
+		pHegaldia panelProba5 = new pHegaldia(hProba);
+		pHegaldia panelProba6 = new pHegaldia(hProba);
+		GridBagConstraints cons = new GridBagConstraints ();
 		int y=50;
-		int color=20;
-		int num=0;
+		cons.ipadx=700;
+		cons.ipady=200;
+		cons.gridx=0;
+		cons.gridy=y;
+		y=y+240;
 		
-		
-		for (int i=0;i<10; i++){
-			JLabel Labelvuelo = new JLabel ("Vuelo"+num);
-			num=num+1;
-			JPanel vuelo = new JPanel ();
-			vuelo.setBackground(new java.awt.Color(color, 214, 200));
-			vuelo.setVisible(true);
-			vuelo.add(Labelvuelo);
-			
-			GridBagConstraints foto= new GridBagConstraints ();
-			foto.ipadx=700;
-			foto.ipady=200;
-			foto.gridx=0;
-			foto.gridy=y;
-			
-			y=y+240;
-			color=color+20;
-			
-			PscrollPane.add(vuelo,foto);
-		}
-		
-		
+		PscrollPane.add(panelProba,cons);
+		cons.gridy=y;
+		y=y+240;
+		PscrollPane.add(panelProba2,cons);
+		cons.gridy=y;
+		y=y+240;
+		PscrollPane.add(panelProba3,cons);
+		cons.gridy=y;
+		y=y+240;
+		PscrollPane.add(panelProba4,cons);
+		cons.gridy=y;
+		y=y+240;
+		PscrollPane.add(panelProba5,cons);
+		cons.gridy=y;
+		y=y+240;
+		PscrollPane.add(panelProba6,cons);
+		//Panelak sartzeko probako kodearen amaiera
 		
 		PscrollPane.repaint();
 		scrollpane.repaint();
