@@ -81,6 +81,7 @@ public class lOrokorra extends JFrame{
 		sDenboraMax.setPaintLabels(true);
 		
 		
+		
 		DefaultListModel<String> aerolineakModel = new DefaultListModel<String>();
 		//PROBARAKO
 		aerolineakModel.addElement("Ryanair");

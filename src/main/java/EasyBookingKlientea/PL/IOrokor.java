@@ -1,18 +1,17 @@
 package EasyBookingKlientea.PL;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JSlider;
 import javax.swing.JSpinner;
@@ -22,11 +21,10 @@ import com.toedter.calendar.JDateChooser;
 
 public class IOrokor extends JFrame 
 {
-
 	private JPanel contentPane;
 	int luzea = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
     int altuera = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
-    JScrollPane scrollpane;
+
 	
 	public static void main(String[]args)
 	{
@@ -36,6 +34,7 @@ public class IOrokor extends JFrame
 	}
 	
 	public IOrokor() {
+		
 		setTitle("Easy Booking");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(luzea, altuera);
@@ -53,6 +52,8 @@ public class IOrokor extends JFrame
 		panD1.setOpaque(true);
 		panD1.setBackground(new java.awt.Color(131, 214, 247));
 		contentPane.add(panD1);
+		
+	
 		
 		JLabel lblirteera = new JLabel("Irteera Aereportua");
 		lblirteera.setBounds(0,altuera/18, luzea/15, altuera/11); 
@@ -240,28 +241,58 @@ public class IOrokor extends JFrame
 		contentPane.add(panBeltza4);
 		
 		
-		JPanel panelcentral = new JPanel();
-		panelcentral.setBackground(new java.awt.Color(131, 214, 247));
-		panelcentral.setBounds(500,200,750,600);
-		
-
-		
-		JLabel proba = new JLabel("EASY BOOKING");
-		proba.setBounds(0,0,luzea/8, altuera/16); 
-		proba.setFont(new Font("Tahona", Font.BOLD, 22));
-		panelcentral.add(proba);
-		
-		JScrollPane scrollpane = new JScrollPane(panelcentral);
-		scrollpane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-    	scrollpane.setBounds(500,200,750,600);
-		scrollpane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-		contentPane.add(scrollpane);
-        
+		JPanel panelcentro = new JPanel ();
+		panelcentro.setBounds(500,200,770,700);
+		contentPane.add(panelcentro);
+		panelcentro.setLayout(new BorderLayout(0,0));
 		
 		
-		contentPane.add(panelcentral);
-		//.................
+		JPanel PscrollPane= new JPanel ();
+		JScrollPane scrollpane= new JScrollPane (PscrollPane);
+		panelcentro.add(scrollpane, BorderLayout.CENTER);
+		
+		scrollpane.setViewportView(PscrollPane);
+		scrollpane.getViewport().setView(PscrollPane);
+		GridBagLayout g_pscrollpane = new GridBagLayout();
+		
+//		g_pscrollpane.columnWidths= new int [] (0);
+//		g_pscrollpane.rowHeights= new int [](0);
+//		g_pscrollpane.columnWeights= new double[] (Double.MIN_VALUE);
+//		g_pscrollpane.rowWeights = new double [] (Double.MIN_VALUE);
+		
+		PscrollPane.setLayout(g_pscrollpane);
+		
+		
+		int y=50;
+		int color=20;
+		int num=0;
+		
+		
+		for (int i=0;i<10; i++){
+			JLabel Labelvuelo = new JLabel ("Vuelo"+num);
+			num=num+1;
+			JPanel vuelo = new JPanel ();
+			vuelo.setBackground(new java.awt.Color(color, 214, 200));
+			vuelo.setVisible(true);
+			vuelo.add(Labelvuelo);
 			
+			GridBagConstraints foto= new GridBagConstraints ();
+			foto.ipadx=700;
+			foto.ipady=200;
+			foto.gridx=0;
+			foto.gridy=y;
+			
+			y=y+240;
+			color=color+20;
+			
+			PscrollPane.add(vuelo,foto);
+		}
+		
+		
+		
+		PscrollPane.repaint();
+		scrollpane.repaint();
+		
 		JPanel pGoikoPanel = new JPanel();
 		pGoikoPanel.setBounds(0, 0, luzea/10, altuera/8);
 		pGoikoPanel.setOpaque(true);
@@ -278,12 +309,7 @@ public class IOrokor extends JFrame
 		titulua.setBounds(0,0,luzea/8, altuera/16); 
 		titulua.setFont(new Font("Tahona", Font.BOLD, 22));
 		pGoikoPanel.add(titulua);
-		
-		
-	
-		
-	
-		
+				
 	}
 
 	
