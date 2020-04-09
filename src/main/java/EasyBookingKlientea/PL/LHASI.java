@@ -16,6 +16,7 @@ import javax.swing.JButton;
 
 public class LHASI extends JFrame {
 
+	
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTextField textField_1;
@@ -30,7 +31,7 @@ public class LHASI extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblErabiltzailea = new JLabel("Erabiltzailea");
+		JLabel lblErabiltzailea = new JLabel("Emaila");
 		int a=pantailaTamaina.width/26;
 		lblErabiltzailea.setBounds((pantailaTamaina.width/4)-(a/2), 20, a, 20);
 		contentPane.add(lblErabiltzailea);

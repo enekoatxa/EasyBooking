@@ -3,26 +3,34 @@ package EasyBookingKlientea.PL;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
 import javax.swing.JSlider;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 
-public class IOrokor extends JFrame
+import com.toedter.calendar.JDateChooser;
+
+public class IOrokor extends JFrame 
 {
 
 	private JPanel contentPane;
 	int luzea = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
     int altuera = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
-
+    JScrollPane scrollpane;
 	
 	public static void main(String[]args)
 	{
+		
 		IOrokor leihoa = new IOrokor();
 		leihoa.setVisible(true);
 	}
@@ -36,8 +44,9 @@ public class IOrokor extends JFrame
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 	
-	
-	
+		JDateChooser calendar = new JDateChooser();
+		calendar.setBounds(luzea-(luzea/6) ,altuera/18,luzea/10, altuera/30);
+		contentPane.add(calendar);
 		
 		JPanel panD1 = new JPanel();
 		panD1.setBounds(0, altuera/18, luzea/12, altuera/12);
@@ -143,13 +152,7 @@ public class IOrokor extends JFrame
 		lblIrteeraData.setBounds(luzea/2+(luzea/5), altuera-(altuera)+(altuera/100), luzea/15, altuera/11); 
 		panD10.add(lblIrteeraData);
 		
-		//panel del calendar
 		
-		JPanel panD11 = new JPanel();
-		panD11.setBounds(luzea/3 + luzea/3 +luzea/6, altuera/30, luzea/6, altuera/16);
-		panD11.setOpaque(true);
-		panD11.setBackground(new java.awt.Color(255, 255, 255));
-		contentPane.add(panD11);
 		
 		JButton bBilatu = new JButton("Bilatu");
 		bBilatu.setBounds(luzea/3 + luzea/3 +luzea/6+luzea/12, altuera/10, luzea/16, altuera/30);
@@ -236,36 +239,27 @@ public class IOrokor extends JFrame
 		panBeltza4.setBackground(new java.awt.Color(131, 214, 247));
 		contentPane.add(panBeltza4);
 		
-		Font fuente = new Font("Arial", Font.PLAIN, 12);
 		
-		JLabel aero1 = new JLabel("AEROLINEA");
-		aero1.setBounds(luzea/4, altuera/20, 500, 360);
-		aero1.setFont(fuente);
-		contentPane.add(aero1);
+		JPanel panelcentral = new JPanel();
+		panelcentral.setBackground(new java.awt.Color(131, 214, 247));
+		panelcentral.setBounds(500,200,750,600);
 		
+
 		
-		JLabel ryanair = new JLabel("");
-		ryanair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ryanair.jpg")));
-		ryanair.setBounds(luzea/4, altuera/12, 500, 360);
-		contentPane.add(ryanair);
+		JLabel proba = new JLabel("EASY BOOKING");
+		proba.setBounds(0,0,luzea/8, altuera/16); 
+		proba.setFont(new Font("Tahona", Font.BOLD, 22));
+		panelcentral.add(proba);
 		
-		JLabel ryanair2 = new JLabel("");
-		ryanair2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ryanair.jpg")));
-		ryanair2.setBounds(luzea/2+luzea/10, altuera/12, 500, 360);
-		contentPane.add(ryanair2);
-		
-		JLabel iberia = new JLabel("");
-		iberia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iberia.png")));
-		iberia.setBounds(luzea/2+luzea/10, altuera/3, 500, 360);
-		contentPane.add(iberia);
-		
-		JLabel iberia2 = new JLabel("");
-		iberia2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iberia.png")));
-		iberia2.setBounds(luzea/4, altuera/3, 500, 360);
-		contentPane.add(iberia2);
+		JScrollPane scrollpane = new JScrollPane(panelcentral);
+		scrollpane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+    	scrollpane.setBounds(500,200,750,600);
+		scrollpane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+		contentPane.add(scrollpane);
+        
 		
 		
-		
+		contentPane.add(panelcentral);
 		//.................
 			
 		JPanel pGoikoPanel = new JPanel();
@@ -291,4 +285,6 @@ public class IOrokor extends JFrame
 	
 		
 	}
+
+	
 }
