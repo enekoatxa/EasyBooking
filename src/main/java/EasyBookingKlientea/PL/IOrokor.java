@@ -20,6 +20,21 @@ import javax.swing.JSlider;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.axis.CategoryAxis;
+import org.jfree.chart.axis.NumberAxis;
+import org.jfree.chart.labels.CategoryItemLabelGenerator;
+import org.jfree.chart.labels.ItemLabelAnchor;
+import org.jfree.chart.labels.ItemLabelPosition;
+import org.jfree.chart.labels.StandardCategoryItemLabelGenerator;
+import org.jfree.chart.plot.CategoryPlot;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.renderer.category.BarRenderer3D;
+import org.jfree.data.category.DefaultCategoryDataset;
+import org.jfree.ui.TextAnchor;
+
 import com.toedter.calendar.JDateChooser;
 
 import EasyBookingZerbitzaria.DL.aerolinea;
@@ -310,6 +325,87 @@ public class IOrokor extends JFrame
 		PscrollPane.repaint();
 		scrollpane.repaint();
 		
+///////////////grafikoak
+		
+	   
+		
+		JLabel labelE =new JLabel(" HEGALDIEN INGURUKO ESTADISTIKAK");
+		labelE.setBounds(1400, 170, 400, 50);;
+		contentPane.add(labelE);
+		 	    
+   	    //////////////////////
+   	    
+   	 DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+	  dataset.addValue(51.0, "Series 1", "H001");
+	  dataset.addValue(44.3, "Series 1", "H002");
+	  dataset.addValue(83.0, "Series 1", "H003");
+	  dataset.addValue(34.7, "Series 1", "H004");
+	  dataset.addValue(51.0, "Series 1", "H005");
+	  dataset.addValue(46.3, "Series 1", "H006");
+	  dataset.addValue(51.0, "Series 1", "H007");
+	  dataset.addValue(29.3, "Series 1", "H008");
+
+	  // create the chart...
+	  JFreeChart chart = ChartFactory.createBarChart3D("Roma-Bilbo","Hegaldiak","Prezioak",dataset,PlotOrientation.VERTICAL,false,true,false);
+
+
+	  CategoryPlot plot = chart.getCategoryPlot();
+
+	  CategoryAxis domainAxis = plot.getDomainAxis();
+	  domainAxis.setVisible(true);
+
+	  NumberAxis rangeAxis = (NumberAxis) plot.getRangeAxis();
+	  rangeAxis.setUpperMargin(0.15);
+
+	  BarRenderer3D renderer = (BarRenderer3D) plot.getRenderer();
+	  CategoryItemLabelGenerator generator = new StandardCategoryItemLabelGenerator();
+	  renderer.setSeriesItemLabelGenerator(0, generator);
+	  renderer.setSeriesItemLabelsVisible(0, true);
+	  renderer.setSeriesPositiveItemLabelPosition(0, new ItemLabelPosition(ItemLabelAnchor.OUTSIDE12,TextAnchor.BASELINE_CENTER));
+	  renderer.setItemLabelAnchorOffset(10);
+	  
+	  ChartPanel panel = new ChartPanel(chart);
+	  panel.setBounds(1380, 250, 500, 250);
+	  contentPane.add(panel);
+   
+   	    
+	  
+		//////////////////////////////
+	  
+	   
+	   	 DefaultCategoryDataset dataset2 = new DefaultCategoryDataset();
+	   	dataset2.addValue(51.0, "Series 1", "H001");
+	   	dataset2.addValue(114.3, "Series 1", "H002");
+	   	dataset2.addValue(83.0, "Series 1", "H003");
+	   	dataset2.addValue(134.7, "Series 1", "H004");
+		  dataset2.addValue(51.0, "Series 1", "H005");
+		  dataset2.addValue(146.3, "Series 1", "H006");
+		  dataset2.addValue(51.0, "Series 1", "H007");
+		  dataset2.addValue(129.3, "Series 1", "H008");
+
+		  // create the chart...
+		  JFreeChart chart2 = ChartFactory.createBarChart3D("Madrid-Londres","Hegaldiak","Minutuak",dataset2,PlotOrientation.VERTICAL,false,true,false);
+
+
+		  CategoryPlot plot2 = chart2.getCategoryPlot();
+
+		  CategoryAxis domainAxis2 = plot2.getDomainAxis();
+		  domainAxis2.setVisible(true);
+
+		  NumberAxis rangeAxis2 = (NumberAxis) plot2.getRangeAxis();
+		  rangeAxis2.setUpperMargin(0.15);
+
+		  BarRenderer3D renderer2 = (BarRenderer3D) plot2.getRenderer();
+		  CategoryItemLabelGenerator generator2 = new StandardCategoryItemLabelGenerator();
+		  renderer2.setSeriesItemLabelGenerator(0, generator2);
+		  renderer2.setSeriesItemLabelsVisible(0, true);
+		  renderer2.setSeriesPositiveItemLabelPosition(0, new ItemLabelPosition(ItemLabelAnchor.OUTSIDE12,TextAnchor.BASELINE_CENTER));
+		  renderer2.setItemLabelAnchorOffset(10);
+		  
+		  ChartPanel panel2 = new ChartPanel(chart2);
+		  panel2.setBounds(1380, 600, 500, 250);
+		  contentPane.add(panel2);
+   	    
 		JPanel pGoikoPanel = new JPanel();
 		pGoikoPanel.setBounds(0, 0, luzea/10, altuera/8);
 		pGoikoPanel.setOpaque(true);
