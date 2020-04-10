@@ -13,6 +13,7 @@ import java.awt.event.MouseEvent;
 import java.awt.Dimension;
 import java.awt.Image;
 
+import javax.swing.ButtonGroup;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -32,6 +33,7 @@ public class lHasi extends JFrame {
 	private JLabel lblHasiHonekin;
 	private JRadioButton rdbtnFb;
 	private JRadioButton rdbtnGoogle;
+	private ButtonGroup aut;
 
 
 	JFrame b= this;
@@ -46,63 +48,69 @@ public class lHasi extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		
+		int altuera=pantailaTamaina.height/54;
 	
 		lblErabiltzailea = new JLabel("Emaila");
 		int a=pantailaTamaina.width/26;
-		lblErabiltzailea.setBounds((pantailaTamaina.width/8)-(a/2), pantailaTamaina.height/54, a, 20);
+		lblErabiltzailea.setBounds((pantailaTamaina.width/8)-(a/2), pantailaTamaina.height/54, a, altuera);
 		contentPane.add(lblErabiltzailea);
 		
 		textField = new JTextField();
 		a=pantailaTamaina.width/6;
-		textField.setBounds((pantailaTamaina.width/8)-(a/2), lblErabiltzailea.getY()+lblErabiltzailea.getY()*2, a, 20);
+		textField.setBounds((pantailaTamaina.width/8)-(a/2), lblErabiltzailea.getY()+lblErabiltzailea.getY()*2, a, altuera);
 		contentPane.add(textField);
 		
 		
 		lblPasahitza = new JLabel("Pasahitza");
 		a=pantailaTamaina.width/28;
-		lblPasahitza.setBounds((pantailaTamaina.width/8)-(a/2), textField.getY()+textField.getY(), a, 20);
+		lblPasahitza.setBounds((pantailaTamaina.width/8)-(a/2), textField.getY()+textField.getY(), a, altuera);
 		contentPane.add(lblPasahitza);
 		
 		textField_1 = new JTextField();
 		a=pantailaTamaina.width/6;
-		textField_1.setBounds((pantailaTamaina.width/8)-(a/2), lblPasahitza.getY()+(textField.getY()-lblErabiltzailea.getY()), a, 20);
+		textField_1.setBounds((pantailaTamaina.width/8)-(a/2), lblPasahitza.getY()+(textField.getY()-lblErabiltzailea.getY()), a, altuera);
 		contentPane.add(textField_1);
 		
 		btnSartu = new JButton("Sartu");
 		a=pantailaTamaina.width/14;
-		btnSartu.setBounds((pantailaTamaina.width/4)-(a/2), this.getHeight()/2, a, 20);
+		btnSartu.setBounds((pantailaTamaina.width/4)-(a/2), this.getHeight()/2, a, altuera);
 		contentPane.add(btnSartu);
 		
 		
 		lblIzenaEman = new JLabel("Izena eman");
 		a=pantailaTamaina.width/28;
-		lblIzenaEman.setBounds((pantailaTamaina.width/4)-(a/2), btnSartu.getY()+btnSartu.getHeight()*2, a, 20);
+		lblIzenaEman.setBounds((pantailaTamaina.width/4)-(a/2), btnSartu.getY()+btnSartu.getHeight()*2, a, altuera);
 		contentPane.add(lblIzenaEman);
 		
 		lblHasiHonekin = new JLabel("Hasi honekin:");
 		a=pantailaTamaina.width/16;
-		lblHasiHonekin.setBounds((pantailaTamaina.width/(7/2))-(a/2), lblErabiltzailea.getY(), a, 20);
+		lblHasiHonekin.setBounds((pantailaTamaina.width/(7/2))-(a/2), lblErabiltzailea.getY(), a, altuera);
 		contentPane.add(lblHasiHonekin);
 		
 		rdbtnFb = new JRadioButton("Facebook");
-		rdbtnFb.setBounds((pantailaTamaina.width/(7/2))-(a/2), 84, 150, 155);
+		rdbtnFb.setBounds((pantailaTamaina.width/(7/2))-(a/2), lblErabiltzailea.getY()+lblErabiltzailea.getY()*2, a, altuera*2);
 		Image img = new ImageIcon (this.getClass().getResource("/fb.png")).getImage();
 		rdbtnFb.setIcon(new ImageIcon(img));
+		rdbtnFb.setBorderPainted(true);
 		contentPane.add(rdbtnFb);
 		
 		rdbtnGoogle = new JRadioButton("Google");
-		rdbtnGoogle.setBounds(pantailaTamaina.width/(7/2)-(a/2)+150, 84, 100, 155);
+		rdbtnGoogle.setBounds(pantailaTamaina.width/(7/2)-(a/2)+a, lblErabiltzailea.getY()+lblErabiltzailea.getY()*2, a, altuera*2);
 		Image imag = new ImageIcon (this.getClass().getResource("/google.png")).getImage();
 		rdbtnGoogle.setIcon(new ImageIcon(imag));
+		rdbtnGoogle.setBorderPainted(true);
 		contentPane.add(rdbtnGoogle);
+		
+		aut = new ButtonGroup();
+		aut.add(rdbtnFb);
+		aut.add(rdbtnGoogle);
 		
 		btnSartu.addMouseListener(new MouseAdapter() {
             
             public void mouseClicked(MouseEvent e) {
           	  if((rdbtnFb.isSelected()==false)&&(rdbtnGoogle.isSelected()==false))
           	  {
-  				JOptionPane.showMessageDialog(b , "Autentikazio zerbitzu bat aukeratu behar duzu!");
+  				JOptionPane.showMessageDialog(b , "Autentikazio zerbitzu bat aukeratu behar duzu!", "Kontuz",1);
 
           	  }
             }
