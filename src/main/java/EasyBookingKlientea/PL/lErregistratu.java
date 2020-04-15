@@ -82,8 +82,8 @@ public class lErregistratu extends JFrame {
 		lblSartu.addMouseListener(new MouseAdapter() {
 	            
              public void mouseClicked(MouseEvent e) {
-           	  lHasi leihoa = new lHasi();
-           	  leihoa.setVisible(true);
+//           	  lHasi leihoa = new lHasi();
+//           	  leihoa.setVisible(true);
              }
 
          });

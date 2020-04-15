@@ -9,7 +9,8 @@ import javax.swing.JTextField;
 import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
 import java.awt.Dimension;
 import java.awt.Image;
 
@@ -20,7 +21,6 @@ import javax.swing.JRadioButton;
 import javax.swing.UIManager;
 
 public class lHasi extends JFrame {
-
 	
 	private JPanel contentPane;
 	private JTextField textField;
@@ -32,13 +32,20 @@ public class lHasi extends JFrame {
 	private JLabel lblHasiHonekin;
 	private JRadioButton rdbtnFb;
 	private JRadioButton rdbtnGoogle;
-
+	private IEasyZerbitzaria stubServer = null;
+	private final String pathFacebook = "src/main/resources/fb.png";
+	private final String pathGoogle = "src/main/resources/google.png";
 
 	JFrame b= this;
 	Dimension pantailaTamaina = Toolkit.getDefaultToolkit().getScreenSize();
 	
+	public static void main(String [] args) {
+		lHasi hasi = new lHasi(args[0], args[1], args[2]);
+		hasi.setVisible(true);
+	}
 
-	public lHasi() {
+	public lHasi(String host, String port, String server) {
+		konektatuZerbitzarira(host, port, server);
 		setTitle("Sartu");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(pantailaTamaina.width/2, pantailaTamaina.height/2);
@@ -87,14 +94,14 @@ public class lHasi extends JFrame {
 		
 		rdbtnFb = new JRadioButton("Facebook");
 		rdbtnFb.setBounds((pantailaTamaina.width/(7/2))-(a/2), 84, 150, 155);
-		Image img = new ImageIcon (this.getClass().getResource("/fb.png")).getImage();
-		rdbtnFb.setIcon(new ImageIcon(img));
+		Icon logoFacebook = new ImageIcon(pathFacebook);
+		rdbtnFb.setIcon(logoFacebook);
 		contentPane.add(rdbtnFb);
 		
 		rdbtnGoogle = new JRadioButton("Google");
 		rdbtnGoogle.setBounds(pantailaTamaina.width/(7/2)-(a/2)+150, 84, 100, 155);
-		Image imag = new ImageIcon (this.getClass().getResource("/google.png")).getImage();
-		rdbtnGoogle.setIcon(new ImageIcon(imag));
+		Icon logoGoogle= new ImageIcon(pathGoogle);
+		rdbtnGoogle.setIcon(logoGoogle);
 		contentPane.add(rdbtnGoogle);
 		
 		btnSartu.addMouseListener(new MouseAdapter() {
@@ -103,15 +110,24 @@ public class lHasi extends JFrame {
           	  if((rdbtnFb.isSelected()==false)&&(rdbtnGoogle.isSelected()==false))
           	  {
   				JOptionPane.showMessageDialog(b , "Autentikazio zerbitzu bat aukeratu behar duzu!");
-
           	  }
             }
-
         });
 		
-		
-		
-		
-		  
+	}
+	private void konektatuZerbitzarira(String host, String port, String server) {
+		try 
+		{
+			Registry registry = LocateRegistry.getRegistry(Integer.valueOf(port));
+			String name = "//" + host + ":" + port + "/" + server;
+			//stubServer = (IEasyZerbitzaria) java.rmi.Naming.lookup(name);
+			stubServer = (IEasyZerbitzaria) registry.lookup(name);
+			
+		} 
+		catch (Exception e) 
+		{
+			System.err.println("- Klientean exzepzioa RMI zerbitzarira konektatzean " + e.getMessage());
+			e.printStackTrace();
+		}
 	}
 }

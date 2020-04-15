@@ -6,6 +6,8 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
 import java.util.Date;
 
 import javax.swing.Icon;
@@ -47,16 +49,9 @@ public class IOrokor extends JFrame
 	private int luzea = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
     private int altuera = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
     private final String pathLogoa = "src/main/resources/logoa.jpg";
-	
-	public static void main(String[]args)
-	{
-		
-		IOrokor leihoa = new IOrokor();
-		leihoa.setVisible(true);
-	}
-	
+   	
 	public IOrokor() {
-		
+			
 		setTitle("Easy Booking");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(luzea, altuera);
@@ -421,9 +416,6 @@ public class IOrokor extends JFrame
 		JLabel titulua = new JLabel("EASY BOOKING");
 		titulua.setBounds(0,0,luzea/8, altuera/16); 
 		titulua.setFont(new Font("Tahona", Font.BOLD, 22));
-		pGoikoPanel.add(titulua);
-				
+		pGoikoPanel.add(titulua);			
 	}
-
-	
 }

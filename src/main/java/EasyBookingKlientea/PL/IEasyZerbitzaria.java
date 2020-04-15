@@ -1,4 +1,4 @@
-package EasyBookingZerbitzaria.NL;
+package EasyBookingKlientea.PL;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
