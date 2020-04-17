@@ -2,22 +2,25 @@ package EasyBookingZerbitzaria.DL;
 
 import java.util.ArrayList;
 
-import javax.jdo.annotations.*;
+import javax.jdo.annotations.Element;
+import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.PrimaryKey;
+
 @PersistenceCapable
 public class aerolinea {
 
 	@PrimaryKey
 	private String kodea;
 	private String izena;
-	
-	@Element(column="AEROLINEA_ID")
-    private ArrayList<erreserba> erreserbak;
-    
+
+	@Element(column = "AEROLINEA_ID")
+	private ArrayList<erreserba> erreserbak;
+
 	public aerolinea(String kodea, String izena) {
 		super();
 		this.kodea = kodea;
 		this.izena = izena;
-		this.erreserbak= new ArrayList<erreserba>();
+		this.erreserbak = new ArrayList<erreserba>();
 	}
 
 	public String getKodea() {
@@ -38,9 +41,9 @@ public class aerolinea {
 
 	@Override
 	public String toString() {
-		return izena + " (" + kodea +")";
+		return izena + " (" + kodea + ")";
 	}
-	
+
 	public void addErreserba(erreserba e) {
 		erreserbak.add(e);
 	}
@@ -52,5 +55,5 @@ public class aerolinea {
 	public void setErreserbak(ArrayList<erreserba> erreserbak) {
 		this.erreserbak = erreserbak;
 	}
-	
+
 }

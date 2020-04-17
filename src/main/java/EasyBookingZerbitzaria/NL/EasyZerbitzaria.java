@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 import EasyBookingZerbitzaria.DL.hegaldia;
 
-public class EasyZerbitzaria extends UnicastRemoteObject implements IEasyZerbitzaria{
+public class EasyZerbitzaria extends UnicastRemoteObject implements IEasyZerbitzaria {
 
 	protected EasyZerbitzaria() throws RemoteException {
 		super();
@@ -43,7 +43,7 @@ public class EasyZerbitzaria extends UnicastRemoteObject implements IEasyZerbitz
 
 	public void ordaindu(String email, float kantitatea, String kontzeptua) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public boolean eguneratuMoneta(String email, float kantitatea) {
@@ -63,19 +63,16 @@ public class EasyZerbitzaria extends UnicastRemoteObject implements IEasyZerbitz
 
 		String name = "//" + args[0] + ":" + args[1] + "/" + args[2];
 
-		try 
-		{	
+		try {
 			IEasyZerbitzaria objServer = new EasyZerbitzaria();
 			Registry registry = LocateRegistry.createRegistry((Integer.valueOf(args[1])));
 			registry.rebind(name, objServer);
 			System.out.println("* Zerbitzaria: '" + name + "' aktibatuta eta itxaroten...");
-			System.out.println("Balioak: IP:" + args[0]+", port:"+args[1]+", name:"+args[2]);
-		} 
-		catch (Exception e) 
-		{
+			System.out.println("Balioak: IP:" + args[0] + ", port:" + args[1] + ", name:" + args[2]);
+		} catch (Exception e) {
 			System.err.println("- Exzepzioa zerbitzarian: " + e.getMessage());
 			e.printStackTrace();
 		}
 	}
-	
+
 }

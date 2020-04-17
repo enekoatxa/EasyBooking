@@ -2,11 +2,12 @@ package EasyBookingZerbitzaria.DL;
 
 import java.util.ArrayList;
 
-import javax.jdo.annotations.*;
+import javax.jdo.annotations.NotPersistent;
+import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.PrimaryKey;
 
 @PersistenceCapable
-public class erreserba 
-{
+public class erreserba {
 	@PrimaryKey
 	private String kodea;
 	@NotPersistent
@@ -18,31 +19,28 @@ public class erreserba
 	private int bidaiariKopurua;
 	@NotPersistent
 	private erabiltzailea erabiltzailea;
-	
-	public erreserba(String kodea, int prezioa, hegaldia heg, 
-			ArrayList<pertsona> bidaiariak, erabiltzailea erabiltzailea) {
+
+	public erreserba(String kodea, int prezioa, hegaldia heg, ArrayList<pertsona> bidaiariak,
+			erabiltzailea erabiltzailea) {
 		super();
 		this.kodea = kodea;
 		this.prezioa = prezioa;
 		this.heg = heg;
 		this.bidaiariak = bidaiariak;
-		this.bidaiariKopurua= bidaiariak.size();
-		this.erabiltzailea=erabiltzailea;
+		this.bidaiariKopurua = bidaiariak.size();
+		this.erabiltzailea = erabiltzailea;
 		erabiltzailea.addErreserba(this);
 		heg.getAerolinea().addErreserba(this);
-		
+
 	}
 
-	
 	public int getBidaiariKopurua() {
 		return bidaiariKopurua;
 	}
 
-
 	public void setBidaiariKopurua(int bidaiariKopurua) {
 		this.bidaiariKopurua = bidaiariKopurua;
 	}
-
 
 	public String getKodea() {
 		return kodea;
