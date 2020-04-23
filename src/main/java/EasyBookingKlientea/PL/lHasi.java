@@ -41,6 +41,7 @@ public class lHasi extends JFrame {
 	Dimension pantailaTamaina = Toolkit.getDefaultToolkit().getScreenSize();
 
 	public static void main(String[] args) {
+		//hauek controlerrera pasata daude asike gero kendu egin beharko dira (main hau kendu)
 		lHasi hasi = new lHasi(args[0], args[1], args[2]);
 		hasi.setVisible(true);
 	}
@@ -155,6 +156,8 @@ public class lHasi extends JFrame {
 
 	}
 
+	
+	// hau ya ez da behar... set service erabiliko dugu RMIServiceLocator-etik
 	private void konektatuZerbitzarira(String host, String port, String server) {
 		try {
 			Registry registry = LocateRegistry.getRegistry(Integer.valueOf(port));
