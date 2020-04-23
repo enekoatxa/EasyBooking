@@ -15,8 +15,7 @@ public class EasyZerbitzaria extends UnicastRemoteObject implements IEasyZerbitz
 		// TODO Auto-generated constructor stub
 	}
 
-	public boolean sortuErabiltzailea(String erabiltzailea, String pasahitza, String email, String izena,
-			String abizena, int adina, String nan) {
+	public boolean sortuErabiltzailea(String email, String izena, String abizena, int adina, String nan) {
 		// TODO Auto-generated method stub
 		return false;
 	}

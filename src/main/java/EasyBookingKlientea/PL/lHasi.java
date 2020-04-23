@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
@@ -55,7 +56,7 @@ public class lHasi extends JFrame {
 
 		int altuera = pantailaTamaina.height / 54;
 
-		lblErabiltzailea = new JLabel("Emaila");
+		lblErabiltzailea = new JLabel("Helbide elektronikoa");
 		int a = pantailaTamaina.width / 26;
 		lblErabiltzailea.setBounds((pantailaTamaina.width / 8) - (a / 2), pantailaTamaina.height / 54, a, altuera);
 		contentPane.add(lblErabiltzailea);
@@ -113,9 +114,41 @@ public class lHasi extends JFrame {
 		btnSartu.addMouseListener(new MouseAdapter() {
 
 			public void mouseClicked(MouseEvent e) {
+				if ((textField.getText().equals("")) || (textField.getText().equals(" "))
+						|| (textField.getText().equals("  "))) {
+					JOptionPane.showMessageDialog(lHasi.this, "Helbide elektroniko bat idatzi behar duzu.", "Kontuz",
+							1);
+				}
+				if ((textField_1.getText().equals("")) || (textField_1.getText().equals(" "))
+						|| (textField_1.getText().equals("  "))) {
+					JOptionPane.showMessageDialog(lHasi.this, "Pasahitza idatzi behar duzu.", "Kontuz", 1);
+				}
+				/*
+				 * Autentikazio zerbitzu bat aukeratu ez duen kasuan
+				 */
 				if ((rdbtnFb.isSelected() == false) && (rdbtnGoogle.isSelected() == false)) {
-					JOptionPane.showMessageDialog(lHasi.this, "Autentikazio zerbitzu bat aukeratu behar duzu!",
+					JOptionPane.showMessageDialog(lHasi.this, "Autentikazio zerbitzu bat aukeratu behar duzu.",
 							"Kontuz", 1);
+				}
+				/*
+				 * Datuak ongi sartuta dauden kasuan
+				 */
+				else {
+					String autentikazioZerbitzua = "";
+					if (rdbtnFb.isSelected()) {
+						autentikazioZerbitzua = "facebook";
+					}
+					if (rdbtnGoogle.isSelected()) {
+						autentikazioZerbitzua = "google";
+					}
+					// Sartu
+					try {
+						// Imanol: Ez nago seguru horrela den
+						stubServer.login(textField.getText(), textField_1.getText(), autentikazioZerbitzua);
+					} catch (RemoteException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 				}
 			}
 		});

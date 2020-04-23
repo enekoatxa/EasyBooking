@@ -128,6 +128,16 @@ public class lErregistratu extends JFrame {
 		btnIzEman.addMouseListener(new MouseAdapter() {
 
 			public void mouseClicked(MouseEvent e) {
+				if ((textField.getText().equals("")) || (textField.getText().equals(" "))
+						|| (textField.getText().equals("  "))) {
+					JOptionPane.showMessageDialog(lErregistratu.this, "Helbide elektroniko bat idatzi behar duzu.",
+							"Kontuz", 1);
+				}
+				// Gustuko aireportua aukeratu ez badu
+				// if()
+				// {
+				//
+				// }
 				if ((rdbtnFb.isSelected() == false) && (rdbtnGoogle.isSelected() == false)) {
 					JOptionPane.showMessageDialog(b, "Autentikazio zerbitzu bat aukeratu behar duzu!", "Kontuz", 1);
 
@@ -135,6 +145,22 @@ public class lErregistratu extends JFrame {
 				if ((rdbtnPp.isSelected() == false) && (rdbtnVisa.isSelected() == false)) {
 					JOptionPane.showMessageDialog(b, "Ordainketa metodo bat aukeratu behar duzu!", "Kontuz", 1);
 
+				} else {
+					String autentikazioZerbitzua = "";
+					String ordainketaMetodoa = "";
+					if (rdbtnFb.isSelected()) {
+						autentikazioZerbitzua = "facebook";
+					}
+					if (rdbtnGoogle.isSelected()) {
+						autentikazioZerbitzua = "google";
+					}
+					if (rdbtnPp.isSelected()) {
+						ordainketaMetodoa = "paypal";
+					}
+					if (rdbtnVisa.isSelected()) {
+						ordainketaMetodoa = "visa";
+					}
+					// Erabiltzailea sortu
 				}
 			}
 
