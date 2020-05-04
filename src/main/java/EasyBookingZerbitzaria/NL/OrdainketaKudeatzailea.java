@@ -1,5 +1,5 @@
 package EasyBookingZerbitzaria.NL;
 
-public class kudeatzaileNagusia {
+public class OrdainketaKudeatzailea {
 
 }

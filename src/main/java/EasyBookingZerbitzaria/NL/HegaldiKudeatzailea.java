@@ -6,7 +6,7 @@ import java.util.Collections;
 import EasyBookingZerbitzaria.DL.aireportua;
 import EasyBookingZerbitzaria.DL.hegaldia;
 
-public class HegaldiKudeaketa {
+public class HegaldiKudeatzailea {
 	/*
 	 * Hegaldi merkeena aukeratzen duen metodoa. Erabiltzaileak helmuga
 	 * aireportu bakarra ahalko du jarri, baina irteera aireportuak nahi
