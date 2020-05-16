@@ -1,4 +1,4 @@
-package EasyBookingKlientea.PL;
+package EasyBookingKlientea.NL;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
@@ -17,7 +17,7 @@ public interface IEasyZerbitzaria extends Remote {
 
 	boolean pasahitzaAldatu(String email, String pasahitzZaharra, String pasahitzBerria) throws RemoteException;
 
-	boolean login(String email, String pasahitza, String autentikazioZerbitzua) throws RemoteException;
+	boolean login(String email, String pasahitza) throws RemoteException;
 
 	// Hegaldien inguruko metodoak
 

@@ -19,6 +19,8 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
+import EasyBookingKlientea.NL.IEasyZerbitzaria;
+
 public class lHasi extends JFrame {
 
 	private JPanel contentPane;
@@ -40,14 +42,7 @@ public class lHasi extends JFrame {
 	JFrame b = this;
 	Dimension pantailaTamaina = Toolkit.getDefaultToolkit().getScreenSize();
 
-	public static void main(String[] args) {
-		//hauek controlerrera pasata daude asike gero kendu egin beharko dira (main hau kendu)
-		lHasi hasi = new lHasi(args[0], args[1], args[2]);
-		hasi.setVisible(true);
-	}
-
-	public lHasi(String host, String port, String server) {
-		konektatuZerbitzarira(host, port, server);
+	public lHasi() {
 		setTitle("Sartu");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(pantailaTamaina.width / 2, pantailaTamaina.height / 2);
@@ -156,18 +151,4 @@ public class lHasi extends JFrame {
 
 	}
 
-	
-	// hau ya ez da behar... set service erabiliko dugu RMIServiceLocator-etik
-	private void konektatuZerbitzarira(String host, String port, String server) {
-		try {
-			Registry registry = LocateRegistry.getRegistry(Integer.valueOf(port));
-			String name = "//" + host + ":" + port + "/" + server;
-			// stubServer = (IEasyZerbitzaria) java.rmi.Naming.lookup(name);
-			stubServer = (IEasyZerbitzaria) registry.lookup(name);
-
-		} catch (Exception e) {
-			System.err.println("- Klientean exzepzioa RMI zerbitzarira konektatzean " + e.getMessage());
-			e.printStackTrace();
-		}
-	}
 }

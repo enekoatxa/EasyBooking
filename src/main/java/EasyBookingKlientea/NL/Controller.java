@@ -1,32 +1,29 @@
-package EasyBookingKlientea.PL;
+package EasyBookingKlientea.NL;
 
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.ArrayList;
 
+import EasyBookingKlientea.PL.lHasi;
+
 import java.rmi.RemoteException;
 
 
 public class Controller {
-
 	
-private RMIServiceLocator rsl = null;
+	private RMIServiceLocator rsl = null;
 	
 	public Controller(String[] args) throws RemoteException 
 	{		
-		// Add your related code for the initialization of the Service Locator
-	
-        // Add your code for the initialization of the windows
 		rsl = new RMIServiceLocator();
 		rsl.setService(args[0], args[1], args[2]);
-		lHasi hasi = new lHasi(args[0], args[1], args[2]);
+		lHasi hasi = new lHasi();
 		hasi.setVisible(true);
 	}
 	
-	//main-a
 	public static void main(String[] args) throws RemoteException 
 	{
-		new Controller(args);
+		Controller c = new Controller(args);
 	}
 	
 	public void exit() 
@@ -34,15 +31,14 @@ private RMIServiceLocator rsl = null;
 		System.exit(0);
 	}
 	
-	public void sortuErabiltzailea(String email, String izena, String abizena, int adina, String nan)
-	throws RemoteException
-			{
-				try {
-		    		rsl.getService().sortuErabiltzailea(email, izena, abizena, adina, nan);
-		    	} catch (Exception e){
-		    		System.err.println("Errorea erabiltzailea sortzerako garaian: " + e.getMessage());
-		    	}	
-			}
+	public void sortuErabiltzailea(String email, String izena, String abizena, int adina, String nan) throws RemoteException
+	{
+		try {
+    		rsl.getService().sortuErabiltzailea(email, izena, abizena, adina, nan);
+    	} catch (Exception e){
+    		System.err.println("Errorea erabiltzailea sortzerako garaian: " + e.getMessage());
+    	}	
+	}
 	
 	public void ezabatuErabiltzailea() throws RemoteException
 	{
@@ -56,11 +52,11 @@ private RMIServiceLocator rsl = null;
 	public void  pasahitzaAldatu(String email, String pasahitzZaharra, String pasahitzBerria)
 	throws RemoteException
 	{
-	try {
-	    		rsl.getService().pasahitzaAldatu(pasahitzBerria, pasahitzBerria, pasahitzBerria);
-	    } catch (Exception e){
-	    		System.err.println("Errorea pasahitza aldatzerako garaian: " + e.getMessage());
-	    }	
+		try {
+		    		rsl.getService().pasahitzaAldatu(pasahitzBerria, pasahitzBerria, pasahitzBerria);
+		    } catch (Exception e){
+		    		System.err.println("Errorea pasahitza aldatzerako garaian: " + e.getMessage());
+		    }
 	}
 	
 	public void login(String email, String pasahitza, String autentikazioZerbitzua) throws RemoteException
@@ -74,7 +70,7 @@ private RMIServiceLocator rsl = null;
 	
 	public void hegaldiakBilatu(ArrayList<String> espezifikazioak) throws RemoteException
 	{
-			try {
+		try {
 	    		rsl.getService().hegaldiakBilatu(espezifikazioak);
 	    	} catch (Exception e){
 	    		System.err.println("Errorea helgaldiak bilatzerako garaian: " + e.getMessage());

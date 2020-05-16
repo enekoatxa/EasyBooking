@@ -10,13 +10,13 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import EasyBookingZerbitzaria.DL.hegaldia;
+import EasyBookingKlientea.DLDTO.hegaldiaDTO;
 
 public class pHegaldia extends JPanel {
 
 	private final String pathFondoa = "src/main/resources/pHegaldiaFondoa.png";
 
-	public pHegaldia(hegaldia h) {
+	public pHegaldia(hegaldiaDTO h) {
 		this.setLayout(null);
 		Icon fondoa = new ImageIcon(pathFondoa);
 		JLabel lfondoa = new JLabel(fondoa);

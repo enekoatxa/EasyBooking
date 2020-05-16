@@ -13,9 +13,7 @@ public class hegaldia implements Comparable<hegaldia> {
 	private int eserlekuLibreak;
 	private aerolinea aerolinea;
 
-	public hegaldia(String kodea, aireportua irteera, aireportua helmuga, double denbora, double prezioa, Date data,
-			int eserlekuLibreak, aerolinea aerolinea) {
-		super();
+	public hegaldia(String kodea, aireportua irteera, aireportua helmuga, double denbora, double prezioa, Date data, int eserlekuLibreak, aerolinea aerolinea) {
 		this.kodea = kodea;
 		this.irteera = irteera;
 		this.helmuga = helmuga;

@@ -10,14 +10,12 @@ import javax.jdo.annotations.PrimaryKey;
 public class aireportua {
 	@PrimaryKey
 	private String kodea;
-
 	private String izena;
 
 	@Element(column = "GUSTOKO_AIR")
 	private ArrayList<erabiltzailea> erabiltzaileak;
 
 	public aireportua(String kodea, String izena) {
-		super();
 		erabiltzaileak = new ArrayList<erabiltzailea>();
 		this.kodea = kodea;
 		this.izena = izena;
