@@ -1,12 +1,32 @@
 package EasyBookingZerbitzaria.NL;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import EasyBookingKlientea.DLDTO.hegaldiaDTO;
 import EasyBookingZerbitzaria.DL.aireportua;
 import EasyBookingZerbitzaria.DL.hegaldia;
 
 public class HegaldiKudeatzailea {
+	
+	
+	private static HegaldiKudeatzailea instance = new HegaldiKudeatzailea();
+	private DAO dao;
+	
+	private HegaldiKudeatzailea() {
+		dao = DAO.getInstance();
+	}
+	
+	public static HegaldiKudeatzailea getInstance() {
+		return instance;
+	}
+	
+	public ArrayList<hegaldiaDTO> hegaldiakBilatu(ArrayList<String> espezifikazioak) throws RemoteException {
+		//deitu mikrozerbitzura
+		return null;
+	}
+	
 	/*
 	 * Hegaldi merkeena aukeratzen duen metodoa. Erabiltzaileak helmuga
 	 * aireportu bakarra ahalko du jarri, baina irteera aireportuak nahi

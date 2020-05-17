@@ -6,48 +6,48 @@ import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
-import EasyBookingZerbitzaria.DL.hegaldia;
+import EasyBookingKlientea.DLDTO.hegaldiaDTO;
+import EasyBookingZerbitzaria.DL.aireportua;
+import EasyBookingZerbitzaria.DL.erabiltzailea;
 
 public class EasyZerbitzaria extends UnicastRemoteObject implements IEasyZerbitzaria {
 
+	private AutentikazioKudeatzailea autentikazioKud;
+	private HegaldiKudeatzailea hegaldiKud;
+	private OrdainketaKudeatzailea ordainketaKud;
+	
 	protected EasyZerbitzaria() throws RemoteException {
-		super();
-		// TODO Auto-generated constructor stub
+		autentikazioKud = AutentikazioKudeatzailea.getInstance();
+		hegaldiKud = HegaldiKudeatzailea.getInstance();
+		ordainketaKud = OrdainketaKudeatzailea.getInstance();
 	}
 
-	public boolean sortuErabiltzailea(String email, String izena, String abizena, int adina, String nan) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean sortuErabiltzailea(String email, String izena, String abizena, int adina, String nan, String nick, String pasahitza, aireportua gustokoAireportua) {
+		return autentikazioKud.sortuErabiltzailea(email, izena, abizena, adina, nan, nick, pasahitza, gustokoAireportua);
 	}
 
-	public boolean ezabatuErabiltzailea() {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean ezabatuErabiltzailea(String email) {
+		return autentikazioKud.ezabatuErabiltzailea(email);
 	}
 
 	public boolean pasahitzaAldatu(String email, String pasahitzZaharra, String pasahitzBerria) {
-		// TODO Auto-generated method stub
-		return false;
+		return autentikazioKud.pasahitzaAldatu(email, pasahitzZaharra, pasahitzBerria);
 	}
 
-	public boolean login(String erabiltzailea, String pasahitza, String email) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean login(String email, String pasahitza) {
+		return autentikazioKud.login(email, pasahitza);
 	}
 
-	public ArrayList<hegaldia> hegaldiakBilatu(ArrayList<String> espezifikazioak) {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<hegaldiaDTO> hegaldiakBilatu(ArrayList<String> espezifikazioak) throws RemoteException {
+		return hegaldiKud.hegaldiakBilatu(espezifikazioak);
 	}
 
-	public void ordaindu(String email, float kantitatea, String kontzeptua) {
-		// TODO Auto-generated method stub
-
+	public boolean ordaindu(String email, float kantitatea, String kontzeptua) {
+		return ordainketaKud.ordaindu(email, kantitatea, kontzeptua);
 	}
 
 	public boolean eguneratuMoneta(String email, float kantitatea) {
-		// TODO Auto-generated method stub
-		return false;
+		return ordainketaKud.eguneratuMoneta(email, kantitatea);
 	}
 
 	public static void main(String[] args) {

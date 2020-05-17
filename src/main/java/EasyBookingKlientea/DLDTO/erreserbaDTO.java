@@ -6,14 +6,12 @@ public class erreserbaDTO {
 	private int prezioa;
 	private hegaldiaDTO heg;
 	private int bidaiariKopurua;
-	private erabiltzaileaDTO erabiltzailea;
 	
-	public erreserbaDTO(String kodea, int prezioa, hegaldiaDTO heg, int bidaiariKopurua, erabiltzaileaDTO erabiltzailea) {
+	public erreserbaDTO(String kodea, int prezioa, hegaldiaDTO heg, int bidaiariKopurua) {
 		this.kodea = kodea;
 		this.prezioa = prezioa;
 		this.heg = heg;
 		this.bidaiariKopurua = bidaiariKopurua;
-		this.erabiltzailea = erabiltzailea;
 	}
 
 	public String getKodea() {
