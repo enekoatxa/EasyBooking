@@ -18,7 +18,7 @@ public interface IEasyZerbitzaria extends Remote {
 
 	boolean pasahitzaAldatu(String email, String pasahitzZaharra, String pasahitzBerria) throws RemoteException;
 
-	boolean login(String email, String pasahitza) throws RemoteException;
+	boolean login(String email, String pasahitza, String autentikazioZerbitzua) throws RemoteException;
 
 	// Hegaldien inguruko metodoak
 

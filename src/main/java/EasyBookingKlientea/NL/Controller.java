@@ -5,6 +5,7 @@ import java.rmi.registry.Registry;
 import java.util.ArrayList;
 
 import EasyBookingKlientea.PL.lHasi;
+import EasyBookingZerbitzaria.DL.aireportua;
 
 import java.rmi.RemoteException;
 
@@ -31,19 +32,20 @@ public class Controller {
 		System.exit(0);
 	}
 	
-	public void sortuErabiltzailea(String email, String izena, String abizena, int adina, String nan) throws RemoteException
+	public void  sortuErabiltzailea(String email, String izena, String abizena,
+			int adina, String nan, String nick, String pasahitza, aireportua gustokoAireportua)
 	{
 		try {
-    		rsl.getService().sortuErabiltzailea(email, izena, abizena, adina, nan);
+    		rsl.getService().sortuErabiltzailea(email, izena, abizena, adina, nan, nick,pasahitza, gustokoAireportua);
     	} catch (Exception e){
     		System.err.println("Errorea erabiltzailea sortzerako garaian: " + e.getMessage());
     	}	
 	}
 	
-	public void ezabatuErabiltzailea() throws RemoteException
+	public void ezabatuErabiltzailea(String kodea) throws RemoteException
 	{
 		try {
-	    		rsl.getService().ezabatuErabiltzailea();
+	    		rsl.getService().ezabatuErabiltzailea(kodea);
 	    	} catch (Exception e){
 	    		System.err.println("Errorea erabiltzailea ezabatzerako garaian: " + e.getMessage());
 	    	}	

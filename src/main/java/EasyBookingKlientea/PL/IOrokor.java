@@ -48,6 +48,12 @@ public class IOrokor extends JFrame {
 	private int altuera = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
 	private final String pathLogoa = "src/main/resources/logoa.jpg";
 
+	
+	public static  void main(String[] args)  
+	{	IOrokor erregistratu = new IOrokor();
+	erregistratu.setVisible(true);
+		
+	}
 	public IOrokor() {
 
 		setTitle("Easy Booking");
@@ -275,12 +281,14 @@ public class IOrokor extends JFrame {
 		Date dataProba = new Date();
 		hegaldia hProba = new hegaldia("ABC", portuaProba, portuaProba, 3, 45, dataProba, 56, lineaProba);
 
-		pHegaldia panelProba = new pHegaldia(hProba);
-		pHegaldia panelProba2 = new pHegaldia(hProba);
-		pHegaldia panelProba3 = new pHegaldia(hProba);
-		pHegaldia panelProba4 = new pHegaldia(hProba);
-		pHegaldia panelProba5 = new pHegaldia(hProba);
-		pHegaldia panelProba6 = new pHegaldia(hProba);
+		
+//		pHegaldia panelProba = new pHegaldia(hProba);
+//		pHegaldia panelProba2 = new pHegaldia(hProba);
+//		pHegaldia panelProba3 = new pHegaldia(hProba);
+//		pHegaldia panelProba4 = new pHegaldia(hProba);
+//		pHegaldia panelProba5 = new pHegaldia(hProba);
+//		pHegaldia panelProba6 = new pHegaldia(hProba);
+		
 		GridBagConstraints cons = new GridBagConstraints();
 		int y = 50;
 		cons.ipadx = 700;
@@ -289,22 +297,22 @@ public class IOrokor extends JFrame {
 		cons.gridy = y;
 		y = y + 240;
 
-		PscrollPane.add(panelProba, cons);
-		cons.gridy = y;
-		y = y + 240;
-		PscrollPane.add(panelProba2, cons);
-		cons.gridy = y;
-		y = y + 240;
-		PscrollPane.add(panelProba3, cons);
-		cons.gridy = y;
-		y = y + 240;
-		PscrollPane.add(panelProba4, cons);
-		cons.gridy = y;
-		y = y + 240;
-		PscrollPane.add(panelProba5, cons);
-		cons.gridy = y;
-		y = y + 240;
-		PscrollPane.add(panelProba6, cons);
+//		PscrollPane.add(panelProba, cons);
+//		cons.gridy = y;
+//		y = y + 240;
+//		PscrollPane.add(panelProba2, cons);
+//		cons.gridy = y;
+//		y = y + 240;
+//		PscrollPane.add(panelProba3, cons);
+//		cons.gridy = y;
+//		y = y + 240;
+//		PscrollPane.add(panelProba4, cons);
+//		cons.gridy = y;
+//		y = y + 240;
+//		PscrollPane.add(panelProba5, cons);
+//		cons.gridy = y;
+//		y = y + 240;
+//		PscrollPane.add(panelProba6, cons);
 		// Panelak sartzeko probako kodearen amaiera
 
 		PscrollPane.repaint();

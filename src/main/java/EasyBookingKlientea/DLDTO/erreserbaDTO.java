@@ -6,6 +6,7 @@ public class erreserbaDTO {
 	private int prezioa;
 	private hegaldiaDTO heg;
 	private int bidaiariKopurua;
+	private erabiltzaileaDTO erabiltzailea;
 	
 	public erreserbaDTO(String kodea, int prezioa, hegaldiaDTO heg, int bidaiariKopurua) {
 		this.kodea = kodea;

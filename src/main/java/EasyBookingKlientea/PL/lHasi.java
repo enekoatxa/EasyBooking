@@ -19,6 +19,7 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
+import EasyBookingKlientea.NL.Controller;
 import EasyBookingKlientea.NL.IEasyZerbitzaria;
 
 public class lHasi extends JFrame {
@@ -42,7 +43,15 @@ public class lHasi extends JFrame {
 	JFrame b = this;
 	Dimension pantailaTamaina = Toolkit.getDefaultToolkit().getScreenSize();
 
+	
+	public static  void main(String[] args)  
+	{	lHasi hasi = new lHasi();
+	hasi.setVisible(true);
+		
+	}
+	
 	public lHasi() {
+		
 		setTitle("Sartu");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(pantailaTamaina.width / 2, pantailaTamaina.height / 2);
@@ -76,15 +85,25 @@ public class lHasi extends JFrame {
 
 		btnSartu = new JButton("Sartu");
 		a = pantailaTamaina.width / 14;
-		btnSartu.setBounds((pantailaTamaina.width / 4) - (a / 2), this.getHeight() / 2, a, altuera);
+		btnSartu.setBounds((pantailaTamaina.width / 3), this.getHeight() / 2, a, altuera);
 		contentPane.add(btnSartu);
 
 		lblIzenaEman = new JLabel("Izena eman");
 		a = pantailaTamaina.width / 28;
-		lblIzenaEman.setBounds((pantailaTamaina.width / 4) - (a / 2), btnSartu.getY() + btnSartu.getHeight() * 2, a,
+		lblIzenaEman.setBounds((pantailaTamaina.width / 3)+pantailaTamaina.width / 50, btnSartu.getY() + btnSartu.getHeight() * 2, a,
 				altuera);
 		contentPane.add(lblIzenaEman);
 
+		
+		lblIzenaEman.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+            	lErregistratu erregis = new lErregistratu();
+            	erregis.setVisible(true);   
+            }
+
+        });
+		
 		lblHasiHonekin = new JLabel("Hasi honekin:");
 		a = pantailaTamaina.width / 16;
 		lblHasiHonekin.setBounds((pantailaTamaina.width / (7 / 2)) - (a / 2), lblErabiltzailea.getY(), a, altuera);
@@ -106,6 +125,25 @@ public class lHasi extends JFrame {
 		aut = new ButtonGroup();
 		aut.add(rdbtnFb);
 		aut.add(rdbtnGoogle);
+		
+		JPanel panD1 = new JPanel();
+		panD1.setBounds(0, 0,450,600);
+		panD1.setOpaque(true);
+		panD1.setBackground(new java.awt.Color(131, 214, 247));
+		contentPane.add(panD1);
+		
+		JPanel panD2 = new JPanel();
+		panD2.setBounds(450, 0,50,600);
+		panD2.setOpaque(true);
+		panD2.setBackground(new java.awt.Color(247, 245, 247));
+		contentPane.add(panD2);
+		
+		JPanel panD3 = new JPanel();
+		panD3.setBounds(500, 0,450,600);
+		panD3.setOpaque(true);
+		panD3.setBackground(new java.awt.Color(131, 214, 247));
+		contentPane.add(panD3);
+
 
 		btnSartu.addMouseListener(new MouseAdapter() {
 

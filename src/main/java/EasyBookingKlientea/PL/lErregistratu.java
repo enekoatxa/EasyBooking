@@ -7,6 +7,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.ButtonGroup;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -21,7 +22,15 @@ public class lErregistratu extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
+	private JTextField textField2;
+	private JTextField textField3;
+	private JTextField textField4;
+	private JTextField textField5;
 	private JLabel lblHelb;
+	private JLabel lblHelb2;
+	private JLabel lblHelb3;
+	private JLabel lblHelb4;
+	private JLabel lblHelb5;
 	private JLabel lblAut;
 	private JLabel lblOrdainketa;
 	private JLabel lblAireportua;
@@ -36,10 +45,18 @@ public class lErregistratu extends JFrame {
 	private JRadioButton rdbtnPp;
 	private JRadioButton rdbtnVisa;
 	Dimension pantailaTamaina = Toolkit.getDefaultToolkit().getScreenSize();
+	
+	private final String pathFacebook = "src/main/resources/fb.png";
+	private final String pathGoogle = "src/main/resources/google.png";
+	private final String pathpaypal = "src/main/resources//pp.jpg";
+	private final String pathvisa= "src/main/resources//visa.jpg";
 
 	JFrame b = this;
 
+	
 	public lErregistratu() {
+		
+	
 		setTitle("Izena eman");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(pantailaTamaina.width / 2, pantailaTamaina.height / 2);
@@ -48,82 +65,144 @@ public class lErregistratu extends JFrame {
 		contentPane.setLayout(null);
 
 		int altuera = pantailaTamaina.height / 54;
-
-		lblHelb = new JLabel("Helbide elektronikoa");
 		int a = pantailaTamaina.width / 16;
-		lblHelb.setBounds((pantailaTamaina.width / 4) - (a / 2), altuera, a, altuera);
+		
+		lblHelb = new JLabel("Helbide elektronikoa");
+		 a = pantailaTamaina.width / 16;
+		lblHelb.setBounds(pantailaTamaina.width / 10,pantailaTamaina.height/100,pantailaTamaina.width / 5,pantailaTamaina.height/30);
 		contentPane.add(lblHelb);
-
+		
 		textField = new JTextField();
-		a = pantailaTamaina.width / 6;
-		textField.setBounds((pantailaTamaina.width / 4) - (a / 2), (int) (altuera * 2.5), a, altuera);
+		textField.setBounds(pantailaTamaina.width / 50,pantailaTamaina.height/25,pantailaTamaina.width / 5,pantailaTamaina.height/30);
 		contentPane.add(textField);
+		
+		lblHelb2 = new JLabel("Izena");
+		 a = pantailaTamaina.width / 16;
+		lblHelb2.setBounds(pantailaTamaina.width / 9,pantailaTamaina.height/13,pantailaTamaina.width / 5,pantailaTamaina.height/30);
+		contentPane.add(lblHelb2);
+		
 
-		lblAut = new JLabel("Autentikazio zerbitzua");
+		textField2 = new JTextField();
+		textField2.setBounds(pantailaTamaina.width / 50,pantailaTamaina.height/9,pantailaTamaina.width / 5,pantailaTamaina.height/30);
+		contentPane.add(textField2);
+		
+		lblHelb3 = new JLabel("Abizena");
+		 a = pantailaTamaina.width / 16;
+		lblHelb3.setBounds(pantailaTamaina.width / 9,pantailaTamaina.height/7,pantailaTamaina.width / 5,pantailaTamaina.height/30);
+		contentPane.add(lblHelb3);
+		
+		textField3 = new JTextField();
+		textField3.setBounds(pantailaTamaina.width / 50,pantailaTamaina.height/6,pantailaTamaina.width / 5,pantailaTamaina.height/30);
+		contentPane.add(textField3);
+		
+		lblHelb4 = new JLabel("Adina");
+		 a = pantailaTamaina.width / 16;
+		lblHelb4.setBounds(pantailaTamaina.width / 9,pantailaTamaina.height/5,pantailaTamaina.width / 5,pantailaTamaina.height/30);
+		contentPane.add(lblHelb4);
+		
+		textField4 = new JTextField();
+		textField4.setBounds(pantailaTamaina.width / 50,pantailaTamaina.height/5+(pantailaTamaina.height/30),pantailaTamaina.width / 5,pantailaTamaina.height/30);
+		contentPane.add(textField4);
+		
+		lblHelb5 = new JLabel("NAN:");
+		 a = pantailaTamaina.width / 16;
+		lblHelb5.setBounds(pantailaTamaina.width / 9,pantailaTamaina.height/4+(pantailaTamaina.height/50),pantailaTamaina.width / 5,pantailaTamaina.height/30);
+		contentPane.add(lblHelb5);
+		
+		textField5 = new JTextField();
+		textField5.setBounds(pantailaTamaina.width / 50,pantailaTamaina.height/4+(pantailaTamaina.height/20),pantailaTamaina.width / 5,pantailaTamaina.height/30);
+		contentPane.add(textField5);
+		
+		
+
+		lblAut = new JLabel("Autentikatu zaitez");
 		a = pantailaTamaina.width / 14;
-		lblAut.setBounds((pantailaTamaina.width / 4) - (a / 2), (int) (altuera * 4.5), a, altuera);
+		lblAut.setBounds((pantailaTamaina.width / 3) +pantailaTamaina.width/50, (int) (altuera * 1.5), a, altuera);
 		contentPane.add(lblAut);
 
+
+		
 		rdbtnFb = new JRadioButton("Facebook");
-		rdbtnFb.setBounds((pantailaTamaina.width / 4) - a, (int) (altuera * 5.5), a, altuera * 2);
-		Image img = new ImageIcon(this.getClass().getResource("/fb.png")).getImage();
-		rdbtnFb.setIcon(new ImageIcon(img));
-		rdbtnFb.setBorderPainted(true);
+		rdbtnFb.setBounds((pantailaTamaina.width / 4)+pantailaTamaina.width/20, (int) (altuera * 4), a, altuera);
+		Icon logoFacebook = new ImageIcon(pathFacebook);
+		rdbtnFb.setIcon(logoFacebook);
 		contentPane.add(rdbtnFb);
 
 		rdbtnGoogle = new JRadioButton("Google");
-		rdbtnGoogle.setBounds((pantailaTamaina.width / 4), (int) (altuera * 5.5), a, altuera * 2);
-		Image imag = new ImageIcon(this.getClass().getResource("/google.png")).getImage();
-		rdbtnGoogle.setIcon(new ImageIcon(imag));
-		rdbtnGoogle.setBorderPainted(true);
+		rdbtnGoogle.setBounds((pantailaTamaina.width / 3)+pantailaTamaina.width/20, (int) (altuera * 4), a, altuera);
+		Icon logoGoogle = new ImageIcon(pathGoogle);
+		rdbtnGoogle.setIcon(logoGoogle);
+
 		contentPane.add(rdbtnGoogle);
-
-		lblOrdainketa = new JLabel("Ordainketa metodoa");
-		a = pantailaTamaina.width / 14;
-		lblOrdainketa.setBounds((pantailaTamaina.width / 4) - (a / 2), altuera * 8, a, altuera);
-		contentPane.add(lblOrdainketa);
-
-		rdbtnPp = new JRadioButton("Paypal");
-		rdbtnPp.setBounds((pantailaTamaina.width / 4) - a, (int) (altuera * 9), a, altuera * 2);
-		Image img1 = new ImageIcon(this.getClass().getResource("/pp.png")).getImage();
-		rdbtnPp.setIcon(new ImageIcon(img1));
-		rdbtnPp.setBorderPainted(true);
-		contentPane.add(rdbtnPp);
-
-		rdbtnVisa = new JRadioButton("Visa");
-		rdbtnVisa.setBounds((pantailaTamaina.width / 4), (int) (altuera * 9), a, altuera * 2);
-		Image imag1 = new ImageIcon(this.getClass().getResource("/visa.png")).getImage();
-		rdbtnVisa.setIcon(new ImageIcon(imag1));
-		rdbtnVisa.setBorderPainted(true);
-		contentPane.add(rdbtnVisa);
-
-		lblAireportua = new JLabel("Gustoko aireportua");
-		a = pantailaTamaina.width / 16;
-		lblAireportua.setBounds((pantailaTamaina.width / 4) - (a / 2), (int) (altuera * 11.5), a, altuera);
-		contentPane.add(lblAireportua);
-
-		aireportua = new JComboBox<Object>();
-		a = pantailaTamaina.width / 6;
-		aireportua.setBounds((pantailaTamaina.width / 4) - (a / 2), altuera * 13, a, altuera);
-		contentPane.add(aireportua);
-
-		btnIzEman = new JButton("Izena eman");
-		a = pantailaTamaina.width / 14;
-		btnIzEman.setBounds((pantailaTamaina.width / 4) - (a / 2), altuera * 17, a, altuera);
-		contentPane.add(btnIzEman);
-
-		lblSartu = new JLabel("Sartu");
-		a = pantailaTamaina.width / 28;
-		lblSartu.setBounds((pantailaTamaina.width / 4) - (a / 4), (int) (altuera * 18.5), a, altuera);
-		contentPane.add(lblSartu);
 
 		aut = new ButtonGroup();
 		aut.add(rdbtnFb);
 		aut.add(rdbtnGoogle);
 
+		lblOrdainketa = new JLabel("Ordainketa metodoa");
+		a = pantailaTamaina.width / 14;
+		lblOrdainketa.setBounds((pantailaTamaina.width / 3)+pantailaTamaina.width/80, (int) (altuera * 8), a, altuera);
+		contentPane.add(lblOrdainketa);
+		
+
+		rdbtnPp = new JRadioButton("Paypal");
+		rdbtnPp.setBounds((pantailaTamaina.width / 4)+pantailaTamaina.width/20, (int) (altuera * 10), a, altuera);
+		Icon logopaypal = new ImageIcon(pathpaypal);
+		rdbtnPp.setIcon(logopaypal);
+		contentPane.add(rdbtnPp);
+
+		
+		rdbtnVisa = new JRadioButton("Visa");
+		rdbtnVisa.setBounds((pantailaTamaina.width / 3)+pantailaTamaina.width/20, (int) (altuera * 10), a, altuera);
+		Icon logovisa = new ImageIcon(pathvisa);
+		rdbtnVisa.setIcon(logovisa);
+		contentPane.add(rdbtnVisa);
+		
 		ord = new ButtonGroup();
 		ord.add(rdbtnPp);
 		ord.add(rdbtnVisa);
+
+		lblAireportua = new JLabel("Gustoko aireportua");
+		a = pantailaTamaina.width / 16;
+		lblAireportua.setBounds((pantailaTamaina.width / 3)+pantailaTamaina.width/80, (int) (altuera * 15), a, altuera);
+		contentPane.add(lblAireportua);
+
+		aireportua = new JComboBox<Object>();
+		a = pantailaTamaina.width / 6;
+		aireportua.setBounds((pantailaTamaina.width / 4)+pantailaTamaina.width/20, (int) (altuera * 16.5), a, altuera);
+		contentPane.add(aireportua);
+
+		btnIzEman = new JButton("Izena eman");
+		a = pantailaTamaina.width / 14;
+		btnIzEman.setBounds((pantailaTamaina.width / 3)+pantailaTamaina.width/80, (int) (altuera * 19), a, altuera);
+		contentPane.add(btnIzEman);
+
+		lblSartu = new JLabel("Sartu");
+		a = pantailaTamaina.width / 28;
+		lblSartu.setBounds((pantailaTamaina.width / 3)+pantailaTamaina.width/24, (int) (altuera * 21), a, altuera);
+		contentPane.add(lblSartu);
+
+		JPanel panD1 = new JPanel();
+		panD1.setBounds(0, 0,450,600);
+		panD1.setOpaque(true);
+		panD1.setBackground(new java.awt.Color(131, 214, 247));
+		contentPane.add(panD1);
+		
+		JPanel panD2 = new JPanel();
+		panD2.setBounds(450, 0,50,600);
+		panD2.setOpaque(true);
+		panD2.setBackground(new java.awt.Color(247, 245, 247));
+		contentPane.add(panD2);
+		
+		JPanel panD3 = new JPanel();
+		panD3.setBounds(500, 0,450,600);
+		panD3.setOpaque(true);
+		panD3.setBackground(new java.awt.Color(131, 214, 247));
+		contentPane.add(panD3);
+
+		
+
+	
 
 		btnIzEman.addMouseListener(new MouseAdapter() {
 
