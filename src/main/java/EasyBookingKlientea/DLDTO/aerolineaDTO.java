@@ -4,7 +4,7 @@ public class aerolineaDTO {
 
 	private String kodea;
 	private String izena;
-	
+
 	public aerolineaDTO(String kodea, String izena) {
 		this.kodea = kodea;
 		this.izena = izena;

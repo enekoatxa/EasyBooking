@@ -6,14 +6,14 @@ public class bidaiariaDTO {
 	private String izena;
 	private String abizena;
 	private int adina;
-	
+
 	public bidaiariaDTO(String nan, String izena, String abizena, int adina) {
-		this.nan=nan;
-		this.izena=izena;
-		this.abizena=abizena;
-		this.adina=adina;
+		this.nan = nan;
+		this.izena = izena;
+		this.abizena = abizena;
+		this.adina = adina;
 	}
-	
+
 	public String getNan() {
 		return nan;
 	}

@@ -5,9 +5,7 @@ public class erabiltzaileaDTO {
 	private String emaila;
 	private String nick;
 	private String pasahitza;
-	
-	
-	
+
 	public erabiltzaileaDTO(String emaila, String nick, String pasahitza) {
 		this.emaila = emaila;
 		this.nick = nick;
