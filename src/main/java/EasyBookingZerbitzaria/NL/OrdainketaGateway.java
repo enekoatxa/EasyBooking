@@ -1,5 +1,11 @@
 package EasyBookingZerbitzaria.NL;
 
-public class OrdainketaGateway {
+import java.rmi.RemoteException;
+
+public interface OrdainketaGateway 
+{
+	boolean ordaindu(String email, float kantitatea, String kontzeptua) throws RemoteException;
+
+	boolean eguneratuMoneta(String email, float kantitatea) throws RemoteException;
 
 }
