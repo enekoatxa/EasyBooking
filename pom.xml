@@ -26,6 +26,7 @@
     <version>2.1</version>
 </dependency>
 
+
 <!-- https://mvnrepository.com/artifact/com.toedter/jcalendar -->
 <dependency>
     <groupId>com.toedter</groupId>
@@ -46,25 +47,33 @@
 </dependency>
 
 
+<!-- https://mvnrepository.com/artifact/org.datanucleus/datanucleus-core -->
 <dependency>
     <groupId>org.datanucleus</groupId>
     <artifactId>datanucleus-core</artifactId>
-    <version>[5.1.6, 5.9)</version>
+    <version>5.2.2</version>
 </dependency>
+
+<!-- https://mvnrepository.com/artifact/org.datanucleus/datanucleus-api-jdo -->
 <dependency>
     <groupId>org.datanucleus</groupId>
     <artifactId>datanucleus-api-jdo</artifactId>
-    <version>[5.1.4, 5.9)</version>
+    <version>5.2.3</version>
 </dependency>
+
+
+<!-- https://mvnrepository.com/artifact/org.datanucleus/datanucleus-rdbms -->
 <dependency>
     <groupId>org.datanucleus</groupId>
     <artifactId>datanucleus-rdbms</artifactId>
-    <version>[5.1.6, 5.9)</version>
+    <version>5.2.2</version>
 </dependency>
+
+<!-- https://mvnrepository.com/artifact/org.datanucleus/javax.jdo -->
 <dependency>
     <groupId>org.datanucleus</groupId>
     <artifactId>javax.jdo</artifactId>
-    <version>[3.2.0-m8, )</version>
+    <version>3.2.0-m13</version>
 </dependency>
 <dependency>
     <groupId>mysql</groupId>
