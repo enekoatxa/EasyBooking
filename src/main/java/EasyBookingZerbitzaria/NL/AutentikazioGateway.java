@@ -7,11 +7,33 @@ import org.json.simple.JSONObject;
 import EasyBookingZerbitzaria.DL.aireportua;
 
 public class AutentikazioGateway {
+	
+	
+	 JSONObject json_encoded;
+
+	    
 	public boolean sortuErabiltzailea(String email, String izena, String abizena, int adina, String nan, String nick,
 			String pasahitza, aireportua gustokoAireportua) throws RemoteException {
 		boolean a = true;
 		sortuJSON(izena, abizena, email);
+		
 		// VPN deia
+		
+				String hostname = "127.0.0.1";
+				String port_auth = "5000";
+
+
+
+				RestClient_konexioa c1 = new RestClient_konexioa(hostname, port_auth);
+				
+				try {
+					// ping requests
+					c1.makeGetRequest("/");
+					c1.makeGetRequest("/Authentication/Log_in");				
+					
+				} catch (Exception e) {
+					System.out.println("Catched exception: " + e.getMessage());
+				}
 		return a;
 	};
 
