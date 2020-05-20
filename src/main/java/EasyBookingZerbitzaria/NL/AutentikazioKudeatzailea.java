@@ -19,14 +19,18 @@ public class AutentikazioKudeatzailea {
 	public boolean sortuErabiltzailea(String email, String izena, String abizena, int adina, String nan, String nick, String pasahitza, aireportua gustokoAireportua) {
 		erabiltzailea e = new erabiltzailea(nan, izena, abizena, adina, email, nick, pasahitza);
 		e.addGustokoAireportua(gustokoAireportua);
+		
 		//deitu mikrozerbitzura
+
 		dao.gordeErabiltzailea(e);
 		return false;
 	}
 
 	public boolean ezabatuErabiltzailea(String email) {
 		//
+		
 		dao.ezabatuErabiltzailea(email);
+		
 		//deitu mikrozerbitzura
 		return false;
 	}

@@ -8,9 +8,12 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 import com.mysql.fabric.xmlrpc.Client;
 
+
+
 public class RestClient< T extends DF_Printable > 
 {
 
+	
 	protected Client client;
 	protected WebTarget webTarget;
 	
@@ -56,6 +59,7 @@ public class RestClient< T extends DF_Printable >
 	{
 		System.out.println("Content of message to send in POST Request");
 		objectToSend.print();
+		
 		return invocationBuilder.post(Entity.entity(objectToSend, MediaType.APPLICATION_JSON));
 	}
 
@@ -63,6 +67,7 @@ public class RestClient< T extends DF_Printable >
 	{
 		System.out.println("Content of message to send in PUT Request");
 		objectToSend.print();
+		
 		return invocationBuilder.put(Entity.entity(objectToSend, MediaType.APPLICATION_JSON));
 	}
 
@@ -74,6 +79,7 @@ public class RestClient< T extends DF_Printable >
 		System.out.println(response.toString());
 
 		if ( request_OK( response.getStatus() ) ) {
+			
 			System.out.println("Successfully made Rest request... ");
 			System.out.println("Goint to print response content as string");
 
@@ -81,7 +87,9 @@ public class RestClient< T extends DF_Printable >
 
 			System.out.println( response.readEntity(String.class) );
 		}
+		
 		else {
+		
 			System.out.println("Error happened. Can't print result.");
 		}
 	}
