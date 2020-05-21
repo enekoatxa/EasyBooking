@@ -7,6 +7,9 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.rmi.RemoteException;
 import java.util.Date;
 
 import javax.swing.Icon;
@@ -19,6 +22,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSlider;
 import javax.swing.JSpinner;
+import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
 
 import org.jfree.chart.ChartFactory;
@@ -38,6 +42,7 @@ import org.jfree.ui.TextAnchor;
 
 import com.toedter.calendar.JDateChooser;
 
+import EasyBookingKlientea.NL.IEasyZerbitzaria;
 import EasyBookingZerbitzaria.DL.aerolinea;
 import EasyBookingZerbitzaria.DL.aireportua;
 import EasyBookingZerbitzaria.DL.hegaldia;
@@ -47,7 +52,7 @@ public class IOrokor extends JFrame {
 	private int luzea = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
 	private int altuera = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
 	private final String pathLogoa = "src/main/resources/logoa.jpg";
-
+	private IEasyZerbitzaria stubServer = null;
 	
 	public static  void main(String[] args)  
 	{	IOrokor erregistratu = new IOrokor();
@@ -397,6 +402,68 @@ public class IOrokor extends JFrame {
 		panel2.setBounds(1380, 600, 500, 250);
 		contentPane.add(panel2);
 
+			
+		JLabel labelerabiltzailea = new JLabel("Erabiltzaile aukerak:");
+		labelerabiltzailea.setBounds(1400, 870, 400, 50);
+		
+		contentPane.add(labelerabiltzailea);
+		
+		JButton bpasahitza = new JButton("Aldatu pasahitza");
+		bpasahitza.setBounds(1400, 910, 200, 25);
+		contentPane.add(bpasahitza);
+		
+		JTextField textField = new JTextField();
+		textField.setBounds(1400, 940, 200, 25);
+	
+		contentPane.add(textField);
+		
+		JTextField textField2 = new JTextField();
+		textField2.setBounds(1400, 970, 200, 25);
+	
+		contentPane.add(textField2);
+		
+		JButton bborratuE = new JButton("Ezabatu Erabiltzailea");
+		bborratuE.setBounds(1650, 910, 200, 25);
+		contentPane.add(bborratuE);
+		
+		
+		bpasahitza.addActionListener(new ActionListener() {
+			  @Override
+			  public void actionPerformed(ActionEvent e) {
+				  
+				  String email = " ";
+				  String pasahitzZaharra;
+				  String pasahitzBerria;
+				  
+				  pasahitzZaharra= textField.getText();
+				  pasahitzBerria= textField2.getText();
+				  
+				  try {
+					stubServer.pasahitzaAldatu(email, pasahitzZaharra, pasahitzBerria);
+				} catch (RemoteException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}	
+			  }
+			});
+		
+		
+		bborratuE.addActionListener(new ActionListener() {
+			  @Override
+			  public void actionPerformed(ActionEvent e) {
+		      
+				  String kodea=""; //hau gero irekitako saioarekin asoziaturik egon beharko da
+				  
+					try {
+						stubServer.ezabatuErabiltzailea(kodea);
+					} catch (RemoteException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					
+			  }
+			});
+		
 		JPanel pGoikoPanel = new JPanel();
 		pGoikoPanel.setBounds(0, 0, luzea / 10, altuera / 8);
 		pGoikoPanel.setOpaque(true);

@@ -72,5 +72,15 @@ public class Controller {
 		} catch (Exception e) {
 			System.err.println("Errorea helgaldiak bilatzerako garaian: " + e.getMessage());
 		}
+		
 	}
-}
+	
+	public void ordaindu(String email, float kantitatea, String kontzeptua) throws RemoteException {
+		
+		try {
+			rsl.getService().ordaindu(email, kantitatea, kontzeptua);
+		} catch (Exception e) {
+			System.err.println("Errorea ordaintzerako garaian: " + e.getMessage());
+	} 
+		
+}}

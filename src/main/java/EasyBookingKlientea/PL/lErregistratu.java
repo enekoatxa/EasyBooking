@@ -3,8 +3,11 @@ package EasyBookingKlientea.PL;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.rmi.RemoteException;
 
 import javax.swing.ButtonGroup;
 import javax.swing.Icon;
@@ -17,6 +20,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
+
+import EasyBookingKlientea.DLDTO.aireportuaDTO;
+import EasyBookingKlientea.NL.IEasyZerbitzaria;
 
 public class lErregistratu extends JFrame {
 
@@ -50,7 +56,9 @@ public class lErregistratu extends JFrame {
 	private final String pathGoogle = "src/main/resources/google.png";
 	private final String pathpaypal = "src/main/resources//pp.jpg";
 	private final String pathvisa= "src/main/resources//visa.jpg";
-
+	private IEasyZerbitzaria stubServer = null;
+	
+	
 	JFrame b = this;
 
 	
@@ -176,6 +184,8 @@ public class lErregistratu extends JFrame {
 		a = pantailaTamaina.width / 14;
 		btnIzEman.setBounds((pantailaTamaina.width / 3)+pantailaTamaina.width/80, (int) (altuera * 19), a, altuera);
 		contentPane.add(btnIzEman);
+		
+		
 
 		lblSartu = new JLabel("Sartu");
 		a = pantailaTamaina.width / 28;
@@ -200,50 +210,83 @@ public class lErregistratu extends JFrame {
 		panD3.setBackground(new java.awt.Color(131, 214, 247));
 		contentPane.add(panD3);
 
-		
 
+
+		
+		btnIzEman.addActionListener(new ActionListener() {
+			  @Override
+		
+			           
+
+					 public void actionPerformed(ActionEvent e) {
+						    String helbidea;
+						    String Izena;
+						    String abizena;
+						    String adina;
+						    String Nan;
+						    String nick= " ";
+						    String pasahitza= " ";
+						    	    
+						    
+						    String gustokoaireportua = (String)aireportua.getSelectedItem();
+						    
+						    helbidea= textField.getText();
+						    Izena= textField2.getText();
+						    abizena= textField3.getText();
+						    adina= textField4.getText();
+						    Nan= textField5.getText();
+						    
+						    
+						    
+					if ((textField.getText().equals("")) || (textField.getText().equals(" "))
+							|| (textField.getText().equals("  "))) {
+						JOptionPane.showMessageDialog(lErregistratu.this, "Helbide elektroniko bat idatzi behar duzu.",
+								"Kontuz", 1);
+					}
+				
+					if ((rdbtnFb.isSelected() == false) && (rdbtnGoogle.isSelected() == false)) {
+						JOptionPane.showMessageDialog(b, "Autentikazio zerbitzu bat aukeratu behar duzu!", "Kontuz", 1);
+
+					}
+					if ((rdbtnPp.isSelected() == false) && (rdbtnVisa.isSelected() == false)) {
+						JOptionPane.showMessageDialog(b, "Ordainketa metodo bat aukeratu behar duzu!", "Kontuz", 1);
+
+					} else {
+						String autentikazioZerbitzua = "";
+						String ordainketaMetodoa = "";
+						if (rdbtnFb.isSelected()) {
+							autentikazioZerbitzua = "facebook";
+						}
+						if (rdbtnGoogle.isSelected()) {
+							autentikazioZerbitzua = "google";
+						}
+						if (rdbtnPp.isSelected()) {
+							ordainketaMetodoa = "paypal";
+						}
+						if (rdbtnVisa.isSelected()) {
+							ordainketaMetodoa = "visa";
+						}
+						// Erabiltzailea sortu
+						
+						try {
+							
+						
+							int adinaint = Integer.parseInt(adina);
+							String aeroportukodea = " ";
+							
+							 EasyBookingZerbitzaria.DL.aireportua aireportuaA = new  EasyBookingZerbitzaria.DL.aireportua (aeroportukodea,gustokoaireportua );
+							 
+							stubServer.sortuErabiltzailea(helbidea, Izena, abizena,adinaint, Nan , nick, pasahitza, aireportuaA);
+						} catch (RemoteException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+							
+						}
+					}}
+			
+			
+			});
+		
+	}}
 	
 
-		btnIzEman.addMouseListener(new MouseAdapter() {
-
-			public void mouseClicked(MouseEvent e) {
-				if ((textField.getText().equals("")) || (textField.getText().equals(" "))
-						|| (textField.getText().equals("  "))) {
-					JOptionPane.showMessageDialog(lErregistratu.this, "Helbide elektroniko bat idatzi behar duzu.",
-							"Kontuz", 1);
-				}
-				// Gustuko aireportua aukeratu ez badu
-				// if()
-				// {
-				//
-				// }
-				if ((rdbtnFb.isSelected() == false) && (rdbtnGoogle.isSelected() == false)) {
-					JOptionPane.showMessageDialog(b, "Autentikazio zerbitzu bat aukeratu behar duzu!", "Kontuz", 1);
-
-				}
-				if ((rdbtnPp.isSelected() == false) && (rdbtnVisa.isSelected() == false)) {
-					JOptionPane.showMessageDialog(b, "Ordainketa metodo bat aukeratu behar duzu!", "Kontuz", 1);
-
-				} else {
-					String autentikazioZerbitzua = "";
-					String ordainketaMetodoa = "";
-					if (rdbtnFb.isSelected()) {
-						autentikazioZerbitzua = "facebook";
-					}
-					if (rdbtnGoogle.isSelected()) {
-						autentikazioZerbitzua = "google";
-					}
-					if (rdbtnPp.isSelected()) {
-						ordainketaMetodoa = "paypal";
-					}
-					if (rdbtnVisa.isSelected()) {
-						ordainketaMetodoa = "visa";
-					}
-					// Erabiltzailea sortu
-				}
-			}
-
-		});
-
-	}
-}
