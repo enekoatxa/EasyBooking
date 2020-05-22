@@ -2,8 +2,6 @@ package EasyBookingKlientea.PL;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.rmi.RemoteException;
@@ -19,9 +17,7 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
-import EasyBookingKlientea.NL.Controller;
 import EasyBookingKlientea.NL.IEasyZerbitzaria;
-import EasyBookingZerbitzaria.NL.RestClient_konexioa;
 
 public class lHasi extends JFrame {
 
@@ -41,22 +37,24 @@ public class lHasi extends JFrame {
 	private final String pathGoogle = "src/main/resources/google.png";
 	private ButtonGroup aut;
 
-	
 	JFrame b = this;
 	Dimension pantailaTamaina = Toolkit.getDefaultToolkit().getScreenSize();
 
 	public static void main(String[] args) {
 		// lHasi hasi = new lHasi();
 		// hasi.setVisible(true);
-		System.out.println("Bai");
-		RestClient_konexioa konexioa = new RestClient_konexioa("192.168.6.31", "5000");
-		try {
-			konexioa.makeGetRequest("/Authentication/Log_in");
-			System.out.println("Baibai");
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			System.out.println("Catched exception: " + e.getMessage());
-		}
+		// System.out.println("Bai");
+		// RestClient_konexioa konexioa = new
+		// RestClient_konexioa("192.168.6.31", "5000");
+		// try {
+		// konexioa.makeGetRequest("/Authentication/Log_in");
+		// System.out.println("Baibai");
+		// } catch (Exception e) {
+		// // TODO Auto-generated catch block
+		// System.out.println("Catched exception: " + e.getMessage());
+		// }
+		lBidaiariak hasi = new lBidaiariak();
+		hasi.setVisible(true);
 
 	}
 

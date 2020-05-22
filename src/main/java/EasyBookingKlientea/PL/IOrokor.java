@@ -1,6 +1,5 @@
 package EasyBookingKlientea.PL;
 
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -10,6 +9,7 @@ import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.Date;
 
 import javax.swing.Icon;
@@ -45,6 +45,7 @@ import com.toedter.calendar.JDateChooser;
 import EasyBookingKlientea.NL.IEasyZerbitzaria;
 import EasyBookingZerbitzaria.DL.aerolinea;
 import EasyBookingZerbitzaria.DL.aireportua;
+import EasyBookingZerbitzaria.DL.bidaiaria;
 import EasyBookingZerbitzaria.DL.hegaldia;
 
 public class IOrokor extends JFrame {
@@ -53,12 +54,14 @@ public class IOrokor extends JFrame {
 	private int altuera = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
 	private final String pathLogoa = "src/main/resources/logoa.jpg";
 	private IEasyZerbitzaria stubServer = null;
-	
-	public static  void main(String[] args)  
-	{	IOrokor erregistratu = new IOrokor();
-	erregistratu.setVisible(true);
-		
+	private ArrayList<bidaiaria> bidaiariak;
+
+	public static void main(String[] args) {
+		IOrokor erregistratu = new IOrokor();
+		erregistratu.setVisible(true);
+
 	}
+
 	public IOrokor() {
 
 		setTitle("Easy Booking");
@@ -286,14 +289,13 @@ public class IOrokor extends JFrame {
 		Date dataProba = new Date();
 		hegaldia hProba = new hegaldia("ABC", portuaProba, portuaProba, 3, 45, dataProba, 56, lineaProba);
 
-		
-//		pHegaldia panelProba = new pHegaldia(hProba);
-//		pHegaldia panelProba2 = new pHegaldia(hProba);
-//		pHegaldia panelProba3 = new pHegaldia(hProba);
-//		pHegaldia panelProba4 = new pHegaldia(hProba);
-//		pHegaldia panelProba5 = new pHegaldia(hProba);
-//		pHegaldia panelProba6 = new pHegaldia(hProba);
-		
+		// pHegaldia panelProba = new pHegaldia(hProba);
+		// pHegaldia panelProba2 = new pHegaldia(hProba);
+		// pHegaldia panelProba3 = new pHegaldia(hProba);
+		// pHegaldia panelProba4 = new pHegaldia(hProba);
+		// pHegaldia panelProba5 = new pHegaldia(hProba);
+		// pHegaldia panelProba6 = new pHegaldia(hProba);
+
 		GridBagConstraints cons = new GridBagConstraints();
 		int y = 50;
 		cons.ipadx = 700;
@@ -302,22 +304,22 @@ public class IOrokor extends JFrame {
 		cons.gridy = y;
 		y = y + 240;
 
-//		PscrollPane.add(panelProba, cons);
-//		cons.gridy = y;
-//		y = y + 240;
-//		PscrollPane.add(panelProba2, cons);
-//		cons.gridy = y;
-//		y = y + 240;
-//		PscrollPane.add(panelProba3, cons);
-//		cons.gridy = y;
-//		y = y + 240;
-//		PscrollPane.add(panelProba4, cons);
-//		cons.gridy = y;
-//		y = y + 240;
-//		PscrollPane.add(panelProba5, cons);
-//		cons.gridy = y;
-//		y = y + 240;
-//		PscrollPane.add(panelProba6, cons);
+		// PscrollPane.add(panelProba, cons);
+		// cons.gridy = y;
+		// y = y + 240;
+		// PscrollPane.add(panelProba2, cons);
+		// cons.gridy = y;
+		// y = y + 240;
+		// PscrollPane.add(panelProba3, cons);
+		// cons.gridy = y;
+		// y = y + 240;
+		// PscrollPane.add(panelProba4, cons);
+		// cons.gridy = y;
+		// y = y + 240;
+		// PscrollPane.add(panelProba5, cons);
+		// cons.gridy = y;
+		// y = y + 240;
+		// PscrollPane.add(panelProba6, cons);
 		// Panelak sartzeko probako kodearen amaiera
 
 		PscrollPane.repaint();
@@ -402,68 +404,66 @@ public class IOrokor extends JFrame {
 		panel2.setBounds(1380, 600, 500, 250);
 		contentPane.add(panel2);
 
-			
 		JLabel labelerabiltzailea = new JLabel("Erabiltzaile aukerak:");
 		labelerabiltzailea.setBounds(1400, 870, 400, 50);
-		
+
 		contentPane.add(labelerabiltzailea);
-		
+
 		JButton bpasahitza = new JButton("Aldatu pasahitza");
 		bpasahitza.setBounds(1400, 910, 200, 25);
 		contentPane.add(bpasahitza);
-		
+
 		JTextField textField = new JTextField();
 		textField.setBounds(1400, 940, 200, 25);
-	
+
 		contentPane.add(textField);
-		
+
 		JTextField textField2 = new JTextField();
 		textField2.setBounds(1400, 970, 200, 25);
-	
+
 		contentPane.add(textField2);
-		
+
 		JButton bborratuE = new JButton("Ezabatu Erabiltzailea");
 		bborratuE.setBounds(1650, 910, 200, 25);
 		contentPane.add(bborratuE);
-		
-		
+
+		bidaiariak = new ArrayList<bidaiaria>();
+
 		bpasahitza.addActionListener(new ActionListener() {
-			  @Override
-			  public void actionPerformed(ActionEvent e) {
-				  
-				  String email = " ";
-				  String pasahitzZaharra;
-				  String pasahitzBerria;
-				  
-				  pasahitzZaharra= textField.getText();
-				  pasahitzBerria= textField2.getText();
-				  
-				  try {
+			public void actionPerformed(ActionEvent e) {
+
+				String email = " ";
+				String pasahitzZaharra;
+				String pasahitzBerria;
+
+				pasahitzZaharra = textField.getText();
+				pasahitzBerria = textField2.getText();
+
+				try {
 					stubServer.pasahitzaAldatu(email, pasahitzZaharra, pasahitzBerria);
 				} catch (RemoteException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
-				}	
-			  }
-			});
-		
-		
+				}
+			}
+		});
+
 		bborratuE.addActionListener(new ActionListener() {
-			  @Override
-			  public void actionPerformed(ActionEvent e) {
-		      
-				  String kodea=""; //hau gero irekitako saioarekin asoziaturik egon beharko da
-				  
-					try {
-						stubServer.ezabatuErabiltzailea(kodea);
-					} catch (RemoteException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-					
-			  }
-			});
-		
+			public void actionPerformed(ActionEvent e) {
+
+				String kodea = ""; // hau gero irekitako saioarekin asoziaturik
+									// egon beharko da
+
+				try {
+					stubServer.ezabatuErabiltzailea(kodea);
+				} catch (RemoteException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+
+			}
+		});
+
 		JPanel pGoikoPanel = new JPanel();
 		pGoikoPanel.setBounds(0, 0, luzea / 10, altuera / 8);
 		pGoikoPanel.setOpaque(true);
@@ -480,5 +480,24 @@ public class IOrokor extends JFrame {
 		titulua.setBounds(0, 0, luzea / 8, altuera / 16);
 		titulua.setFont(new Font("Tahona", Font.BOLD, 22));
 		pGoikoPanel.add(titulua);
+	}
+
+	public ArrayList<bidaiaria> getBidaiariak() {
+		return bidaiariak;
+	}
+
+	public void setBidaiariak(ArrayList<bidaiaria> bidaiariak) {
+		this.bidaiariak = bidaiariak;
+	}
+
+	public void addBidaiaria(bidaiaria b) {
+		this.bidaiariak.add(b);
+	}
+
+	public int kalkulatuKopurua() {
+		int a = 0;
+		// kudeatzailera deia hegaldi ID eta bidaiariak pasata edo hemen
+		// kalkulua¿?¿?
+		return a;
 	}
 }

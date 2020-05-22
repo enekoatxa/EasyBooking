@@ -9,4 +9,9 @@ public class bidaiaria extends pertsona {
 		this.setAdina(adina);
 	}
 
+	@Override
+	public String toString() {
+		return "Izena: " + this.getIzena() + "Abizena: " + this.getAbizena();
+	}
+
 }
