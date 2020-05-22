@@ -21,6 +21,7 @@ import EasyBookingKlientea.NL.IEasyZerbitzaria;
 
 public class lHasi extends JFrame {
 
+	private static  IOrokor IOrokor;
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTextField textField_1;
@@ -53,7 +54,7 @@ public class lHasi extends JFrame {
 		// // TODO Auto-generated catch block
 		// System.out.println("Catched exception: " + e.getMessage());
 		// }
-		lBidaiariak hasi = new lBidaiariak();
+		lBidaiariak hasi = new lBidaiariak(IOrokor);
 		hasi.setVisible(true);
 
 	}

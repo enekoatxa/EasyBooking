@@ -31,14 +31,14 @@ public class lBidaiaria extends JFrame {
 	 */
 	public lBidaiaria(int kopurua, IOrokor orokor) {
 		setTitle("1.Bidaiariaren datuak");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		orokor = orokorra;
+		orokorra = orokor;
 		kop = kopurua;
 		index = 1;
 
@@ -59,9 +59,24 @@ public class lBidaiaria extends JFrame {
 		contentPane.add(comboBox);
 
 		JButton btnNewButton = new JButton("Ados");
-		btnNewButton.setBounds(274, 176, 115, 29);
+		btnNewButton.setBounds(274, 200, 115, 25);
 		contentPane.add(btnNewButton);
 		btnNewButton.setVisible(true);
+		
+		JButton btnNewButton_1 = new JButton("Atzera");
+		btnNewButton_1.setBounds(31, 200, 115, 25);
+		contentPane.add(btnNewButton_1);
+		
+		
+		btnNewButton_1.addMouseListener(new MouseAdapter() {
+
+			public void mouseClicked(MouseEvent e) {
+				
+				lBidaiariak b = new lBidaiariak(orokorra);
+				b.setVisible(true);
+				dispose();
+			}
+		});
 
 		JLabel lblIzena = new JLabel("Izena");
 		lblIzena.setBounds(31, 52, 69, 20);
@@ -93,7 +108,7 @@ public class lBidaiaria extends JFrame {
 		JLabel lblAdina = new JLabel("Adina");
 		lblAdina.setBounds(31, 166, 69, 20);
 		contentPane.add(lblAdina);
-		System.out.println("mmm");
+	
 
 		btnNewButton.addMouseListener(new MouseAdapter() {
 
@@ -102,7 +117,8 @@ public class lBidaiaria extends JFrame {
 				int adina = Integer.parseInt(comboBox.getSelectedItem().toString());
 				b = new bidaiaria(textField_2.getText(), textField.getText(), textField_1.getText(), adina);
 				orokorra.addBidaiaria(b);
-				System.out.println("bai");
+				
+				
 				if (index < kop) {
 					index = index + 1;
 					setTitle(index + ".Bidaiariaren datuak");
@@ -110,9 +126,12 @@ public class lBidaiaria extends JFrame {
 					textField.setText("");
 					textField_1.setText("");
 					textField_2.setText("");
+				
 				} else {
-					lErreserba err = new lErreserba(orokorra);
-					err.setVisible(true);
+					orokorra.bidaiariakSelected=true;
+					
+					dispose();
+					
 				}
 
 			}

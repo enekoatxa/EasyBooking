@@ -18,6 +18,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSlider;
@@ -55,11 +56,19 @@ public class IOrokor extends JFrame {
 	private final String pathLogoa = "src/main/resources/logoa.jpg";
 	private IEasyZerbitzaria stubServer = null;
 	private ArrayList<bidaiaria> bidaiariak;
+	private String sesio_emaila; //sesioa irekitzerakoan asoziatutako emaila
+	
+	static IOrokor erregistratu = new IOrokor();
+	private static String hegaldikodea="";
+
+	
+	public boolean bidaiariakSelected=false;
 
 	public static void main(String[] args) {
-		IOrokor erregistratu = new IOrokor();
+		
+		hegaldikodea="4345";
 		erregistratu.setVisible(true);
-
+		
 	}
 
 	public IOrokor() {
@@ -405,26 +414,46 @@ public class IOrokor extends JFrame {
 		contentPane.add(panel2);
 
 		JLabel labelerabiltzailea = new JLabel("Erabiltzaile aukerak:");
-		labelerabiltzailea.setBounds(1400, 870, 400, 50);
+		labelerabiltzailea.setBounds(1400, 850, 400, 50);
 
 		contentPane.add(labelerabiltzailea);
 
 		JButton bpasahitza = new JButton("Aldatu pasahitza");
-		bpasahitza.setBounds(1400, 910, 200, 25);
+		bpasahitza.setBounds(1400, 890, 200, 25);
 		contentPane.add(bpasahitza);
+	
+		JLabel bidaiarLbl = new JLabel("Tiket kopurua (bidaiariak)");
+		bidaiarLbl.setBounds(500, 160, 400, 50);
+		contentPane.add(bidaiarLbl);
+		
+		JButton bidaiarbtn = new JButton("AUKERATU");
+		bidaiarbtn.setBounds(650, 170, 150, 25);
+		contentPane.add(bidaiarbtn);
+		
+		bidaiarbtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				lBidaiariak b = new lBidaiariak(erregistratu);
+				b.setVisible(true);
+				bidaiariakSelected=true;
 
+			}
+		});
+		
+				
 		JTextField textField = new JTextField();
-		textField.setBounds(1400, 940, 200, 25);
-
+		textField.setBounds(1400, 920, 200, 25);
+		textField.setText("Pasahitz zaharra");
+		
 		contentPane.add(textField);
 
 		JTextField textField2 = new JTextField();
-		textField2.setBounds(1400, 970, 200, 25);
-
+		textField2.setBounds(1400, 950, 200, 25);
+		textField2.setText("Pasahitz berria");
 		contentPane.add(textField2);
 
 		JButton bborratuE = new JButton("Ezabatu Erabiltzailea");
-		bborratuE.setBounds(1650, 910, 200, 25);
+		bborratuE.setBounds(1650, 890, 200, 25);
 		contentPane.add(bborratuE);
 
 		bidaiariak = new ArrayList<bidaiaria>();
@@ -435,16 +464,23 @@ public class IOrokor extends JFrame {
 				String email = " ";
 				String pasahitzZaharra;
 				String pasahitzBerria;
-
+				
 				pasahitzZaharra = textField.getText();
 				pasahitzBerria = textField2.getText();
 
-				try {
-					stubServer.pasahitzaAldatu(email, pasahitzZaharra, pasahitzBerria);
-				} catch (RemoteException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+//				try {
+					
+					lpasahitzAldaketa pA = new lpasahitzAldaketa();
+					pA.setVisible(true);
+					
+					//stubServer.pasahitzaAldatu(email, pasahitzZaharra, pasahitzBerria);
+					
+//				} catch (RemoteException e1) {
+//					// TODO Auto-generated catch block
+//					e1.printStackTrace();
+//			}
+				
+			
 			}
 		});
 
@@ -464,6 +500,27 @@ public class IOrokor extends JFrame {
 			}
 		});
 
+		JButton erreserbabtn = new JButton("Egin Erreserba");
+		erreserbabtn.setBounds(750, 910, 200, 25);
+		contentPane.add(erreserbabtn);
+		
+		erreserbabtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent r) {
+				
+			
+				if (bidaiariakSelected==false){
+				JOptionPane.showMessageDialog(null,
+				"Bidaiari kopurua aukeratu beharra duzu lehenik!", "KONTUZ!", 
+				JOptionPane.WARNING_MESSAGE);
+					
+				}
+				else{
+			    lErreserba e = new lErreserba (erregistratu);
+				e.setVisible(true);
+				}
+			}
+		});
+		
 		JPanel pGoikoPanel = new JPanel();
 		pGoikoPanel.setBounds(0, 0, luzea / 10, altuera / 8);
 		pGoikoPanel.setOpaque(true);
@@ -489,7 +546,14 @@ public class IOrokor extends JFrame {
 	public void setBidaiariak(ArrayList<bidaiaria> bidaiariak) {
 		this.bidaiariak = bidaiariak;
 	}
-
+	
+	public void setHgaldiKodea(String cod) {
+		this.hegaldikodea = cod;
+	}
+	
+	public String getkodea() {
+		return hegaldikodea;
+	}
 	public void addBidaiaria(bidaiaria b) {
 		this.bidaiariak.add(b);
 	}
@@ -497,7 +561,20 @@ public class IOrokor extends JFrame {
 	public int kalkulatuKopurua() {
 		int a = 0;
 		// kudeatzailera deia hegaldi ID eta bidaiariak pasata edo hemen
-		// kalkulua¿?¿?
+		// kalkulua
 		return a;
+	}
+	
+	public String sesioEmaila() {
+		String emaila= sesio_emaila;
+		
+		return emaila;
+	}
+	
+	
+	
+	public void bidaiariakBF() {
+		
+		bidaiariakSelected=false;
 	}
 }
