@@ -18,6 +18,7 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
 import EasyBookingKlientea.NL.IEasyZerbitzaria;
+import EasyBookingZerbitzaria.NL.RestClient_konexioa;
 
 public class lHasi extends JFrame {
 
@@ -42,20 +43,20 @@ public class lHasi extends JFrame {
 	Dimension pantailaTamaina = Toolkit.getDefaultToolkit().getScreenSize();
 
 	public static void main(String[] args) {
-		// lHasi hasi = new lHasi();
-		// hasi.setVisible(true);
-		// System.out.println("Bai");
-		// RestClient_konexioa konexioa = new
-		// RestClient_konexioa("192.168.6.31", "5000");
-		// try {
-		// konexioa.makeGetRequest("/Authentication/Log_in");
-		// System.out.println("Baibai");
-		// } catch (Exception e) {
-		// // TODO Auto-generated catch block
-		// System.out.println("Catched exception: " + e.getMessage());
-		// }
-		lBidaiariak hasi = new lBidaiariak(IOrokor);
-		hasi.setVisible(true);
+		 lHasi hasi = new lHasi();
+		 hasi.setVisible(true);
+		 System.out.println("Bai");
+		 RestClient_konexioa konexioa = new
+		 RestClient_konexioa("192.168.6.31", "5000");
+		 try {
+		 konexioa.makeGetRequest("/Authentication/Log_in");
+		 System.out.println("Baibai");
+		 } catch (Exception e) {
+		 // TODO Auto-generated catch block
+		 System.out.println("Catched exception: " + e.getMessage());
+		 }
+		
+	
 
 	}
 
