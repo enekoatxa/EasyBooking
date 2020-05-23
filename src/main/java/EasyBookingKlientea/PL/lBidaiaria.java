@@ -62,19 +62,15 @@ public class lBidaiaria extends JFrame {
 		btnNewButton.setBounds(274, 200, 115, 25);
 		contentPane.add(btnNewButton);
 		btnNewButton.setVisible(true);
-		
+
 		JButton btnNewButton_1 = new JButton("Atzera");
 		btnNewButton_1.setBounds(31, 200, 115, 25);
 		contentPane.add(btnNewButton_1);
-		
-		
+
 		btnNewButton_1.addMouseListener(new MouseAdapter() {
 
 			public void mouseClicked(MouseEvent e) {
-				
-				lBidaiariak b = new lBidaiariak(orokorra);
-				b.setVisible(true);
-				dispose();
+
 			}
 		});
 
@@ -108,7 +104,6 @@ public class lBidaiaria extends JFrame {
 		JLabel lblAdina = new JLabel("Adina");
 		lblAdina.setBounds(31, 166, 69, 20);
 		contentPane.add(lblAdina);
-	
 
 		btnNewButton.addMouseListener(new MouseAdapter() {
 
@@ -117,8 +112,7 @@ public class lBidaiaria extends JFrame {
 				int adina = Integer.parseInt(comboBox.getSelectedItem().toString());
 				b = new bidaiaria(textField_2.getText(), textField.getText(), textField_1.getText(), adina);
 				orokorra.addBidaiaria(b);
-				
-				
+
 				if (index < kop) {
 					index = index + 1;
 					setTitle(index + ".Bidaiariaren datuak");
@@ -126,12 +120,12 @@ public class lBidaiaria extends JFrame {
 					textField.setText("");
 					textField_1.setText("");
 					textField_2.setText("");
-				
+
 				} else {
-					orokorra.bidaiariakSelected=true;
-					
+					lErreserba er = new lErreserba(orokorra);
+					er.setVisible(true);
 					dispose();
-					
+
 				}
 
 			}
