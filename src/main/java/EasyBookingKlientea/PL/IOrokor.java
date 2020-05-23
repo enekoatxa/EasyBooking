@@ -18,7 +18,6 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSlider;
@@ -56,20 +55,14 @@ public class IOrokor extends JFrame {
 	private final String pathLogoa = "src/main/resources/logoa.jpg";
 	private IEasyZerbitzaria stubServer = null;
 	private ArrayList<bidaiaria> bidaiariak;
-	private String sesio_emaila; //sesioa irekitzerakoan asoziatutako emaila
-	
-	static IOrokor erregistratu = new IOrokor();
-	private static String hegaldikodea="";
+	private String sesio_emaila; // sesioa irekitzerakoan asoziatutako emaila
+	private JTextField textField;
+	private JTextField textField2;
+	private JSpinner spinner;
 
-	
-	public boolean bidaiariakSelected=false;
+	private static String hegaldikodea = "";
 
-	public static void main(String[] args) {
-		
-		hegaldikodea="4345";
-		erregistratu.setVisible(true);
-		
-	}
+	private IOrokor hau;
 
 	public IOrokor() {
 
@@ -80,6 +73,8 @@ public class IOrokor extends JFrame {
 		contentPane = new JPanel();
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+
+		hau = this;
 
 		JDateChooser calendar = new JDateChooser();
 		calendar.setBounds(luzea - (luzea / 6), altuera / 18, luzea / 10, altuera / 30);
@@ -154,14 +149,14 @@ public class IOrokor extends JFrame {
 		panD7.setBackground(new java.awt.Color(131, 214, 247));
 		contentPane.add(panD7);
 
-		JLabel lblbidaiari = new JLabel("Bidaiari kopurua");
-		lblbidaiari.setBounds(luzea - (luzea) + (luzea / 2), altuera - (altuera) + (altuera / 100), luzea / 15,
+		JLabel lblbidaiari = new JLabel("Bidaiari kopurua (zu barne)");
+		lblbidaiari.setBounds(luzea - (luzea) + (luzea / 2), altuera - (altuera) + (altuera / 100), luzea / 10,
 				altuera / 11);
 		panD7.add(lblbidaiari);
 
 		SpinnerNumberModel modelKopurua = new SpinnerNumberModel(1, 1, 10, 1);
-		JSpinner spinner = new JSpinner(modelKopurua);
-		spinner.setBounds(luzea / 3 + luzea / 6 + luzea / 12, altuera / 18, 50, 50);
+		spinner = new JSpinner(modelKopurua);
+		spinner.setBounds(luzea / 3 + luzea / 6 + luzea / 6, altuera / 18, 50, 50);
 		spinner.setSize(new Dimension(luzea / 20, altuera / 36));
 		contentPane.add(spinner);
 
@@ -421,33 +416,13 @@ public class IOrokor extends JFrame {
 		JButton bpasahitza = new JButton("Aldatu pasahitza");
 		bpasahitza.setBounds(1400, 890, 200, 25);
 		contentPane.add(bpasahitza);
-	
-		JLabel bidaiarLbl = new JLabel("Tiket kopurua (bidaiariak)");
-		bidaiarLbl.setBounds(500, 160, 400, 50);
-		contentPane.add(bidaiarLbl);
-		
-		JButton bidaiarbtn = new JButton("AUKERATU");
-		bidaiarbtn.setBounds(650, 170, 150, 25);
-		contentPane.add(bidaiarbtn);
-		
-		bidaiarbtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				lBidaiariak b = new lBidaiariak(erregistratu);
-				b.setVisible(true);
-				bidaiariakSelected=true;
 
-			}
-		});
-		
-				
-		JTextField textField = new JTextField();
+		textField = new JTextField();
 		textField.setBounds(1400, 920, 200, 25);
 		textField.setText("Pasahitz zaharra");
-		
 		contentPane.add(textField);
 
-		JTextField textField2 = new JTextField();
+		textField2 = new JTextField();
 		textField2.setBounds(1400, 950, 200, 25);
 		textField2.setText("Pasahitz berria");
 		contentPane.add(textField2);
@@ -464,23 +439,23 @@ public class IOrokor extends JFrame {
 				String email = " ";
 				String pasahitzZaharra;
 				String pasahitzBerria;
-				
+
 				pasahitzZaharra = textField.getText();
 				pasahitzBerria = textField2.getText();
 
-//				try {
-					
-					lpasahitzAldaketa pA = new lpasahitzAldaketa();
-					pA.setVisible(true);
-					
-					//stubServer.pasahitzaAldatu(email, pasahitzZaharra, pasahitzBerria);
-					
-//				} catch (RemoteException e1) {
-//					// TODO Auto-generated catch block
-//					e1.printStackTrace();
-//			}
-				
-			
+				// try {
+
+				lpasahitzAldaketa pA = new lpasahitzAldaketa();
+				pA.setVisible(true);
+
+				// stubServer.pasahitzaAldatu(email, pasahitzZaharra,
+				// pasahitzBerria);
+
+				// } catch (RemoteException e1) {
+				// // TODO Auto-generated catch block
+				// e1.printStackTrace();
+				// }
+
 			}
 		});
 
@@ -503,24 +478,20 @@ public class IOrokor extends JFrame {
 		JButton erreserbabtn = new JButton("Egin Erreserba");
 		erreserbabtn.setBounds(750, 910, 200, 25);
 		contentPane.add(erreserbabtn);
-		
+
 		erreserbabtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent r) {
-				
-			
-				if (bidaiariakSelected==false){
-				JOptionPane.showMessageDialog(null,
-				"Bidaiari kopurua aukeratu beharra duzu lehenik!", "KONTUZ!", 
-				JOptionPane.WARNING_MESSAGE);
-					
+				if ((Integer) spinner.getValue() - 1 > 0) {
+					lBidaiaria b = new lBidaiaria((Integer) spinner.getValue() - 1, hau);
+					b.setVisible(true);
+				} else {
+					lErreserba er = new lErreserba(hau);
+					er.setVisible(true);
 				}
-				else{
-			    lErreserba e = new lErreserba (erregistratu);
-				e.setVisible(true);
-				}
+
 			}
 		});
-		
+
 		JPanel pGoikoPanel = new JPanel();
 		pGoikoPanel.setBounds(0, 0, luzea / 10, altuera / 8);
 		pGoikoPanel.setOpaque(true);
@@ -546,14 +517,15 @@ public class IOrokor extends JFrame {
 	public void setBidaiariak(ArrayList<bidaiaria> bidaiariak) {
 		this.bidaiariak = bidaiariak;
 	}
-	
+
 	public void setHgaldiKodea(String cod) {
 		this.hegaldikodea = cod;
 	}
-	
+
 	public String getkodea() {
 		return hegaldikodea;
 	}
+
 	public void addBidaiaria(bidaiaria b) {
 		this.bidaiariak.add(b);
 	}
@@ -564,17 +536,11 @@ public class IOrokor extends JFrame {
 		// kalkulua
 		return a;
 	}
-	
+
 	public String sesioEmaila() {
-		String emaila= sesio_emaila;
-		
+		String emaila = sesio_emaila;
+
 		return emaila;
 	}
-	
-	
-	
-	public void bidaiariakBF() {
-		
-		bidaiariakSelected=false;
-	}
+
 }
