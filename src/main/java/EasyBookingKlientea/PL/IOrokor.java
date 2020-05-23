@@ -66,6 +66,7 @@ public class IOrokor extends JFrame {
 
 	public static void main(String[] args) {
 		
+		
 		hegaldikodea="4345";
 		erregistratu.setVisible(true);
 		
@@ -479,8 +480,6 @@ public class IOrokor extends JFrame {
 //					// TODO Auto-generated catch block
 //					e1.printStackTrace();
 //			}
-				
-			
 			}
 		});
 
