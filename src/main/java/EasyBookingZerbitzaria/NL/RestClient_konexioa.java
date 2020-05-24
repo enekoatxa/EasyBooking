@@ -4,6 +4,7 @@ import javax.ws.rs.client.Invocation;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.client.ClientBuilder;
 
 public class RestClient_konexioa extends RestClient {
 

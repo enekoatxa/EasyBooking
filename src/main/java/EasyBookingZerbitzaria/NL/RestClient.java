@@ -1,12 +1,11 @@
 package EasyBookingZerbitzaria.NL;
 
-import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.client.Entity;
-import javax.ws.rs.client.Invocation;
-import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.client.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
+
+import org.json.simple.JSONObject;
 
 import com.mysql.fabric.xmlrpc.Client;
 
@@ -43,11 +42,11 @@ public class RestClient<T extends DF_Printable> {
 		return invocationBuilder.get();
 	}
 
-	public Response makePostRequest(Invocation.Builder invocationBuilder, T objectToSend) throws Exception {
+	public Response makePostRequest(Invocation.Builder invocationBuilder, JSONObject obj) throws Exception {
 		System.out.println("Content of message to send in POST Request");
-		objectToSend.print();
+		((DF_Printable) obj).print();
 
-		return invocationBuilder.post(Entity.entity(objectToSend, MediaType.APPLICATION_JSON));
+		return invocationBuilder.post(Entity.entity(obj, MediaType.APPLICATION_JSON));
 	}
 
 	public Response makePutRequest(Invocation.Builder invocationBuilder, T objectToSend) throws Exception {

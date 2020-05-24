@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import EasyBookingKlientea.DLDTO.hegaldiaDTO;
 import EasyBookingKlientea.PL.lHasi;
 import EasyBookingZerbitzaria.DL.aireportua;
+import EasyBookingZerbitzaria.NL.AutentikazioGateway;
 
 public class Controller {
 
@@ -16,6 +17,7 @@ public class Controller {
 		rsl.setService(args[0], args[1], args[2]);
 		lHasi hasi = new lHasi(this);
 		hasi.setVisible(true);
+		
 	}
 
 	public static void main(String[] args) throws RemoteException {

@@ -2,6 +2,8 @@ package EasyBookingZerbitzaria.NL;
 
 import java.rmi.RemoteException;
 
+import javax.ws.rs.core.Response;
+
 import org.json.simple.JSONObject;
 
 import EasyBookingZerbitzaria.DL.aireportua;
@@ -12,30 +14,49 @@ public class AutentikazioGateway {
 
 	public boolean sortuErabiltzailea(String email, String izena, String abizena, int adina, String nan, String nick,
 			String pasahitza, aireportua gustokoAireportua) throws RemoteException {
-		boolean a = true;
-		sortuJSON(izena, abizena, email);
+		
+		
+		JSONObject obj= sortuJSON(izena, abizena, email);
 
 		// VPN deia
 
-		String hostname = "127.0.0.1";
+        Response response = null;
+		String hostname = "192.168.6.31";
 		String port_auth = "5000";
 
 		RestClient_konexioa c1 = new RestClient_konexioa(hostname, port_auth);
 
-		try {
-			// Hau ping requests Bat besterik ez da!!!!!!!!!!!
+		String path="";
+		 path = "/Authentication/Create_user";
+	        System.out.println("Trying POST at " + path + " (Create user)");
+	        System.out.println("CURL call: curl http://192.168.6.31:5000/Authentication/Create_user -d '{\"name\":\"Inigo\", \"last_name\":\"Lopez-Gazpio\", \"email\":\"inigo.lopezgazpio@deusto.es\"}' -X POST -H \"Content-Type: application/json\" -v");
 
-			// make request metodoaren bitartez ping-ak egin beharrean ya datuak
-			// eskatu eta bidali
-			// behar dira
-			c1.makeGetRequest("/");
-			c1.makeGetRequest("/Authentication/Log_in");
+	      
 
-		} catch (Exception e) {
-			System.out.println("Catched exception: " + e.getMessage());
-		}
 
-		return a;
+	        Simple_pass_result result_class_password = null;
+	        try {
+	            response =
+	            		c1.makePostRequest(
+	            				c1.createInvocationBuilder(path), obj
+	                    );
+	        }
+	        catch (Exception e) { e.printStackTrace(); e.toString(); }
+
+	        String reply = response.readEntity(String.class);
+
+	        // Create a JSONObject to parse the respond inside the Simple_pass_result
+	        try {
+	            result_class_password = new Simple_pass_result(reply);
+	        } catch (Exception e) {e.printStackTrace(); e.toString(); }
+
+	        result_class_password.print();
+
+	        long password = result_class_password.getContentNumber();
+	        
+	        System.out.println(password);
+			return false;
+
 	}
 
 	public boolean ezabatuErabiltzailea(String email, String pasahitza) throws RemoteException {
@@ -73,7 +94,7 @@ public class AutentikazioGateway {
 		return erabiltzailea;
 	}
 
-	private JSONObject sortuJSON(String izena, String abizena, String email) {
+	private static JSONObject sortuJSON(String izena, String abizena, String email) {
 		JSONObject erabiltzailea = new JSONObject();
 
 		erabiltzailea.put("name", izena);

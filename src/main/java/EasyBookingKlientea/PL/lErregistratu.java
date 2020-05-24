@@ -257,11 +257,11 @@ public class lErregistratu extends JFrame {
 						// Erabiltzailea sortu
 						
 						int adinaint = Integer.parseInt(adina);
-						String aeroportukodea = " ";
+		
 						
-						 EasyBookingZerbitzaria.DL.aireportua aireportuaA = new  EasyBookingZerbitzaria.DL.aireportua (aeroportukodea,gustokoaireportua );
+						EasyBookingZerbitzaria.DL.aireportua a = new EasyBookingZerbitzaria.DL.aireportua ("a","b");
 						 
-						controller.sortuErabiltzailea(helbidea, Izena, abizena,adinaint, Nan , nick, pasahitza, aireportuaA);
+						controller.sortuErabiltzailea(helbidea, Izena, abizena,adinaint, Nan , nick, pasahitza, a);
 						
 						lHasi hasi = new lHasi(controller);
 						hasi.setVisible(true);
