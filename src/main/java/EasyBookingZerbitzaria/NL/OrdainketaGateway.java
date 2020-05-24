@@ -5,14 +5,14 @@ import java.rmi.RemoteException;
 import org.json.simple.JSONObject;
 
 public class OrdainketaGateway {
-	boolean ordaindu(String email, float kantitatea, String kontzeptua) throws RemoteException {
-		boolean a = true;
+	public String ordaindu(String email, float kantitatea, String kontzeptua) throws RemoteException {
+		String a = "";
 		erabiltzaileaJSON(email, 0, kantitatea, kontzeptua, false);
 		// VPN deia
 		return a;
 	};
 
-	boolean eguneratuMoneta(String email, float moneta) throws RemoteException {
+	public boolean eguneratuMoneta(String email, float moneta) throws RemoteException {
 		boolean a = true;
 		erabiltzaileaJSON(email, moneta, 0, null, true);
 		// VPN deia

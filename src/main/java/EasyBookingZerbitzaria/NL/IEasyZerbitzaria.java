@@ -11,9 +11,10 @@ public interface IEasyZerbitzaria extends Remote {
 
 	// Erabiltzaileen inguruko metodoak
 
-	public boolean sortuErabiltzailea(String email, String izena, String abizena, int adina, String nan, String nick, String pasahitza, aireportua gustokoAireportua) throws RemoteException;
+	public boolean sortuErabiltzailea(String email, String izena, String abizena, int adina, String nan, String nick,
+			String pasahitza, aireportua gustokoAireportua) throws RemoteException;
 
-	public boolean ezabatuErabiltzailea(String kodea) throws RemoteException;
+	public boolean ezabatuErabiltzailea(String email, String pasahitza) throws RemoteException;
 
 	public boolean pasahitzaAldatu(String email, String pasahitzZaharra, String pasahitzBerria) throws RemoteException;
 
@@ -25,7 +26,7 @@ public interface IEasyZerbitzaria extends Remote {
 
 	// Erosketaren inguruko metodoak
 
-	public boolean ordaindu(String email, float kantitatea, String kontzeptua) throws RemoteException;
+	public String ordaindu(String email, float kantitatea, String kontzeptua) throws RemoteException;
 	// emaila automatikoki bidaltzeko aukera
 
 	public boolean eguneratuMoneta(String email, float kantitatea) throws RemoteException;

@@ -37,12 +37,12 @@ public class lHasi extends JFrame {
 	private final String pathGoogle = "src/main/resources/google.png";
 	private ButtonGroup aut;
 	private Controller controller;
-	
+
 	JFrame b = this;
 	Dimension pantailaTamaina = Toolkit.getDefaultToolkit().getScreenSize();
 
 	public lHasi(Controller cont) {
-		controller=cont;
+		controller = cont;
 		setTitle("Sartu");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(pantailaTamaina.width / 2, pantailaTamaina.height / 2);
@@ -158,9 +158,8 @@ public class lHasi extends JFrame {
 				 */
 				else {
 					try {
-						// Imanol: Ez nago seguru horrela den
 						controller.login(textField.getText(), textField_1.getText());
-						IOrokor orokor = new IOrokor(controller);
+						IOrokor orokor = new IOrokor(controller, textField.getText());
 						orokor.setVisible(true);
 					} catch (RemoteException e1) {
 						// TODO Auto-generated catch block

@@ -9,7 +9,7 @@ import EasyBookingKlientea.DLDTO.hegaldiaDTO;
 
 public class HegaldiGateway {
 
-	ArrayList<hegaldiaDTO> hegaldiakBilatu(ArrayList<String> espezifikazioak) throws RemoteException {
+	public ArrayList<hegaldiaDTO> hegaldiakBilatu(ArrayList<String> espezifikazioak) throws RemoteException {
 		ArrayList<hegaldiaDTO> hegaldiak = new ArrayList<hegaldiaDTO>();
 		// GARRANTZITSUA!! ESPEZIFIKAZIOAK ORDENATUTA EGON BEHAR DUTE!
 		espezifikazioJSON(espezifikazioak);

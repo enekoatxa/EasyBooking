@@ -14,26 +14,28 @@ public class EasyZerbitzaria extends UnicastRemoteObject implements IEasyZerbitz
 	private AutentikazioKudeatzailea autentikazioKud;
 	private HegaldiKudeatzailea hegaldiKud;
 	private OrdainketaKudeatzailea ordainketaKud;
-	
+
 	protected EasyZerbitzaria() throws RemoteException {
 		autentikazioKud = AutentikazioKudeatzailea.getInstance();
 		hegaldiKud = HegaldiKudeatzailea.getInstance();
 		ordainketaKud = OrdainketaKudeatzailea.getInstance();
 	}
 
-	public boolean sortuErabiltzailea(String email, String izena, String abizena, int adina, String nan, String nick, String pasahitza, aireportua gustokoAireportua) throws RemoteException{
-		return autentikazioKud.sortuErabiltzailea(email, izena, abizena, adina, nan, nick, pasahitza, gustokoAireportua);
+	public boolean sortuErabiltzailea(String email, String izena, String abizena, int adina, String nan, String nick,
+			String pasahitza, aireportua gustokoAireportua) throws RemoteException {
+		return autentikazioKud.sortuErabiltzailea(email, izena, abizena, adina, nan, nick, pasahitza,
+				gustokoAireportua);
 	}
 
-	public boolean ezabatuErabiltzailea(String email) throws RemoteException{
-		return autentikazioKud.ezabatuErabiltzailea(email);
+	public boolean ezabatuErabiltzailea(String email, String pasahitza) throws RemoteException {
+		return autentikazioKud.ezabatuErabiltzailea(email, pasahitza);
 	}
 
-	public boolean pasahitzaAldatu(String email, String pasahitzZaharra, String pasahitzBerria) throws RemoteException{
+	public boolean pasahitzaAldatu(String email, String pasahitzZaharra, String pasahitzBerria) throws RemoteException {
 		return autentikazioKud.pasahitzaAldatu(email, pasahitzZaharra, pasahitzBerria);
 	}
 
-	public boolean login(String email, String pasahitza) throws RemoteException{
+	public boolean login(String email, String pasahitza) throws RemoteException {
 		return autentikazioKud.login(email, pasahitza);
 	}
 
@@ -41,11 +43,11 @@ public class EasyZerbitzaria extends UnicastRemoteObject implements IEasyZerbitz
 		return hegaldiKud.hegaldiakBilatu(espezifikazioak);
 	}
 
-	public boolean ordaindu(String email, float kantitatea, String kontzeptua) throws RemoteException{
+	public String ordaindu(String email, float kantitatea, String kontzeptua) throws RemoteException {
 		return ordainketaKud.ordaindu(email, kantitatea, kontzeptua);
 	}
 
-	public boolean eguneratuMoneta(String email, float kantitatea) throws RemoteException{
+	public boolean eguneratuMoneta(String email, float kantitatea) throws RemoteException {
 		return ordainketaKud.eguneratuMoneta(email, kantitatea);
 	}
 

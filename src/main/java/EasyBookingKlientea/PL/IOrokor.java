@@ -64,9 +64,9 @@ public class IOrokor extends JFrame {
 	private Controller controller;
 	private IOrokor hau;
 
-
-	public IOrokor(Controller cont) {
+	public IOrokor(Controller cont, String email) {
 		this.controller = cont;
+		sesio_emaila = email;
 		setTitle("Easy Booking");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(luzea, altuera);
@@ -437,14 +437,13 @@ public class IOrokor extends JFrame {
 		bpasahitza.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				String email = " ";
 				String pasahitzZaharra;
 				String pasahitzBerria;
 
 				pasahitzZaharra = textField.getText();
 				pasahitzBerria = textField2.getText();
 				try {
-					controller.pasahitzaAldatu(email, pasahitzZaharra, pasahitzBerria);
+					controller.pasahitzaAldatu(sesio_emaila, pasahitzZaharra, pasahitzBerria);
 				} catch (RemoteException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -456,12 +455,9 @@ public class IOrokor extends JFrame {
 
 		bborratuE.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
-				String kodea = ""; // hau gero irekitako saioarekin asoziaturik
-									// egon beharko da
-
+				String pasahitza = "";
 				try {
-					controller.ezabatuErabiltzailea(kodea);
+					controller.ezabatuErabiltzailea(sesio_emaila, pasahitza);
 				} catch (RemoteException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -533,9 +529,8 @@ public class IOrokor extends JFrame {
 	}
 
 	public String sesioEmaila() {
-		String emaila = sesio_emaila;
 
-		return emaila;
+		return sesio_emaila;
 	}
 
 }

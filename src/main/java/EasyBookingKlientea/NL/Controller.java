@@ -3,6 +3,7 @@ package EasyBookingKlientea.NL;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import EasyBookingKlientea.DLDTO.hegaldiaDTO;
 import EasyBookingKlientea.PL.lHasi;
 import EasyBookingZerbitzaria.DL.aireportua;
 
@@ -25,62 +26,75 @@ public class Controller {
 		System.exit(0);
 	}
 
-	public void sortuErabiltzailea(String email, String izena, String abizena, int adina, String nan, String nick,
+	public boolean sortuErabiltzailea(String email, String izena, String abizena, int adina, String nan, String nick,
 			String pasahitza, aireportua gustokoAireportua) {
+		boolean a = true;
 		try {
-			rsl.getService().sortuErabiltzailea(email, izena, abizena, adina, nan, nick, pasahitza, gustokoAireportua);
+			a = rsl.getService().sortuErabiltzailea(email, izena, abizena, adina, nan, nick, pasahitza,
+					gustokoAireportua);
 		} catch (Exception e) {
 			System.err.println("Errorea erabiltzailea sortzerako garaian: " + e.getMessage());
 		}
+		return a;
 	}
 
-	public void ezabatuErabiltzailea(String kodea) throws RemoteException {
+	public boolean ezabatuErabiltzailea(String email, String pasahitza) throws RemoteException {
+		boolean a = true;
 		try {
-			rsl.getService().ezabatuErabiltzailea(kodea);
+			a = rsl.getService().ezabatuErabiltzailea(email, pasahitza);
 		} catch (Exception e) {
 			System.err.println("Errorea erabiltzailea ezabatzerako garaian: " + e.getMessage());
 		}
+		return a;
 	}
 
-	public void pasahitzaAldatu(String email, String pasahitzZaharra, String pasahitzBerria) throws RemoteException {
+	public boolean pasahitzaAldatu(String email, String pasahitzZaharra, String pasahitzBerria) throws RemoteException {
+		boolean a = true;
 		try {
 			rsl.getService().pasahitzaAldatu(pasahitzBerria, pasahitzBerria, pasahitzBerria);
 		} catch (Exception e) {
 			System.err.println("Errorea pasahitza aldatzerako garaian: " + e.getMessage());
 		}
+		return a;
 	}
 
-	public void login(String email, String pasahitza) throws RemoteException {
+	public boolean login(String email, String pasahitza) throws RemoteException {
+		boolean a = true;
 		try {
-			rsl.getService().login(email, pasahitza);
+			a = rsl.getService().login(email, pasahitza);
 		} catch (Exception e) {
 			System.err.println("Errorea login egiterako garaian: " + e.getMessage());
 		}
+		return a;
 	}
 
-	public void hegaldiakBilatu(ArrayList<String> espezifikazioak) throws RemoteException {
+	public ArrayList<hegaldiaDTO> hegaldiakBilatu(ArrayList<String> espezifikazioak) throws RemoteException {
+		ArrayList<hegaldiaDTO> hegaldiak = new ArrayList<hegaldiaDTO>();
 		try {
-			rsl.getService().hegaldiakBilatu(espezifikazioak);
+			hegaldiak = rsl.getService().hegaldiakBilatu(espezifikazioak);
 		} catch (Exception e) {
 			System.err.println("Errorea helgaldiak bilatzerako garaian: " + e.getMessage());
 		}
+		return hegaldiak;
 	}
 
-	public void eguneratuMoneta(String email, float kantitatea) throws RemoteException {
+	public boolean eguneratuMoneta(String email, float kantitatea) throws RemoteException {
+		boolean a = true;
 		try {
 			rsl.getService().eguneratuMoneta(email, kantitatea);
 		} catch (Exception e) {
 			System.err.println("Errorea helgaldiak bilatzerako garaian: " + e.getMessage());
 		}
-		
+		return a;
 	}
-	
-	public void ordaindu(String email, float kantitatea, String kontzeptua) throws RemoteException {
-		
+
+	public String ordaindu(String email, float kantitatea, String kontzeptua) throws RemoteException {
+		String a = "";
 		try {
-			rsl.getService().ordaindu(email, kantitatea, kontzeptua);
+			a = rsl.getService().ordaindu(email, kantitatea, kontzeptua);
 		} catch (Exception e) {
 			System.err.println("Errorea ordaintzerako garaian: " + e.getMessage());
-	} 
-		
-}}
+		}
+		return a;
+	}
+}
