@@ -5,9 +5,7 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.rmi.RemoteException;
+
 
 import javax.swing.ButtonGroup;
 import javax.swing.Icon;
@@ -20,9 +18,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
-
-import EasyBookingKlientea.DLDTO.aireportuaDTO;
-import EasyBookingKlientea.NL.IEasyZerbitzaria;
+import EasyBookingKlientea.NL.Controller;
 
 public class lErregistratu extends JFrame {
 
@@ -56,15 +52,13 @@ public class lErregistratu extends JFrame {
 	private final String pathGoogle = "src/main/resources/google.png";
 	private final String pathpaypal = "src/main/resources//pp.jpg";
 	private final String pathvisa= "src/main/resources//visa.jpg";
-	private IEasyZerbitzaria stubServer = null;
-	
-	
-	JFrame b = this;
 
 	
-	public lErregistratu() {
-		
+	JFrame b = this;
+	private Controller controller;
 	
+	public lErregistratu(Controller cont) {
+		this.controller=cont;
 		setTitle("Izena eman");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(pantailaTamaina.width / 2, pantailaTamaina.height / 2);
@@ -214,20 +208,15 @@ public class lErregistratu extends JFrame {
 
 		
 		btnIzEman.addActionListener(new ActionListener() {
-			  @Override
-		
-			           
-
-					 public void actionPerformed(ActionEvent e) {
+			
+			  public void actionPerformed(ActionEvent e) {
 						    String helbidea;
 						    String Izena;
 						    String abizena;
 						    String adina;
 						    String Nan;
 						    String nick= " ";
-						    String pasahitza= " ";
-						    	    
-						    
+						    String pasahitza= " ";				    
 						    String gustokoaireportua = (String)aireportua.getSelectedItem();
 						    
 						    helbidea= textField.getText();
@@ -235,8 +224,7 @@ public class lErregistratu extends JFrame {
 						    abizena= textField3.getText();
 						    adina= textField4.getText();
 						    Nan= textField5.getText();
-						    
-						    
+						    						    
 						    
 					if ((textField.getText().equals("")) || (textField.getText().equals(" "))
 							|| (textField.getText().equals("  "))) {
@@ -268,20 +256,12 @@ public class lErregistratu extends JFrame {
 						}
 						// Erabiltzailea sortu
 						
-						try {
-							
+						int adinaint = Integer.parseInt(adina);
+						String aeroportukodea = " ";
 						
-							int adinaint = Integer.parseInt(adina);
-							String aeroportukodea = " ";
-							
-							 EasyBookingZerbitzaria.DL.aireportua aireportuaA = new  EasyBookingZerbitzaria.DL.aireportua (aeroportukodea,gustokoaireportua );
-							 
-							stubServer.sortuErabiltzailea(helbidea, Izena, abizena,adinaint, Nan , nick, pasahitza, aireportuaA);
-						} catch (RemoteException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-							
-						}
+						 EasyBookingZerbitzaria.DL.aireportua aireportuaA = new  EasyBookingZerbitzaria.DL.aireportua (aeroportukodea,gustokoaireportua );
+						 
+						controller.sortuErabiltzailea(helbidea, Izena, abizena,adinaint, Nan , nick, pasahitza, aireportuaA);
 					}}
 			
 			

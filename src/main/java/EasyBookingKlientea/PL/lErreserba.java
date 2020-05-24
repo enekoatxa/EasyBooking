@@ -10,19 +10,21 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import EasyBookingKlientea.NL.IEasyZerbitzaria;
+import EasyBookingKlientea.NL.Controller;
+
 
 public class lErreserba extends JFrame {
 
 	private JPanel contentPane;
 	private IOrokor orokorra;
-	
-	private IEasyZerbitzaria stubServer = null;
+	private Controller controller;
 
 	/**
 	 * Create the frame.
 	 */
-	public lErreserba(IOrokor orokor) {
+	public lErreserba(IOrokor orok, Controller cont) {
+		orokorra=orok;
+		controller=cont;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(650, 270, 450, 326);
 		contentPane = new JPanel();
@@ -30,9 +32,6 @@ public class lErreserba extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		orokorra = orokor;
-		
-		
 		JLabel lblHegaldiarenId = new JLabel("Hegaldiaren ID");
 		lblHegaldiarenId.setBounds(15, 35, 122, 20);
 		contentPane.add(lblHegaldiarenId);
@@ -92,7 +91,7 @@ public class lErreserba extends JFrame {
 					
 					String email = orokorra.sesioEmaila();
 					
-					stubServer.ordaindu(email, kantitatea, kontzeptua);//ordainketa eginda
+					controller.ordaindu(email, kantitatea, kontzeptua);//ordainketa eginda
 					System.out.println(" Ordainketa ongi egin da");
 				} catch (RemoteException e1) {
 			

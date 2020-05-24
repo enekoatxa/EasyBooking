@@ -15,7 +15,7 @@ import EasyBookingKlientea.DLDTO.hegaldiaDTO;
 public class pHegaldia extends JPanel {
 
 	private final String pathFondoa = "src/main/resources/pHegaldiaFondoa.png";
-
+	
 	public pHegaldia(hegaldiaDTO h) {
 		this.setLayout(null);
 		Icon fondoa = new ImageIcon(pathFondoa);

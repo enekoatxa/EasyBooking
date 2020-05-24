@@ -42,7 +42,7 @@ import org.jfree.ui.TextAnchor;
 
 import com.toedter.calendar.JDateChooser;
 
-import EasyBookingKlientea.NL.IEasyZerbitzaria;
+import EasyBookingKlientea.NL.Controller;
 import EasyBookingZerbitzaria.DL.aerolinea;
 import EasyBookingZerbitzaria.DL.aireportua;
 import EasyBookingZerbitzaria.DL.bidaiaria;
@@ -53,7 +53,6 @@ public class IOrokor extends JFrame {
 	private int luzea = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
 	private int altuera = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
 	private final String pathLogoa = "src/main/resources/logoa.jpg";
-	private IEasyZerbitzaria stubServer = null;
 	private ArrayList<bidaiaria> bidaiariak;
 
 	private String sesio_emaila; // sesioa irekitzerakoan asoziatutako emaila
@@ -62,12 +61,12 @@ public class IOrokor extends JFrame {
 	private JSpinner spinner;
 
 	private static String hegaldikodea = "";
-
+	private Controller controller;
 	private IOrokor hau;
 
 
-	public IOrokor() {
-
+	public IOrokor(Controller cont) {
+		this.controller = cont;
 		setTitle("Easy Booking");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(luzea, altuera);
@@ -444,20 +443,14 @@ public class IOrokor extends JFrame {
 
 				pasahitzZaharra = textField.getText();
 				pasahitzBerria = textField2.getText();
-
-
-				// try {
-
-				lpasahitzAldaketa pA = new lpasahitzAldaketa();
+				try {
+					controller.pasahitzaAldatu(email, pasahitzZaharra, pasahitzBerria);
+				} catch (RemoteException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				lpasahitzAldaketa pA = new lpasahitzAldaketa(controller);
 				pA.setVisible(true);
-
-				// stubServer.pasahitzaAldatu(email, pasahitzZaharra,
-				// pasahitzBerria);
-
-				// } catch (RemoteException e1) {
-				// // TODO Auto-generated catch block
-				// e1.printStackTrace();
-
 			}
 		});
 
@@ -468,7 +461,7 @@ public class IOrokor extends JFrame {
 									// egon beharko da
 
 				try {
-					stubServer.ezabatuErabiltzailea(kodea);
+					controller.ezabatuErabiltzailea(kodea);
 				} catch (RemoteException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -484,10 +477,10 @@ public class IOrokor extends JFrame {
 		erreserbabtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent r) {
 				if ((Integer) spinner.getValue() - 1 > 0) {
-					lBidaiaria b = new lBidaiaria((Integer) spinner.getValue() - 1, hau);
+					lBidaiaria b = new lBidaiaria((Integer) spinner.getValue() - 1, hau, controller);
 					b.setVisible(true);
 				} else {
-					lErreserba er = new lErreserba(hau);
+					lErreserba er = new lErreserba(hau, controller);
 					er.setVisible(true);
 				}
 

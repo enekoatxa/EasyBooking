@@ -18,8 +18,6 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
 import EasyBookingKlientea.NL.Controller;
-import EasyBookingKlientea.NL.IEasyZerbitzaria;
-import EasyBookingZerbitzaria.NL.RestClient_konexioa;
 
 public class lHasi extends JFrame {
 
@@ -43,8 +41,8 @@ public class lHasi extends JFrame {
 	JFrame b = this;
 	Dimension pantailaTamaina = Toolkit.getDefaultToolkit().getScreenSize();
 
-	public lHasi(Controller con) {
-		this.controller=con;
+	public lHasi(Controller cont) {
+		controller=cont;
 		setTitle("Sartu");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(pantailaTamaina.width / 2, pantailaTamaina.height / 2);
@@ -90,7 +88,7 @@ public class lHasi extends JFrame {
 		lblIzenaEman.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				lErregistratu erregis = new lErregistratu();
+				lErregistratu erregis = new lErregistratu(controller);
 				erregis.setVisible(true);
 			}
 
