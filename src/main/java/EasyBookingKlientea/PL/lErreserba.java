@@ -84,7 +84,6 @@ public class lErreserba extends JFrame {
 				//ordainketa egin
 				try {
 				
-					
 					float kantitatea=orokorra.kalkulatuKopurua();
 					
 					String kontzeptua= Integer.toString(orokorra.getBidaiariak().size()) +" Bidaiarientzako"
