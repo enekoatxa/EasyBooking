@@ -200,7 +200,7 @@
             <version>1.2.1</version>
 
             <configuration>
-                <mainClass>Test.MainORM</mainClass>
+                <mainClass>test.MainORM</mainClass>
                 <systemProperties>
                     <systemProperty>
                         <key>log4j.configuration</key>
@@ -240,7 +240,7 @@
                        <artifactId>exec-maven-plugin</artifactId>
                        <version>1.2.1</version>
                        <configuration>
-                            <mainClass>Test.MainORM</mainClass>
+                            <mainClass>test.MainORM</mainClass>
                             <arguments>
                                 <argument>1</argument>
                             </arguments>
@@ -259,7 +259,7 @@
                        <artifactId>exec-maven-plugin</artifactId>
                        <version>1.2.1</version>
                        <configuration>
-                            <mainClass>Test.MainORM</mainClass>
+                            <mainClass>test.MainORM</mainClass>
                             <arguments>
                                 <argument>2</argument>
                             </arguments>
@@ -278,7 +278,7 @@
                        <artifactId>exec-maven-plugin</artifactId>
                        <version>1.2.1</version>
                        <configuration>
-                            <mainClass>Test.MainORM</mainClass>
+                            <mainClass>test.MainORM</mainClass>
                             <arguments>
                                 <argument>3</argument>
                             </arguments>
@@ -297,7 +297,7 @@
                        <artifactId>exec-maven-plugin</artifactId>
                        <version>1.2.1</version>
                        <configuration>
-                            <mainClass>Test.MainORM</mainClass>
+                            <mainClass>test.MainORM</mainClass>
                             <arguments>
                                 <argument>4</argument>
                             </arguments>
@@ -316,7 +316,7 @@
                        <artifactId>exec-maven-plugin</artifactId>
                        <version>1.2.1</version>
                        <configuration>
-                            <mainClass>Test.MainORM</mainClass>
+                            <mainClass>test.MainORM</mainClass>
                             <arguments>
                                 <argument>5</argument>
                             </arguments>

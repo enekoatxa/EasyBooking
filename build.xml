@@ -2,6 +2,7 @@
 <project basedir="." name="EasyBooking">    
 	<property environment="env"/>
 	<property name="source.dir" location="src/main/java"/>
+	<property name="mvn.source.dir" location="/Users/Alumno/.m2/repository"/>
    	<property name="build.dir" location="target/classes"/>
 	<property name="server.port" value="1099"/> 
 	<property name="server.IP" value="127.0.0.1"/> 
@@ -10,7 +11,7 @@
 	<property name="policy.file.zerbitzaria" location="src/main/java/EasyBookingZerbitzaria/security/java.policy"/>	
 	<property name="classpath" location="target/classes"/>
 	
-	<path>
+	<path id="full.classpath">
 		<fileset dir = "${mvn.source.dir}">
 		<include name ="**/*.jar"/>
 		<exclude name = "**/5.2.3/**/*.jar"/>
@@ -20,7 +21,7 @@
 	</path>
 
 	<target name="klientea" description="Runs the Client">
-		<java classname="EasyBookingKlientea.PL.lHasi" classpath="${classpath}" fork="true">
+		<java classname="EasyBookingKlientea.NL.Controller" classpathref="full.classpath" fork="true">
 			<jvmarg value="-Djava.security.policy=${policy.file.klientea}"/>			
         	<arg value="${server.IP}"/> 
 	 		<arg value="${server.port}"/> 
@@ -29,7 +30,7 @@
     </target>
 	
 	<target name="zerbitzaria" description="Runs the Server">
-			<java classname="EasyBookingZerbitzaria.NL.EasyZerbitzaria" classpath="${classpath}" fork="true">
+			<java classname="EasyBookingZerbitzaria.NL.EasyZerbitzaria" classpathref="full.classpath" fork="true">
 				<jvmarg value="-Djava.rmi.server.codebase=file:${build.dir}/"/>
 				<jvmarg value="-Djava.security.policy=${policy.file.zerbitzaria}"/>			
 	        	<arg value="${server.IP}"/> 

@@ -13,7 +13,7 @@ public class Controller {
 	public Controller(String[] args) throws RemoteException {
 		rsl = new RMIServiceLocator();
 		rsl.setService(args[0], args[1], args[2]);
-		lHasi hasi = new lHasi();
+		lHasi hasi = new lHasi(this);
 		hasi.setVisible(true);
 	}
 
@@ -50,9 +50,9 @@ public class Controller {
 		}
 	}
 
-	public void login(String email, String pasahitza, String autentikazioZerbitzua) throws RemoteException {
+	public void login(String email, String pasahitza) throws RemoteException {
 		try {
-			rsl.getService().login(email, pasahitza, autentikazioZerbitzua);
+			rsl.getService().login(email, pasahitza);
 		} catch (Exception e) {
 			System.err.println("Errorea login egiterako garaian: " + e.getMessage());
 		}
