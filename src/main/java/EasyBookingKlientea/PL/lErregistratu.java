@@ -262,6 +262,9 @@ public class lErregistratu extends JFrame {
 						 EasyBookingZerbitzaria.DL.aireportua aireportuaA = new  EasyBookingZerbitzaria.DL.aireportua (aeroportukodea,gustokoaireportua );
 						 
 						controller.sortuErabiltzailea(helbidea, Izena, abizena,adinaint, Nan , nick, pasahitza, aireportuaA);
+						
+						lHasi hasi = new lHasi(controller);
+						hasi.setVisible(true);
 					}}
 			
 			

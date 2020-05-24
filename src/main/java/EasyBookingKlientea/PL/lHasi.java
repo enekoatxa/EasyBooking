@@ -160,6 +160,8 @@ public class lHasi extends JFrame {
 					try {
 						// Imanol: Ez nago seguru horrela den
 						controller.login(textField.getText(), textField_1.getText());
+						IOrokor orokor = new IOrokor(controller);
+						orokor.setVisible(true);
 					} catch (RemoteException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
