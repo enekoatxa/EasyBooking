@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import EasyBookingKlientea.NL.Controller;
 import EasyBookingZerbitzaria.DL.bidaiaria;
 
 public class lBidaiaria extends JFrame {
@@ -25,11 +26,12 @@ public class lBidaiaria extends JFrame {
 	private JLabel lblZenbatBidaiariIzango;
 	private int kop;
 	public IOrokor orokorra;
-
+	private Controller controller;
 	/**
 	 * Create the frame.
 	 */
-	public lBidaiaria(int kopurua, IOrokor orokor) {
+	public lBidaiaria(int kopurua, IOrokor orokor, Controller cont) {
+		controller=cont;
 		setTitle("1.Bidaiariaren datuak");
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -122,12 +124,10 @@ public class lBidaiaria extends JFrame {
 					textField_2.setText("");
 
 				} else {
-					lErreserba er = new lErreserba(orokorra);
+					lErreserba er = new lErreserba(orokorra, controller);
 					er.setVisible(true);
 					dispose();
-
 				}
-
 			}
 		});
 

@@ -17,8 +17,7 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
-import EasyBookingKlientea.NL.IEasyZerbitzaria;
-import EasyBookingZerbitzaria.NL.RestClient_konexioa;
+import EasyBookingKlientea.NL.Controller;
 
 public class lHasi extends JFrame {
 
@@ -34,35 +33,16 @@ public class lHasi extends JFrame {
 	private JRadioButton rdbtnFb;
 	private JRadioButton rdbtnGoogle;
 
-	private IEasyZerbitzaria stubServer = null;
 	private final String pathFacebook = "src/main/resources/fb.png";
 	private final String pathGoogle = "src/main/resources/google.png";
 	private ButtonGroup aut;
-
+	private Controller controller;
+	
 	JFrame b = this;
 	Dimension pantailaTamaina = Toolkit.getDefaultToolkit().getScreenSize();
 
-	public static void main(String[] args) {
-
-		lHasi hasi = new lHasi();
-		hasi.setVisible(true);
-		System.out.println("Bai");
-		// RestClient_konexioa konexioa = new
-		// RestClient_konexioa("192.168.6.31", "5000");
-		// try {
-		// konexioa.makeGetRequest("/Authentication/Log_in");
-		// System.out.println("Baibai");
-		// } catch (Exception e) {
-		// // TODO Auto-generated catch block
-		// System.out.println("Catched exception: " + e.getMessage());
-		// }
-		// lBidaiariak hasi = new lBidaiariak(IOrokor);
-		// hasi.setVisible(true);
-
-	}
-
-	public lHasi() {
-
+	public lHasi(Controller cont) {
+		controller=cont;
 		setTitle("Sartu");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(pantailaTamaina.width / 2, pantailaTamaina.height / 2);
@@ -108,7 +88,7 @@ public class lHasi extends JFrame {
 		lblIzenaEman.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				lErregistratu erregis = new lErregistratu();
+				lErregistratu erregis = new lErregistratu(controller);
 				erregis.setVisible(true);
 			}
 
@@ -177,17 +157,9 @@ public class lHasi extends JFrame {
 				 * Datuak ongi sartuta dauden kasuan
 				 */
 				else {
-					String autentikazioZerbitzua = "";
-					if (rdbtnFb.isSelected()) {
-						autentikazioZerbitzua = "facebook";
-					}
-					if (rdbtnGoogle.isSelected()) {
-						autentikazioZerbitzua = "google";
-					}
-					// Sartu
 					try {
 						// Imanol: Ez nago seguru horrela den
-						stubServer.login(textField.getText(), textField_1.getText(), autentikazioZerbitzua);
+						controller.login(textField.getText(), textField_1.getText());
 					} catch (RemoteException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
