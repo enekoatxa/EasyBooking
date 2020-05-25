@@ -5,7 +5,8 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.ButtonGroup;
 import javax.swing.Icon;
@@ -18,6 +19,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
+
+import EasyBookingKlientea.DLDTO.aireportuaDTO;
 import EasyBookingKlientea.NL.Controller;
 
 public class lErregistratu extends JFrame {
@@ -185,6 +188,15 @@ public class lErregistratu extends JFrame {
 		a = pantailaTamaina.width / 28;
 		lblSartu.setBounds((pantailaTamaina.width / 3)+pantailaTamaina.width/24, (int) (altuera * 21), a, altuera);
 		contentPane.add(lblSartu);
+		
+		lblSartu.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				dispose();
+			}
+
+		});
 
 		JPanel panD1 = new JPanel();
 		panD1.setBounds(0, 0,450,600);
@@ -259,7 +271,7 @@ public class lErregistratu extends JFrame {
 						int adinaint = Integer.parseInt(adina);
 		
 						
-						EasyBookingZerbitzaria.DL.aireportua a = new EasyBookingZerbitzaria.DL.aireportua ("a","b");
+						aireportuaDTO a = new aireportuaDTO ("a","b");
 						 
 						controller.sortuErabiltzailea(helbidea, Izena, abizena,adinaint, Nan , nick, pasahitza, a);
 						

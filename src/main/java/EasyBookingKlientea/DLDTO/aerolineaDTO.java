@@ -1,6 +1,9 @@
 package EasyBookingKlientea.DLDTO;
 
-public class aerolineaDTO {
+import java.io.Serializable;
+
+public class aerolineaDTO 
+ {
 
 	private String kodea;
 	private String izena;

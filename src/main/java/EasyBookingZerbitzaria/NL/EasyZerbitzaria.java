@@ -6,6 +6,7 @@ import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
+import EasyBookingKlientea.DLDTO.aireportuaDTO;
 import EasyBookingKlientea.DLDTO.hegaldiaDTO;
 import EasyBookingZerbitzaria.DL.aireportua;
 
@@ -22,7 +23,8 @@ public class EasyZerbitzaria extends UnicastRemoteObject implements IEasyZerbitz
 	}
 
 	public boolean sortuErabiltzailea(String email, String izena, String abizena, int adina, String nan, String nick,
-			String pasahitza, aireportua gustokoAireportua) throws RemoteException {
+			String pasahitza, aireportuaDTO gustokoAireportua) throws RemoteException {
+		
 		return autentikazioKud.sortuErabiltzailea(email, izena, abizena, adina, nan, nick, pasahitza,
 				gustokoAireportua);
 	}
@@ -75,4 +77,5 @@ public class EasyZerbitzaria extends UnicastRemoteObject implements IEasyZerbitz
 		}
 	}
 
+	
 }

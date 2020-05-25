@@ -6,6 +6,7 @@ import javax.ws.rs.core.Response;
 
 import org.json.simple.JSONObject;
 
+import EasyBookingKlientea.DLDTO.aireportuaDTO;
 import EasyBookingZerbitzaria.DL.aireportua;
 
 public class AutentikazioGateway {
@@ -13,7 +14,7 @@ public class AutentikazioGateway {
 	JSONObject json_encoded;
 
 	public boolean sortuErabiltzailea(String email, String izena, String abizena, int adina, String nan, String nick,
-			String pasahitza, aireportua gustokoAireportua) throws RemoteException {
+			String pasahitza, aireportuaDTO gustokoAireportua) throws RemoteException {
 		
 		
 		JSONObject obj= sortuJSON(izena, abizena, email);
@@ -103,5 +104,7 @@ public class AutentikazioGateway {
 
 		return erabiltzailea;
 	}
+
+
 
 }

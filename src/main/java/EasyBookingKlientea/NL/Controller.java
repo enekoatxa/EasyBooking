@@ -3,6 +3,7 @@ package EasyBookingKlientea.NL;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import EasyBookingKlientea.DLDTO.aireportuaDTO;
 import EasyBookingKlientea.DLDTO.hegaldiaDTO;
 import EasyBookingKlientea.PL.lHasi;
 import EasyBookingZerbitzaria.DL.aireportua;
@@ -29,11 +30,11 @@ public class Controller {
 	}
 
 	public boolean sortuErabiltzailea(String email, String izena, String abizena, int adina, String nan, String nick,
-			String pasahitza, aireportua gustokoAireportua) {
+			String pasahitza, aireportuaDTO a2) {
 		boolean a = true;
 		try {
 			a = rsl.getService().sortuErabiltzailea(email, izena, abizena, adina, nan, nick, pasahitza,
-					gustokoAireportua);
+					a2);
 		} catch (Exception e) {
 			System.err.println("Errorea erabiltzailea sortzerako garaian: " + e.getMessage());
 		}

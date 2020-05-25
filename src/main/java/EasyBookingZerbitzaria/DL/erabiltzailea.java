@@ -6,6 +6,8 @@ import javax.jdo.annotations.Element;
 import javax.jdo.annotations.NotPersistent;
 import javax.jdo.annotations.PersistenceCapable;
 
+import EasyBookingKlientea.DLDTO.aireportuaDTO;
+
 @PersistenceCapable
 public class erabiltzailea extends pertsona {
 	@NotPersistent
@@ -60,6 +62,11 @@ public class erabiltzailea extends pertsona {
 
 	public void addGustokoAireportua(aireportua a) {
 		a.gehituErabiltzailea(this);
+	}
+
+	public void addGustokoAireportua(aireportuaDTO gustokoAireportua) {
+	this.addGustokoAireportua(gustokoAireportua);
+		
 	}
 
 }

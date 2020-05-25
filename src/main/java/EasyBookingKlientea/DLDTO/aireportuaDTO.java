@@ -1,6 +1,8 @@
 package EasyBookingKlientea.DLDTO;
 
-public class aireportuaDTO {
+import java.io.Serializable;
+
+public class aireportuaDTO implements Serializable {
 
 	private String kodea;
 	private String izena;
@@ -29,4 +31,11 @@ public class aireportuaDTO {
 	public String toString() {
 		return izena + " (" + kodea + ")";
 	}
+
+	public void gehituErabiltzailea(erabiltzaileaDTO erabiltzailea) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
 }
