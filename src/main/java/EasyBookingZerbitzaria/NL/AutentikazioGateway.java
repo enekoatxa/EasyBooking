@@ -7,62 +7,67 @@ import javax.ws.rs.core.Response;
 import org.json.simple.JSONObject;
 
 import EasyBookingKlientea.DLDTO.aireportuaDTO;
-import EasyBookingZerbitzaria.DL.aireportua;
 
 public class AutentikazioGateway {
 
 	JSONObject json_encoded;
 
-	public boolean sortuErabiltzailea(String email, String izena, String abizena, int adina, String nan, String nick,
+	public String sortuErabiltzailea(String email, String izena, String abizena, int adina, String nan, String nick,
 			String pasahitza, aireportuaDTO gustokoAireportua) throws RemoteException {
-		
-		
-		JSONObject obj= sortuJSON(izena, abizena, email);
 
-		// VPN deia
+		JSONObject obj = sortuJSON(izena, abizena, email);
 
-        Response response = null;
+		String pasahitz = null;
+
+		Response response = null;
 		String hostname = "192.168.6.31";
 		String port_auth = "5000";
 
 		RestClient_konexioa c1 = new RestClient_konexioa(hostname, port_auth);
 
-		String path="";
-		 path = "/Authentication/Create_user";
-	        System.out.println("Trying POST at " + path + " (Create user)");
-	        System.out.println("CURL call: curl http://192.168.6.31:5000/Authentication/Create_user -d '{\"name\":\"Inigo\", \"last_name\":\"Lopez-Gazpio\", \"email\":\"inigo.lopezgazpio@deusto.es\"}' -X POST -H \"Content-Type: application/json\" -v");
+		String path = "/Authentication/Create_user";
+		System.out.println("Trying POST at " + path + " (Create user)");
 
-	      
+		Simple_pass_result result_class_password = null;
+		try {
+			// Dei hontan gauzak falta dia, -d, -X, -H, POST, ta geroko dana
+			response = c1.makePostRequest(c1.createInvocationBuilder(path), obj);
+		} catch (Exception e) {
+			e.printStackTrace();
+			e.toString();
+		}
 
+		String reply = response.readEntity(String.class);
 
-	        Simple_pass_result result_class_password = null;
-	        try {
-	            response =
-	            		c1.makePostRequest(
-	            				c1.createInvocationBuilder(path), obj
-	                    );
-	        }
-	        catch (Exception e) { e.printStackTrace(); e.toString(); }
+		try {
+			result_class_password = new Simple_pass_result(reply);
+		} catch (Exception e) {
+			e.printStackTrace();
+			e.toString();
+		}
 
-	        String reply = response.readEntity(String.class);
+		result_class_password.print();
 
-	        // Create a JSONObject to parse the respond inside the Simple_pass_result
-	        try {
-	            result_class_password = new Simple_pass_result(reply);
-	        } catch (Exception e) {e.printStackTrace(); e.toString(); }
+		pasahitz = result_class_password.getContent();
 
-	        result_class_password.print();
-
-	        long password = result_class_password.getContentNumber();
-	        
-	        System.out.println(password);
-			return false;
+		System.out.println(pasahitz);
+		return pasahitz;
 
 	}
 
 	public boolean ezabatuErabiltzailea(String email, String pasahitza) throws RemoteException {
 		boolean a = true;
-		erabiltzaileaJSON(email, pasahitza, null, true);
+		JSONObject obj = erabiltzaileaJSON(email, pasahitza, null, true);
+
+		Response response = null;
+		String hostname = "192.168.6.31";
+		String port_auth = "5000";
+
+		RestClient_konexioa c1 = new RestClient_konexioa(hostname, port_auth);
+
+		String path = "/Authentication/Delete_user";
+		System.out.println("Trying POST at " + path + " (Delete user)");
+
 		// VPN deia
 		return a;
 	}
@@ -70,6 +75,16 @@ public class AutentikazioGateway {
 	public boolean pasahitzaAldatu(String email, String pasahitzZaharra, String pasahitzBerria) throws RemoteException {
 		boolean a = true;
 		erabiltzaileaJSON(email, pasahitzZaharra, pasahitzBerria, false);
+
+		Response response = null;
+		String hostname = "192.168.6.31";
+		String port_auth = "5000";
+
+		RestClient_konexioa c1 = new RestClient_konexioa(hostname, port_auth);
+
+		String path = "/Authentication/Change_password";
+		System.out.println("Trying POST at " + path + " (Change password)");
+
 		// VPN deia
 		return a;
 	}
@@ -77,6 +92,15 @@ public class AutentikazioGateway {
 	public boolean login(String email, String pasahitza) throws RemoteException {
 		boolean a = true;
 		erabiltzaileaJSON(email, pasahitza, null, true);
+
+		Response response = null;
+		String hostname = "192.168.6.31";
+		String port_auth = "5000";
+
+		RestClient_konexioa c1 = new RestClient_konexioa(hostname, port_auth);
+
+		String path = "/Authentication/Log_in";
+		System.out.println("Trying POST at " + path + " (Login)");
 		// VPN deia
 		return a;
 	}
@@ -104,7 +128,5 @@ public class AutentikazioGateway {
 
 		return erabiltzailea;
 	}
-
-
 
 }

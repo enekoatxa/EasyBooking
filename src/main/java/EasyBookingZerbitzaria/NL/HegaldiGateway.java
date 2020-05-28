@@ -3,6 +3,8 @@ package EasyBookingZerbitzaria.NL;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import javax.ws.rs.core.Response;
+
 import org.json.simple.JSONObject;
 
 import EasyBookingKlientea.DLDTO.hegaldiaDTO;
@@ -13,6 +15,15 @@ public class HegaldiGateway {
 		ArrayList<hegaldiaDTO> hegaldiak = new ArrayList<hegaldiaDTO>();
 		// GARRANTZITSUA!! ESPEZIFIKAZIOAK ORDENATUTA EGON BEHAR DUTE!
 		espezifikazioJSON(espezifikazioak);
+
+		Response response = null;
+		String hostname = "192.168.6.31";
+		String port_auth = "5002";
+
+		RestClient_konexioa c1 = new RestClient_konexioa(hostname, port_auth);
+
+		String path = "/Airlines/Search_Flights";
+		System.out.println("Trying POST at " + path + " (Search flights)");
 		// VPN deia
 		return hegaldiak;
 	};

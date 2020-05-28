@@ -137,6 +137,7 @@ public class lHasi extends JFrame {
 		btnSartu.addMouseListener(new MouseAdapter() {
 
 			public void mouseClicked(MouseEvent e) {
+				boolean a = true;
 				if ((textField.getText().equals("")) || (textField.getText().equals(" "))
 						|| (textField.getText().equals("  "))) {
 					JOptionPane.showMessageDialog(lHasi.this, "Helbide elektroniko bat idatzi behar duzu.", "Kontuz",
@@ -158,12 +159,19 @@ public class lHasi extends JFrame {
 				 */
 				else {
 					try {
-						controller.login(textField.getText(), textField_1.getText());
-						IOrokor orokor = new IOrokor(controller, textField.getText());
-						orokor.setVisible(true);
+						a = controller.login(textField.getText(), textField_1.getText());
+
 					} catch (RemoteException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
+					}
+					if (a == true) {
+						IOrokor orokor = new IOrokor(controller, textField.getText(), textField_1.getText());
+						orokor.setVisible(true);
+					} else {
+						JOptionPane.showMessageDialog(lHasi.this, "Arazoak sortu dira hastean, saiatu berriro mesedez.",
+								"Saiatu berriro", 1);
+
 					}
 				}
 			}

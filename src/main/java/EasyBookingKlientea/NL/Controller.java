@@ -6,8 +6,6 @@ import java.util.ArrayList;
 import EasyBookingKlientea.DLDTO.aireportuaDTO;
 import EasyBookingKlientea.DLDTO.hegaldiaDTO;
 import EasyBookingKlientea.PL.lHasi;
-import EasyBookingZerbitzaria.DL.aireportua;
-import EasyBookingZerbitzaria.NL.AutentikazioGateway;
 
 public class Controller {
 
@@ -18,7 +16,7 @@ public class Controller {
 		rsl.setService(args[0], args[1], args[2]);
 		lHasi hasi = new lHasi(this);
 		hasi.setVisible(true);
-		
+
 	}
 
 	public static void main(String[] args) throws RemoteException {
@@ -29,12 +27,11 @@ public class Controller {
 		System.exit(0);
 	}
 
-	public boolean sortuErabiltzailea(String email, String izena, String abizena, int adina, String nan, String nick,
+	public String sortuErabiltzailea(String email, String izena, String abizena, int adina, String nan, String nick,
 			String pasahitza, aireportuaDTO a2) {
-		boolean a = true;
+		String a = "";
 		try {
-			a = rsl.getService().sortuErabiltzailea(email, izena, abizena, adina, nan, nick, pasahitza,
-					a2);
+			a = rsl.getService().sortuErabiltzailea(email, izena, abizena, adina, nan, nick, pasahitza, a2);
 		} catch (Exception e) {
 			System.err.println("Errorea erabiltzailea sortzerako garaian: " + e.getMessage());
 		}

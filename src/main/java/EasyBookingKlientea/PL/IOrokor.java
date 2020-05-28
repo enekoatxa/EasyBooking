@@ -18,6 +18,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSlider;
@@ -56,6 +57,7 @@ public class IOrokor extends JFrame {
 	private ArrayList<bidaiaria> bidaiariak;
 
 	private String sesio_emaila; // sesioa irekitzerakoan asoziatutako emaila
+	private String sesio_pasahitza;
 	private JTextField textField;
 	private JTextField textField2;
 	private JSpinner spinner;
@@ -63,10 +65,12 @@ public class IOrokor extends JFrame {
 	private static String hegaldikodea = "";
 	private Controller controller;
 	private IOrokor hau;
+	private JFrame b = this;
 
-	public IOrokor(Controller cont, String email) {
+	public IOrokor(Controller cont, String email, String pasahitza) {
 		this.controller = cont;
 		sesio_emaila = email;
+		sesio_pasahitza = pasahitza;
 		setTitle("Easy Booking");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(luzea, altuera);
@@ -437,30 +441,47 @@ public class IOrokor extends JFrame {
 		bpasahitza.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
+				boolean a = true;
+
 				String pasahitzZaharra;
 				String pasahitzBerria;
 
 				pasahitzZaharra = textField.getText();
 				pasahitzBerria = textField2.getText();
 				try {
-					controller.pasahitzaAldatu(sesio_emaila, pasahitzZaharra, pasahitzBerria);
+					a = controller.pasahitzaAldatu(sesio_emaila, pasahitzZaharra, pasahitzBerria);
 				} catch (RemoteException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				lpasahitzAldaketa pA = new lpasahitzAldaketa(controller);
-				pA.setVisible(true);
+				if (a == true) {
+					lpasahitzAldaketa pA = new lpasahitzAldaketa(controller);
+					pA.setVisible(true);
+				} else {
+					JOptionPane.showMessageDialog(b, "Arazoak egon dira pasahitza aldatzean, saiatu berriro mesedez.",
+							"Saiatu berriro", 1);
+
+				}
+
 			}
 		});
 
 		bborratuE.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String pasahitza = "";
+				boolean a = true;
 				try {
-					controller.ezabatuErabiltzailea(sesio_emaila, pasahitza);
+					a = controller.ezabatuErabiltzailea(sesio_emaila, sesio_pasahitza);
 				} catch (RemoteException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
+				}
+				if (a == true) {
+					JOptionPane.showMessageDialog(b, "Erabiltzaile behar bezala ezabatu da.", "Ezabatuta", 1);
+
+				} else {
+					JOptionPane.showMessageDialog(b,
+							"Arazoak egon dira erabiltzailea ezabatzean, saiatu berriro mesedez.", "Saiatu berriro", 1);
+
 				}
 
 			}

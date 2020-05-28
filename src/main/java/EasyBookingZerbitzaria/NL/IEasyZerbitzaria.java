@@ -6,13 +6,12 @@ import java.util.ArrayList;
 
 import EasyBookingKlientea.DLDTO.aireportuaDTO;
 import EasyBookingKlientea.DLDTO.hegaldiaDTO;
-import EasyBookingZerbitzaria.DL.aireportua;
 
 public interface IEasyZerbitzaria extends Remote {
 
 	// Erabiltzaileen inguruko metodoak
 
-	public boolean sortuErabiltzailea(String email, String izena, String abizena, int adina, String nan, String nick,
+	public String sortuErabiltzailea(String email, String izena, String abizena, int adina, String nan, String nick,
 			String pasahitza, aireportuaDTO a2) throws RemoteException;
 
 	public boolean ezabatuErabiltzailea(String email, String pasahitza) throws RemoteException;

@@ -7,24 +7,25 @@ import java.rmi.RemoteException;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import EasyBookingKlientea.NL.Controller;
-
 
 public class lErreserba extends JFrame {
 
 	private JPanel contentPane;
 	private IOrokor orokorra;
 	private Controller controller;
+	private JFrame b = this;
 
 	/**
 	 * Create the frame.
 	 */
 	public lErreserba(IOrokor orok, Controller cont) {
-		orokorra=orok;
-		controller=cont;
+		orokorra = orok;
+		controller = cont;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(650, 270, 450, 326);
 		contentPane = new JPanel();
@@ -75,42 +76,47 @@ public class lErreserba extends JFrame {
 		JButton btnOrdaindu = new JButton("Ordaindu");
 		btnOrdaindu.setBounds(274, 225, 115, 29);
 		contentPane.add(btnOrdaindu);
-		
-		
+
 		btnOrdaindu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
-				//ordainketa egin
+				String a = null;
+				// ordainketa egin
 				try {
-				
-					float kantitatea=orokorra.kalkulatuKopurua();
-					
-					String kontzeptua= Integer.toString(orokorra.getBidaiariak().size()) +" Bidaiarientzako"
+
+					float kantitatea = orokorra.kalkulatuKopurua();
+
+					String kontzeptua = Integer.toString(orokorra.getBidaiariak().size()) + " Bidaiarientzako"
 							+ " hegazkin bidaia.";
-					
+
 					String email = orokorra.sesioEmaila();
-					
-					controller.ordaindu(email, kantitatea, kontzeptua);//ordainketa eginda
-					System.out.println(" Ordainketa ongi egin da");
+
+					a = controller.ordaindu(email, kantitatea, kontzeptua);// ordainketa
+																			// eginda
+
 				} catch (RemoteException e1) {
-			
+
 					e1.printStackTrace();
 				}
-				dispose();
+				if (a != null) {
+					JOptionPane.showMessageDialog(b, "Arazorik gabe egin da ordainketa.", "Ordainduta", 1);
+					dispose();
+				} else {
+					JOptionPane.showMessageDialog(b, "Arazoak egon dira ordaintzean, saiatu berriro mesedez.",
+							"Saiatu berriro", 1);
+				}
+
 			}
 		});
-	
 
 		JButton btnEzeztatu = new JButton("Ezeztatu");
 		btnEzeztatu.setBounds(25, 225, 115, 29);
 		contentPane.add(btnEzeztatu);
-		
+
 		btnEzeztatu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-			
+
 				dispose();
-				
+
 			}
 		});
 	}

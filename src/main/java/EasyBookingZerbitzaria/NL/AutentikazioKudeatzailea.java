@@ -3,7 +3,6 @@ package EasyBookingZerbitzaria.NL;
 import java.rmi.RemoteException;
 
 import EasyBookingKlientea.DLDTO.aireportuaDTO;
-import EasyBookingZerbitzaria.DL.aireportua;
 import EasyBookingZerbitzaria.DL.erabiltzailea;
 
 public class AutentikazioKudeatzailea {
@@ -20,9 +19,9 @@ public class AutentikazioKudeatzailea {
 		return instance;
 	}
 
-	public boolean sortuErabiltzailea(String email, String izena, String abizena, int adina, String nan, String nick,
+	public String sortuErabiltzailea(String email, String izena, String abizena, int adina, String nan, String nick,
 			String pasahitza, aireportuaDTO gustokoAireportua) throws RemoteException {
-		
+
 		erabiltzailea e = new erabiltzailea(nan, izena, abizena, adina, email, nick, pasahitza);
 		e.addGustokoAireportua(gustokoAireportua);
 
