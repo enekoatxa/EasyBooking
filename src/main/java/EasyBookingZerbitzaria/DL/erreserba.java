@@ -1,5 +1,6 @@
 package EasyBookingZerbitzaria.DL;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import javax.jdo.annotations.NotPersistent;
@@ -7,7 +8,7 @@ import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.PrimaryKey;
 
 @PersistenceCapable
-public class erreserba {
+public class erreserba implements Serializable {
 	@PrimaryKey
 	private String kodea;
 	@NotPersistent

@@ -1,8 +1,9 @@
 package EasyBookingZerbitzaria.DL;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class hegaldia implements Comparable<hegaldia> {
+public class hegaldia implements Comparable<hegaldia>, Serializable {
 
 	private String kodea;
 	private aireportua irteera;

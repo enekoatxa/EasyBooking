@@ -1,5 +1,6 @@
 package EasyBookingZerbitzaria.DL;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import javax.jdo.annotations.Element;
@@ -9,7 +10,7 @@ import javax.jdo.annotations.PersistenceCapable;
 import EasyBookingKlientea.DLDTO.aireportuaDTO;
 
 @PersistenceCapable
-public class erabiltzailea extends pertsona {
+public class erabiltzailea extends pertsona implements Serializable  {
 	@NotPersistent
 	private String emaila;
 	@NotPersistent
@@ -64,8 +65,8 @@ public class erabiltzailea extends pertsona {
 		a.gehituErabiltzailea(this);
 	}
 
-	public void addGustokoAireportua(aireportuaDTO gustokoAireportua) {
-	this.addGustokoAireportua(gustokoAireportua);
+	public void addGustokoAireportua(aireportuaDTO a) {
+		a.gehituErabiltzailea(this);
 		
 	}
 

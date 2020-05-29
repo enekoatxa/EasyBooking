@@ -1,15 +1,22 @@
 package EasyBookingKlientea.DLDTO;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+
+import EasyBookingZerbitzaria.DL.erabiltzailea;
 
 public class aireportuaDTO implements Serializable {
 
 	private String kodea;
 	private String izena;
+	private ArrayList<erabiltzailea> erabiltzaileak;
 
+	
+	
 	public aireportuaDTO(String kodea, String izena) {
 		this.kodea = kodea;
 		this.izena = izena;
+		erabiltzaileak = new ArrayList<erabiltzailea>();
 	}
 
 	public String getKodea() {
@@ -32,10 +39,12 @@ public class aireportuaDTO implements Serializable {
 		return izena + " (" + kodea + ")";
 	}
 
-	public void gehituErabiltzailea(erabiltzaileaDTO erabiltzailea) {
-		// TODO Auto-generated method stub
-		
+	public void gehituErabiltzailea(erabiltzailea e) {
+		erabiltzaileak.add(e);
 	}
+	
+
+	
 
 	
 }

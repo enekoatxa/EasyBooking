@@ -12,7 +12,7 @@ public interface IEasyZerbitzaria extends Remote {
 	// Erabiltzaileen inguruko metodoak
 
 	public String sortuErabiltzailea(String email, String izena, String abizena, int adina, String nan, String nick,
-			String pasahitza, aireportuaDTO a2) throws RemoteException;
+			String pasahitza, aireportuaDTO gustokoAireportua) throws RemoteException;
 
 	public boolean ezabatuErabiltzailea(String email, String pasahitza) throws RemoteException;
 
