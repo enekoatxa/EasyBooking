@@ -222,26 +222,27 @@ public class DAO {
 
 	public ArrayList<aireportuaDTO> kargatuAireportuak() {
 		ArrayList<aireportuaDTO>DTOaireportuak= new ArrayList<aireportuaDTO>();
-		DTOaireportuak.add(new aireportuaDTO("a001", "lehena"));
-//		PersistenceManagerFactory persistentManagerFactory = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
-//		PersistenceManager persistentManager = persistentManagerFactory.getPersistenceManager();
-//		Transaction transaction = persistentManager.currentTransaction();
-//		try {
-//			transaction.begin();
-//			Extent<aireportua> extent = persistentManager.getExtent(aireportua.class, true);
-//			Iterator it = extent.iterator();
-//			while(it.hasNext()) {
-//				DTOaireportuak.add(dto.assembleAireportua((aireportua)it.next()));
-//			}
-//			transaction.commit();
-//		} catch (Exception ex) {
-//		} finally {
-//			if (transaction.isActive()) {
-//				transaction.rollback();
-//			}
-//
-//			persistentManager.close();
-//		}
+	
+
+		PersistenceManagerFactory persistentManagerFactory = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
+		PersistenceManager persistentManager = persistentManagerFactory.getPersistenceManager();
+		Transaction transaction = persistentManager.currentTransaction();
+		try {
+			transaction.begin();
+			Extent<aireportua> extent = persistentManager.getExtent(aireportua.class, true);
+			Iterator it = extent.iterator();
+			while(it.hasNext()) {
+				DTOaireportuak.add(dto.assembleAireportua((aireportua)it.next()));
+			}
+			transaction.commit();
+		} catch (Exception ex) {
+		} finally {
+			if (transaction.isActive()) {
+				transaction.rollback();
+			}
+
+			persistentManager.close();
+		}
 		return DTOaireportuak;
 	}
 }

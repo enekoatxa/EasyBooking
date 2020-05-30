@@ -28,7 +28,7 @@
     </target>
 	
 	<target name="zerbitzaria" description="Runs the Server">
-			<java classname="EasyBookingZerbitzaria.NL.EasyZerbitzaria" classpathref="full.classpath" fork="true">
+			<java classname="EasyBookingZerbitzaria.NL.FacadeAppService.EasyZerbitzaria" classpathref="full.classpath" fork="true">
 				<jvmarg value="-Djava.rmi.server.codebase=file:${build.dir}/"/>
 				<jvmarg value="-Djava.security.policy=${policy.file.zerbitzaria}"/>			
 	        	<arg value="${server.IP}"/> 

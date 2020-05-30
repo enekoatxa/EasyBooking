@@ -75,7 +75,7 @@ public class DTO {
 	aerolineaDTO assembleAerolinea(aerolinea a) {
 		return new aerolineaDTO(a.getKodea(), a.getIzena());
 	}
-	aireportuaDTO assembleAireportua(aireportua a) {
+	public aireportuaDTO assembleAireportua(aireportua a) {
 		return new aireportuaDTO(a.getKodea(), a.getIzena());
 	}
 	erreserbaDTO assembleErreserba(erreserba e) {
