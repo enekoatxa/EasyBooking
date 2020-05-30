@@ -11,9 +11,9 @@ import EasyBookingZerbitzaria.NL.Rest.RestClient_konexioa;
 public class OrdainketaGateway {
 	private final String hostname = "192.168.6.31";
 	private final String port_auth = "5001";
-	
+
 	public String ordaindu(String email, float kantitatea, String kontzeptua) throws RemoteException {
-		
+
 		JSONObject obj = erabiltzaileaJSON(email, 0, kantitatea, kontzeptua, false);
 
 		Response response = null;
@@ -21,7 +21,7 @@ public class OrdainketaGateway {
 
 		String path = "/Payments/Make_payment";
 		System.out.println("Trying POST at " + path + " (Make payment)");
-		
+
 		try {
 			response = c1.makePostRequest(c1.createInvocationBuilder(path), obj);
 		} catch (Exception e) {
@@ -34,7 +34,7 @@ public class OrdainketaGateway {
 	};
 
 	public boolean eguneratuMoneta(String email, float moneta) throws RemoteException {
-		JSONObject obj=erabiltzaileaJSON(email, moneta, 0, null, true);
+		JSONObject obj = erabiltzaileaJSON(email, moneta, 0, null, true);
 
 		Response response = null;
 
