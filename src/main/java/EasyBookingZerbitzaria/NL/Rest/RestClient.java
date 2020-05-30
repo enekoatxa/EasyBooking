@@ -1,15 +1,12 @@
-package EasyBookingZerbitzaria.NL;
+package EasyBookingZerbitzaria.NL.Rest;
 
 import javax.ws.rs.client.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
-
 import org.json.simple.JSONObject;
 
-import com.mysql.fabric.xmlrpc.Client;
-
-public class RestClient<T extends DF_Printable> {
+public class RestClient<T> {
 
 	protected Client client;
 	protected WebTarget webTarget;
@@ -44,15 +41,11 @@ public class RestClient<T extends DF_Printable> {
 
 	public Response makePostRequest(Invocation.Builder invocationBuilder, JSONObject obj) throws Exception {
 		System.out.println("Content of message to send in POST Request");
-		((DF_Printable) obj).print();
-
 		return invocationBuilder.post(Entity.entity(obj, MediaType.APPLICATION_JSON));
 	}
 
 	public Response makePutRequest(Invocation.Builder invocationBuilder, T objectToSend) throws Exception {
 		System.out.println("Content of message to send in PUT Request");
-		objectToSend.print();
-
 		return invocationBuilder.put(Entity.entity(objectToSend, MediaType.APPLICATION_JSON));
 	}
 

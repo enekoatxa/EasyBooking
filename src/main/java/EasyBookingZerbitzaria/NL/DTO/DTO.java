@@ -1,4 +1,4 @@
-package EasyBookingZerbitzaria.NL;
+package EasyBookingZerbitzaria.NL.DTO;
 
 import java.util.ArrayList;
 

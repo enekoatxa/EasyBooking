@@ -1,4 +1,4 @@
-package EasyBookingZerbitzaria.NL;
+package EasyBookingZerbitzaria.NL.FacadeAppService;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
@@ -11,8 +11,7 @@ public interface IEasyZerbitzaria extends Remote {
 
 	// Erabiltzaileen inguruko metodoak
 
-	public String sortuErabiltzailea(String email, String izena, String abizena, int adina, String nan, String nick,
-			String pasahitza, aireportuaDTO gustokoAireportua) throws RemoteException;
+	public String sortuErabiltzailea(String email, String izena, String abizena, int adina, String nan, String nick, String pasahitza, aireportuaDTO gustokoAireportua) throws RemoteException;
 
 	public boolean ezabatuErabiltzailea(String email, String pasahitza) throws RemoteException;
 
@@ -30,5 +29,7 @@ public interface IEasyZerbitzaria extends Remote {
 	// emaila automatikoki bidaltzeko aukera
 
 	public boolean eguneratuMoneta(String email, float kantitatea) throws RemoteException;
+
+	public ArrayList<aireportuaDTO> kargatuAireportuak() throws RemoteException;
 
 }

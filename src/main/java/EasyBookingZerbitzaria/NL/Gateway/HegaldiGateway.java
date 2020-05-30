@@ -1,4 +1,4 @@
-package EasyBookingZerbitzaria.NL;
+package EasyBookingZerbitzaria.NL.Gateway;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
@@ -8,23 +8,32 @@ import javax.ws.rs.core.Response;
 import org.json.simple.JSONObject;
 
 import EasyBookingKlientea.DLDTO.hegaldiaDTO;
+import EasyBookingZerbitzaria.NL.Rest.RestClient_konexioa;
 
 public class HegaldiGateway {
 
+	private final String hostname = "192.168.6.31";
+	private final String port_auth = "5002";
 	public ArrayList<hegaldiaDTO> hegaldiakBilatu(ArrayList<String> espezifikazioak) throws RemoteException {
-		ArrayList<hegaldiaDTO> hegaldiak = new ArrayList<hegaldiaDTO>();
+		ArrayList<hegaldiaDTO> hegaldiak;
 		// GARRANTZITSUA!! ESPEZIFIKAZIOAK ORDENATUTA EGON BEHAR DUTE!
-		espezifikazioJSON(espezifikazioak);
+		JSONObject obj = espezifikazioJSON(espezifikazioak);
 
 		Response response = null;
-		String hostname = "192.168.6.31";
-		String port_auth = "5002";
-
+		
 		RestClient_konexioa c1 = new RestClient_konexioa(hostname, port_auth);
 
 		String path = "/Airlines/Search_Flights";
 		System.out.println("Trying POST at " + path + " (Search flights)");
-		// VPN deia
+		
+		try {
+			response = c1.makePostRequest(c1.createInvocationBuilder(path), obj);
+		} catch (Exception e) {
+			e.printStackTrace();
+			e.toString();
+		}
+
+		hegaldiak=unmarshallHegaldiak(response);
 		return hegaldiak;
 	};
 
@@ -42,5 +51,12 @@ public class HegaldiGateway {
 			espezifikazioak.put("departure_date", espez.get(4));
 		}
 		return espezifikazioak;
+	}
+	
+	private ArrayList<hegaldiaDTO> unmarshallHegaldiak(Response response){
+		ArrayList<hegaldiaDTO>ret  = new ArrayList<hegaldiaDTO>();
+		//UNMARSHALLLLLL!!!
+		return ret;
+		
 	}
 }

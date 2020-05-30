@@ -1,6 +1,9 @@
-package EasyBookingZerbitzaria.NL;
+package EasyBookingZerbitzaria.NL.Kudeatzaileak;
 
 import java.rmi.RemoteException;
+
+import EasyBookingZerbitzaria.NL.DAO.DAO;
+import EasyBookingZerbitzaria.NL.Gateway.OrdainketaGateway;
 
 public class OrdainketaKudeatzailea {
 

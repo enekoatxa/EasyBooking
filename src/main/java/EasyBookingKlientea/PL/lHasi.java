@@ -137,7 +137,7 @@ public class lHasi extends JFrame {
 		btnSartu.addMouseListener(new MouseAdapter() {
 
 			public void mouseClicked(MouseEvent e) {
-				boolean a = true;
+				boolean a = false;
 				if ((textField.getText().equals("")) || (textField.getText().equals(" "))
 						|| (textField.getText().equals("  "))) {
 					JOptionPane.showMessageDialog(lHasi.this, "Helbide elektroniko bat idatzi behar duzu.", "Kontuz",
@@ -160,12 +160,13 @@ public class lHasi extends JFrame {
 				else {
 					try {
 						a = controller.login(textField.getText(), textField_1.getText());
-
+						System.out.println(a);
 					} catch (RemoteException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 					if (a == true) {
+						dispose();
 						IOrokor orokor = new IOrokor(controller, textField.getText(), textField_1.getText());
 						orokor.setVisible(true);
 					} else {

@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 import javax.swing.ButtonGroup;
 import javax.swing.Icon;
@@ -38,7 +39,7 @@ public class lErregistratu extends JFrame {
 	private JLabel lblAut;
 	private JLabel lblOrdainketa;
 	private JLabel lblAireportua;
-	private JComboBox<Object> aireportua;
+	private JComboBox<aireportuaDTO> aireportua;
 	private JButton btnIzEman;
 	private JLabel lblSartu;
 	private ButtonGroup aut;
@@ -59,7 +60,7 @@ public class lErregistratu extends JFrame {
 	private Controller controller;
 
 	public lErregistratu(Controller cont) {
-		this.controller = cont;
+		controller = cont;
 		setTitle("Izena eman");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(pantailaTamaina.width / 2, pantailaTamaina.height / 2);
@@ -176,7 +177,8 @@ public class lErregistratu extends JFrame {
 				altuera);
 		contentPane.add(lblAireportua);
 
-		aireportua = new JComboBox<Object>();
+		aireportua = new JComboBox<aireportuaDTO>();
+		kargatuAireportuak();
 		a = pantailaTamaina.width / 6;
 		aireportua.setBounds((pantailaTamaina.width / 4) + pantailaTamaina.width / 20, (int) (altuera * 16.5), a,
 				altuera);
@@ -195,7 +197,6 @@ public class lErregistratu extends JFrame {
 		lblSartu.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-
 				dispose();
 			}
 
@@ -222,7 +223,7 @@ public class lErregistratu extends JFrame {
 		btnIzEman.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-				String pasahitz = null;
+				String pasahitz = "";
 				String helbidea;
 				String Izena;
 				String abizena;
@@ -230,7 +231,6 @@ public class lErregistratu extends JFrame {
 				String Nan;
 				String nick = " ";
 				String pasahitza = " ";
-				String gustokoaireportua = (String) aireportua.getSelectedItem();
 
 				helbidea = textField.getText();
 				Izena = textField2.getText();
@@ -270,31 +270,10 @@ public class lErregistratu extends JFrame {
 				}
 
 				else {
-					String autentikazioZerbitzua = "";
-					String ordainketaMetodoa = "";
-					if (rdbtnFb.isSelected()) {
-						autentikazioZerbitzua = "facebook";
-					}
-					if (rdbtnGoogle.isSelected()) {
-						autentikazioZerbitzua = "google";
-					}
-					if (rdbtnPp.isSelected()) {
-						ordainketaMetodoa = "paypal";
-					}
-					if (rdbtnVisa.isSelected()) {
-						ordainketaMetodoa = "visa";
-					}
-					// Erabiltzailea sortu
-
-					int adinaint = Integer.parseInt(adina);
-
-					aireportuaDTO a = new aireportuaDTO("a", "b");
-
-					pasahitz = controller.sortuErabiltzailea(helbidea, Izena, abizena, adinaint, Nan, nick, pasahitza,
-							a);
-
-					if (pasahitz != null) {
-						JOptionPane.showMessageDialog(b, "Erabiltzaile berria gorde da!", "Sortuta", 1);
+					
+					pasahitz = controller.sortuErabiltzailea(helbidea, Izena, abizena, Integer.parseInt(adina), Nan, nick, pasahitza, (aireportuaDTO) aireportua.getSelectedItem());
+					if (!pasahitz.equals("")) {
+						JOptionPane.showMessageDialog(b, "Erabiltzaile berria gorde da! Hau da zure pasahitza: " + pasahitz +". Alda dezakezu nahi baduzu.", "Sortuta", 1);
 
 					} else {
 						JOptionPane.showMessageDialog(b,
@@ -309,5 +288,13 @@ public class lErregistratu extends JFrame {
 
 		});
 
+	}
+
+	private void kargatuAireportuak() {
+		ArrayList<aireportuaDTO> aireportuak = controller.kargatuAireportuak();
+		for(aireportuaDTO a: aireportuak) {
+			aireportua.addItem(a);
+		}
+		repaint();
 	}
 }

@@ -1,4 +1,4 @@
-package EasyBookingZerbitzaria.NL;
+package EasyBookingZerbitzaria.NL.Rest;
 
 import javax.ws.rs.client.Invocation;
 import javax.ws.rs.client.WebTarget;

@@ -1,12 +1,15 @@
-package EasyBookingZerbitzaria.NL;
+package EasyBookingZerbitzaria.NL.Kudeatzaileak;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import EasyBookingKlientea.DLDTO.aireportuaDTO;
 import EasyBookingKlientea.DLDTO.hegaldiaDTO;
 import EasyBookingZerbitzaria.DL.aireportua;
 import EasyBookingZerbitzaria.DL.hegaldia;
+import EasyBookingZerbitzaria.NL.DAO.DAO;
+import EasyBookingZerbitzaria.NL.Gateway.HegaldiGateway;
 
 public class HegaldiKudeatzailea {
 
@@ -86,5 +89,9 @@ public class HegaldiKudeatzailea {
 		}
 		return hegaldiak;
 
+	}
+
+	public ArrayList<aireportuaDTO> kargatuAireportuak() {
+		return dao.kargatuAireportuak();
 	}
 }

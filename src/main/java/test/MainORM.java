@@ -1,4 +1,4 @@
-package test;
+package Test;
 
 import java.util.ArrayList;
 
@@ -26,8 +26,7 @@ public class MainORM {
 			int aukera = Integer.parseInt(args[0]);
 
 			try {
-				PersistenceManagerFactory persistentManagerFactory = JDOHelper
-						.getPersistenceManagerFactory("datanucleus.properties");
+				PersistenceManagerFactory persistentManagerFactory = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
 				PersistenceManager persistentManager = persistentManagerFactory.getPersistenceManager();
 				Transaction transaction = persistentManager.currentTransaction();
 

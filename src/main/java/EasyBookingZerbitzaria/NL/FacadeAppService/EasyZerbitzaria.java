@@ -1,4 +1,4 @@
-package EasyBookingZerbitzaria.NL;
+package EasyBookingZerbitzaria.NL.FacadeAppService;
 
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -8,6 +8,9 @@ import java.util.ArrayList;
 
 import EasyBookingKlientea.DLDTO.aireportuaDTO;
 import EasyBookingKlientea.DLDTO.hegaldiaDTO;
+import EasyBookingZerbitzaria.NL.Kudeatzaileak.AutentikazioKudeatzailea;
+import EasyBookingZerbitzaria.NL.Kudeatzaileak.HegaldiKudeatzailea;
+import EasyBookingZerbitzaria.NL.Kudeatzaileak.OrdainketaKudeatzailea;
 
 public class EasyZerbitzaria extends UnicastRemoteObject implements IEasyZerbitzaria {
 
@@ -20,12 +23,9 @@ public class EasyZerbitzaria extends UnicastRemoteObject implements IEasyZerbitz
 		hegaldiKud = HegaldiKudeatzailea.getInstance();
 		ordainketaKud = OrdainketaKudeatzailea.getInstance();
 	}
-
-	public String sortuErabiltzailea(String email, String izena, String abizena, int adina, String nan, String nick,
-			String pasahitza, aireportuaDTO gustokoAireportua) throws RemoteException {
-
-		return autentikazioKud.sortuErabiltzailea(email, izena, abizena, adina, nan, nick, pasahitza,
-				gustokoAireportua);
+	
+	public String sortuErabiltzailea(String email, String izena, String abizena, int adina, String nan, String nick, String pasahitza, aireportuaDTO gustokoAireportua) throws RemoteException {
+		return autentikazioKud.sortuErabiltzailea(email, izena, abizena, adina, nan, nick, pasahitza, gustokoAireportua);
 	}
 
 	public boolean ezabatuErabiltzailea(String email, String pasahitza) throws RemoteException {
@@ -74,6 +74,10 @@ public class EasyZerbitzaria extends UnicastRemoteObject implements IEasyZerbitz
 			System.err.println("- Exzepzioa zerbitzarian: " + e.getMessage());
 			e.printStackTrace();
 		}
+	}
+
+	public ArrayList<aireportuaDTO> kargatuAireportuak() {
+		return hegaldiKud.kargatuAireportuak();
 	}
 
 }

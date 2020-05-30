@@ -65,9 +65,6 @@ public class erabiltzailea extends pertsona implements Serializable  {
 		a.gehituErabiltzailea(this);
 	}
 
-	public void addGustokoAireportua(aireportuaDTO a) {
-		a.gehituErabiltzailea(this);
-		
-	}
+
 
 }

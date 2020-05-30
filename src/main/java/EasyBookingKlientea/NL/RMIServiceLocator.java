@@ -2,7 +2,8 @@ package EasyBookingKlientea.NL;
 
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
-import EasyBookingZerbitzaria.NL.IEasyZerbitzaria;
+
+import EasyBookingZerbitzaria.NL.FacadeAppService.IEasyZerbitzaria;
 
 public class RMIServiceLocator {
 	private IEasyZerbitzaria service;

@@ -6,12 +6,11 @@ import java.util.ArrayList;
 import EasyBookingKlientea.DLDTO.aireportuaDTO;
 import EasyBookingKlientea.DLDTO.hegaldiaDTO;
 import EasyBookingKlientea.PL.lHasi;
-import EasyBookingZerbitzaria.NL.IEasyZerbitzaria;
+import EasyBookingZerbitzaria.NL.FacadeAppService.IEasyZerbitzaria;
 
 public class Controller {
 
 	private RMIServiceLocator rsl = null;
-	private IEasyZerbitzaria fatxada;
 
 	public Controller(String[] args) throws RemoteException {
 		rsl = new RMIServiceLocator();
@@ -30,7 +29,7 @@ public class Controller {
 		System.exit(0);
 	}
 
-	public String sortuErabiltzailea(String email, String izena, String abizena, int adina,String nan, String nick, String pasahitza,aireportuaDTO a2) {
+	public String sortuErabiltzailea(String email, String izena, String abizena, int adina, String nan, String nick, String pasahitza, aireportuaDTO a2) {
 		String a = "";
 		try {
 			a = rsl.getService().sortuErabiltzailea(email, izena, abizena, adina, nan, nick, pasahitza, a2);
@@ -67,6 +66,7 @@ public class Controller {
 			a = rsl.getService().login(email, pasahitza);
 		} catch (Exception e) {
 			System.err.println("Errorea login egiterako garaian: " + e.getMessage());
+			e.printStackTrace();
 		}
 		return a;
 	}
@@ -99,5 +99,16 @@ public class Controller {
 			System.err.println("Errorea ordaintzerako garaian: " + e.getMessage());
 		}
 		return a;
+	}
+
+	public ArrayList <aireportuaDTO> kargatuAireportuak() {
+		ArrayList<aireportuaDTO>aireportuak = null;
+		try {
+			aireportuak = rsl.getService().kargatuAireportuak();
+		} catch (Exception e) {
+			System.err.println("Errorea aireportuak kargatzerako garaian: " + e.getMessage());
+			e.printStackTrace();
+		}
+		return aireportuak;
 	}
 }
