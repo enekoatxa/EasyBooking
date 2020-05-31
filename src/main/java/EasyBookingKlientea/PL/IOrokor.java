@@ -74,6 +74,8 @@ public class IOrokor extends JFrame {
 	private GridBagConstraints cons;
 	private JComboBox<String> cHelmuga;
 	private JComboBox<String> cIrteera;
+	private DefaultCategoryDataset dataset;
+	private DefaultCategoryDataset dataset2;
 	
 	public IOrokor(Controller cont, String email, String pasahitza) {
 		this.controller = cont;
@@ -199,6 +201,7 @@ public class IOrokor extends JFrame {
 					hegaldiak.clear();
 					hegaldiak = controller.hegaldiakBilatu(espezifikazioak);
 					birkargatu(hegaldiak);
+					kargatuGrafikak();
 				} catch (RemoteException e1) {
 					e1.printStackTrace();
 				}
@@ -315,75 +318,12 @@ public class IOrokor extends JFrame {
 
 		//////////////////////
 
-		DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-		dataset.addValue(51.0, "Series 1", "H001");
-		dataset.addValue(44.3, "Series 1", "H002");
-		dataset.addValue(83.0, "Series 1", "H003");
-		dataset.addValue(34.7, "Series 1", "H004");
-		dataset.addValue(51.0, "Series 1", "H005");
-		dataset.addValue(46.3, "Series 1", "H006");
-		dataset.addValue(51.0, "Series 1", "H007");
-		dataset.addValue(29.3, "Series 1", "H008");
-
-		// create the chart...
-		JFreeChart chart = ChartFactory.createBarChart3D("Roma-Bilbo", "Hegaldiak", "Prezioak", dataset,
-				PlotOrientation.VERTICAL, false, true, false);
-
-		CategoryPlot plot = chart.getCategoryPlot();
-
-		CategoryAxis domainAxis = plot.getDomainAxis();
-		domainAxis.setVisible(true);
-
-		NumberAxis rangeAxis = (NumberAxis) plot.getRangeAxis();
-		rangeAxis.setUpperMargin(0.15);
-
-		BarRenderer3D renderer = (BarRenderer3D) plot.getRenderer();
-		CategoryItemLabelGenerator generator = new StandardCategoryItemLabelGenerator();
-		renderer.setSeriesItemLabelGenerator(0, generator);
-		renderer.setSeriesItemLabelsVisible(0, true);
-		renderer.setSeriesPositiveItemLabelPosition(0,
-				new ItemLabelPosition(ItemLabelAnchor.OUTSIDE12, TextAnchor.BASELINE_CENTER));
-		renderer.setItemLabelAnchorOffset(10);
-
-		ChartPanel panel = new ChartPanel(chart);
-		panel.setBounds(1380, 250, 500, 250);
-		contentPane.add(panel);
+		dataset = new DefaultCategoryDataset();
+		
 
 		//////////////////////////////
 
-		DefaultCategoryDataset dataset2 = new DefaultCategoryDataset();
-		dataset2.addValue(51.0, "Series 1", "H001");
-		dataset2.addValue(114.3, "Series 1", "H002");
-		dataset2.addValue(83.0, "Series 1", "H003");
-		dataset2.addValue(134.7, "Series 1", "H004");
-		dataset2.addValue(51.0, "Series 1", "H005");
-		dataset2.addValue(146.3, "Series 1", "H006");
-		dataset2.addValue(51.0, "Series 1", "H007");
-		dataset2.addValue(129.3, "Series 1", "H008");
-
-		// create the chart...
-		JFreeChart chart2 = ChartFactory.createBarChart3D("Madrid-Londres", "Hegaldiak", "Minutuak", dataset2,
-				PlotOrientation.VERTICAL, false, true, false);
-
-		CategoryPlot plot2 = chart2.getCategoryPlot();
-
-		CategoryAxis domainAxis2 = plot2.getDomainAxis();
-		domainAxis2.setVisible(true);
-
-		NumberAxis rangeAxis2 = (NumberAxis) plot2.getRangeAxis();
-		rangeAxis2.setUpperMargin(0.15);
-
-		BarRenderer3D renderer2 = (BarRenderer3D) plot2.getRenderer();
-		CategoryItemLabelGenerator generator2 = new StandardCategoryItemLabelGenerator();
-		renderer2.setSeriesItemLabelGenerator(0, generator2);
-		renderer2.setSeriesItemLabelsVisible(0, true);
-		renderer2.setSeriesPositiveItemLabelPosition(0,
-				new ItemLabelPosition(ItemLabelAnchor.OUTSIDE12, TextAnchor.BASELINE_CENTER));
-		renderer2.setItemLabelAnchorOffset(10);
-
-		ChartPanel panel2 = new ChartPanel(chart2);
-		panel2.setBounds(1380, 600, 500, 250);
-		contentPane.add(panel2);
+		dataset2 = new DefaultCategoryDataset();
 
 		JLabel labelerabiltzailea = new JLabel("Erabiltzaile aukerak:");
 		labelerabiltzailea.setBounds(1400, 850, 400, 50);
@@ -551,5 +491,65 @@ public class IOrokor extends JFrame {
 			cHelmuga.addItem(a.toString());
 			cIrteera.addItem(a.toString());
 		}
+	}
+	
+	private void kargatuGrafikak() {
+		dataset.clear();
+		dataset2.clear();
+		for(hegaldiaDTO h: hegaldiak) {
+			dataset.addValue(h.getPrezioa(), "Series 1", h.getAerolinea().getKodea());
+		}
+		// create the chart...
+		JFreeChart chart = ChartFactory.createBarChart3D(cIrteera.getSelectedItem().toString() + " - " +cHelmuga.getSelectedItem().toString(), "Hegaldiak", "Prezioak", dataset,
+				PlotOrientation.VERTICAL, false, true, false);
+
+		CategoryPlot plot = chart.getCategoryPlot();
+
+		CategoryAxis domainAxis = plot.getDomainAxis();
+		domainAxis.setVisible(true);
+
+		NumberAxis rangeAxis = (NumberAxis) plot.getRangeAxis();
+		rangeAxis.setUpperMargin(0.15);
+
+		BarRenderer3D renderer = (BarRenderer3D) plot.getRenderer();
+		CategoryItemLabelGenerator generator = new StandardCategoryItemLabelGenerator();
+		renderer.setSeriesItemLabelGenerator(0, generator);
+		renderer.setSeriesItemLabelsVisible(0, true);
+		renderer.setSeriesPositiveItemLabelPosition(0,
+				new ItemLabelPosition(ItemLabelAnchor.OUTSIDE12, TextAnchor.BASELINE_CENTER));
+		renderer.setItemLabelAnchorOffset(10);
+
+		ChartPanel panel = new ChartPanel(chart);
+		panel.setBounds(1380, 250, 500, 250);
+		contentPane.add(panel);
+		
+		for(hegaldiaDTO h: hegaldiak) {
+			dataset.addValue(h.getDenbora(), "Series 1", h.getAerolinea().getKodea());
+		}
+		
+		// create the chart...
+		JFreeChart chart2 = ChartFactory.createBarChart3D("Madrid-Londres", "Hegaldiak", "Minutuak", dataset2,
+				PlotOrientation.VERTICAL, false, true, false);
+
+		CategoryPlot plot2 = chart2.getCategoryPlot();
+
+		CategoryAxis domainAxis2 = plot2.getDomainAxis();
+		domainAxis2.setVisible(true);
+
+		NumberAxis rangeAxis2 = (NumberAxis) plot2.getRangeAxis();
+		rangeAxis2.setUpperMargin(0.15);
+
+		BarRenderer3D renderer2 = (BarRenderer3D) plot2.getRenderer();
+		CategoryItemLabelGenerator generator2 = new StandardCategoryItemLabelGenerator();
+		renderer2.setSeriesItemLabelGenerator(0, generator2);
+		renderer2.setSeriesItemLabelsVisible(0, true);
+		renderer2.setSeriesPositiveItemLabelPosition(0,
+				new ItemLabelPosition(ItemLabelAnchor.OUTSIDE12, TextAnchor.BASELINE_CENTER));
+		renderer2.setItemLabelAnchorOffset(10);
+
+		ChartPanel panel2 = new ChartPanel(chart2);
+		panel2.setBounds(1380, 600, 500, 250);
+		contentPane.add(panel2);
+		repaint();
 	}
 }
