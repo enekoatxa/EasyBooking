@@ -5,6 +5,8 @@ import java.rmi.RemoteException;
 import javax.ws.rs.core.Response;
 
 import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 import EasyBookingKlientea.DLDTO.aireportuaDTO;
 import EasyBookingZerbitzaria.NL.Rest.RestClient_konexioa;
@@ -33,8 +35,15 @@ public class AutentikazioGateway {
 		}
 
 		String reply = response.readEntity(String.class);
-
-		return reply;
+		JSONParser parse = new JSONParser(); 
+		try {
+			JSONObject jobj = (JSONObject)parse.parse(reply);
+			return jobj.get("Result").toString();
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "";
 
 	}
 
@@ -55,8 +64,15 @@ public class AutentikazioGateway {
 			e.printStackTrace();
 		}
 		String reply = response.readEntity(String.class);
-		System.out.println(reply);
-		return Boolean.valueOf(reply);
+		JSONParser parse = new JSONParser(); 
+		try {
+			JSONObject jobj = (JSONObject)parse.parse(reply);
+			return Boolean.valueOf(jobj.get("Result").toString());
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
 	}
 
 	public boolean pasahitzaAldatu(String email, String pasahitzZaharra, String pasahitzBerria) throws RemoteException {
@@ -76,8 +92,15 @@ public class AutentikazioGateway {
 			e.printStackTrace();
 		}
 		String reply = response.readEntity(String.class);
-		System.out.println(reply);
-		return Boolean.valueOf(reply);
+		JSONParser parse = new JSONParser(); 
+		try {
+			JSONObject jobj = (JSONObject)parse.parse(reply);
+			return Boolean.valueOf(jobj.get("Result").toString());
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
 	}
 
 	public boolean login(String email, String pasahitza) throws RemoteException {
@@ -93,8 +116,16 @@ public class AutentikazioGateway {
 			e.printStackTrace();
 		}
 		String reply = response.readEntity(String.class);
-		System.out.println(reply);
-		return Boolean.valueOf(reply);
+		JSONParser parse = new JSONParser(); 
+		try {
+			JSONObject jobj = (JSONObject)parse.parse(reply);
+			return Boolean.valueOf(jobj.get("Result").toString());
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+		
 	}
 
 	private JSONObject erabiltzaileaJSON(String email, String pasahitza, String pasahitzBerria, boolean a) {
