@@ -222,8 +222,8 @@ public class DAO {
 
 	public ArrayList<aireportuaDTO> kargatuAireportuak() {
 		ArrayList<aireportuaDTO>DTOaireportuak= new ArrayList<aireportuaDTO>();
+		DTOaireportuak.add(new aireportuaDTO("a001", "lehena"));
 	
-
 		PersistenceManagerFactory persistentManagerFactory = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
 		PersistenceManager persistentManager = persistentManagerFactory.getPersistenceManager();
 		Transaction transaction = persistentManager.currentTransaction();
