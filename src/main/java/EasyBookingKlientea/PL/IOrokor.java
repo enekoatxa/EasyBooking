@@ -446,7 +446,7 @@ public class IOrokor extends JFrame {
 					e1.printStackTrace();
 				}
 				if (a == true) {
-					JOptionPane.showMessageDialog(b, "Erabiltzaile behar bezala ezabatu da.", "Ezabatuta", 1);
+					JOptionPane.showMessageDialog(b, "Erabiltzailea behar bezala ezabatu da.", "Ezabatuta", 1);
 
 				} else {
 					JOptionPane.showMessageDialog(b,

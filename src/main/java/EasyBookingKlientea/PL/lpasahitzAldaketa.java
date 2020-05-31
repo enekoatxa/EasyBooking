@@ -42,7 +42,6 @@ public class lpasahitzAldaketa extends JFrame {
 		
 		bborratuE.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			//ez dakit zer egiten duen
 			dispose();
 			}
 

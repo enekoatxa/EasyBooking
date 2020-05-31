@@ -37,7 +37,6 @@ public class pHegaldia extends JPanel {
 		data.setBounds(80, 135, 100, 30);
 		aerolinea.setBounds(330, 110, 200, 30);
 
-
 		lfondoa.add(irteera);
 		lfondoa.add(helmuga);
 		lfondoa.add(denbora);
