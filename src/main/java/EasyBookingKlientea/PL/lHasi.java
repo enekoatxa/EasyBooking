@@ -166,9 +166,9 @@ public class lHasi extends JFrame {
 						e1.printStackTrace();
 					}
 					if (a == true) {
-						dispose();
 						IOrokor orokor = new IOrokor(controller, textField.getText(), textField_1.getText());
 						orokor.setVisible(true);
+						dispose();
 					} else {
 						JOptionPane.showMessageDialog(lHasi.this, "Arazoak sortu dira hastean, saiatu berriro mesedez.",
 								"Saiatu berriro", 1);

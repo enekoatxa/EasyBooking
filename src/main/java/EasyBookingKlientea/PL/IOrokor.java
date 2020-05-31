@@ -43,6 +43,8 @@ import org.jfree.ui.TextAnchor;
 
 import com.toedter.calendar.JDateChooser;
 
+import EasyBookingKlientea.DLDTO.aireportuaDTO;
+import EasyBookingKlientea.DLDTO.hegaldiaDTO;
 import EasyBookingKlientea.NL.Controller;
 import EasyBookingZerbitzaria.DL.aerolinea;
 import EasyBookingZerbitzaria.DL.aireportua;
@@ -55,22 +57,29 @@ public class IOrokor extends JFrame {
 	private int altuera = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
 	private final String pathLogoa = "src/main/resources/logoa.jpg";
 	private ArrayList<bidaiaria> bidaiariak;
-
+	private ArrayList<aireportuaDTO> aireportuak;
+	private ArrayList<hegaldiaDTO> hegaldiak;
+	private ArrayList<String> espezifikazioak;
 	private String sesio_emaila; // sesioa irekitzerakoan asoziatutako emaila
 	private String sesio_pasahitza;
 	private JTextField textField;
 	private JTextField textField2;
 	private JSpinner spinner;
-
+	private JPanel PscrollPane;
+	private JScrollPane scrollpane;
 	private static String hegaldikodea = "";
 	private Controller controller;
 	private IOrokor hau;
 	private JFrame b = this;
-
+	private GridBagConstraints cons;
+	private JComboBox<String> cHelmuga;
+	private JComboBox<String> cIrteera;
+	
 	public IOrokor(Controller cont, String email, String pasahitza) {
 		this.controller = cont;
 		sesio_emaila = email;
 		sesio_pasahitza = pasahitza;
+		cons = new GridBagConstraints();
 		setTitle("Easy Booking");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(luzea, altuera);
@@ -95,11 +104,7 @@ public class IOrokor extends JFrame {
 		lblirteera.setBounds(0, altuera / 18, luzea / 15, altuera / 11);
 		panD1.add(lblirteera);
 
-		JComboBox<String> cIrteera = new JComboBox<String>();
-		cIrteera.addItem("Madrid - Barajas");
-		cIrteera.addItem("London - Heathrow");
-		cIrteera.addItem("Los Angeles - LAX");
-		cIrteera.addItem("New York - JFK");
+		cIrteera = new JComboBox<String>();
 		cIrteera.setBounds(luzea / 12, altuera / 18, 50, 50);
 		cIrteera.setSize(new Dimension(200, 30));
 		contentPane.add(cIrteera);
@@ -127,11 +132,8 @@ public class IOrokor extends JFrame {
 				altuera / 11);
 		panD4.add(lblPrezioaMax);
 
-		JComboBox<String> cHelmuga = new JComboBox<String>();
-		cHelmuga.addItem("Madrid - Barajas");
-		cHelmuga.addItem("London - Heathrow");
-		cHelmuga.addItem("Los Angeles - LAX");
-		cHelmuga.addItem("New York - JFK");
+		cHelmuga = new JComboBox<String>();
+		kargatuAireportuak();
 		cHelmuga.setBounds(luzea / 3, altuera / 18, 50, 50);
 		cHelmuga.setSize(new Dimension(200, 30));
 		contentPane.add(cHelmuga);
@@ -190,6 +192,18 @@ public class IOrokor extends JFrame {
 
 		JButton bBilatu = new JButton("Bilatu");
 		bBilatu.setBounds(luzea / 3 + luzea / 3 + luzea / 6 + luzea / 12, altuera / 10, luzea / 16, altuera / 30);
+		bBilatu.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				try {
+					hegaldiak.clear();
+					hegaldiak = controller.hegaldiakBilatu(espezifikazioak);
+					birkargatu(hegaldiak);
+				} catch (RemoteException e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
 		contentPane.add(bBilatu);
 
 		JLabel tit2 = new JLabel("FILTRATU ZURE HEGALDIA:");
@@ -277,8 +291,8 @@ public class IOrokor extends JFrame {
 		contentPane.add(panelcentro);
 		panelcentro.setLayout(new BorderLayout(0, 0));
 
-		JPanel PscrollPane = new JPanel();
-		JScrollPane scrollpane = new JScrollPane(PscrollPane);
+		PscrollPane = new JPanel();
+		scrollpane = new JScrollPane(PscrollPane);
 		panelcentro.add(scrollpane, BorderLayout.CENTER);
 
 		scrollpane.setViewportView(PscrollPane);
@@ -291,48 +305,6 @@ public class IOrokor extends JFrame {
 		// g_pscrollpane.rowWeights = new double [] (Double.MIN_VALUE);
 
 		PscrollPane.setLayout(g_pscrollpane);
-
-		// Panelak sartzeko probako kodea
-		aerolinea lineaProba = new aerolinea("IBER", "Iberia");
-		aireportua portuaProba = new aireportua("HTRW", "Heathrow");
-		Date dataProba = new Date();
-		hegaldia hProba = new hegaldia("ABC", portuaProba, portuaProba, 3, 45, dataProba, 56, lineaProba);
-
-		// pHegaldia panelProba = new pHegaldia(hProba);
-		// pHegaldia panelProba2 = new pHegaldia(hProba);
-		// pHegaldia panelProba3 = new pHegaldia(hProba);
-		// pHegaldia panelProba4 = new pHegaldia(hProba);
-		// pHegaldia panelProba5 = new pHegaldia(hProba);
-		// pHegaldia panelProba6 = new pHegaldia(hProba);
-
-		GridBagConstraints cons = new GridBagConstraints();
-		int y = 50;
-		cons.ipadx = 700;
-		cons.ipady = 200;
-		cons.gridx = 0;
-		cons.gridy = y;
-		y = y + 240;
-
-		// PscrollPane.add(panelProba, cons);
-		// cons.gridy = y;
-		// y = y + 240;
-		// PscrollPane.add(panelProba2, cons);
-		// cons.gridy = y;
-		// y = y + 240;
-		// PscrollPane.add(panelProba3, cons);
-		// cons.gridy = y;
-		// y = y + 240;
-		// PscrollPane.add(panelProba4, cons);
-		// cons.gridy = y;
-		// y = y + 240;
-		// PscrollPane.add(panelProba5, cons);
-		// cons.gridy = y;
-		// y = y + 240;
-		// PscrollPane.add(panelProba6, cons);
-		// Panelak sartzeko probako kodearen amaiera
-
-		PscrollPane.repaint();
-		scrollpane.repaint();
 
 		/////////////// grafikoak
 
@@ -451,7 +423,6 @@ public class IOrokor extends JFrame {
 				try {
 					a = controller.pasahitzaAldatu(sesio_emaila, pasahitzZaharra, pasahitzBerria);
 				} catch (RemoteException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 				if (a == true) {
@@ -472,7 +443,6 @@ public class IOrokor extends JFrame {
 				try {
 					a = controller.ezabatuErabiltzailea(sesio_emaila, sesio_pasahitza);
 				} catch (RemoteException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 				if (a == true) {
@@ -500,7 +470,6 @@ public class IOrokor extends JFrame {
 					lErreserba er = new lErreserba(hau, controller);
 					er.setVisible(true);
 				}
-
 			}
 		});
 
@@ -554,4 +523,33 @@ public class IOrokor extends JFrame {
 		return sesio_emaila;
 	}
 
+	private void birkargatu(ArrayList<hegaldiaDTO> hegaldiak) {
+
+		PscrollPane.removeAll();
+		PscrollPane.revalidate();
+		int y = 50;
+		cons.ipadx = 700;
+		cons.ipady = 200;
+		cons.gridx = 0;
+		cons.gridy = y;
+		y = y + 240;
+
+		for(hegaldiaDTO h : hegaldiak) {
+			pHegaldia panelProba = new pHegaldia(h);
+			PscrollPane.add(panelProba, cons);
+			cons.gridy = y;
+			y = y + 240;
+		}
+
+		PscrollPane.repaint();
+		scrollpane.repaint();
+	}
+	
+	private void kargatuAireportuak() {
+		aireportuak = controller.kargatuAireportuak();
+		for(aireportuaDTO a: aireportuak) {
+			cHelmuga.addItem(a.toString());
+			cIrteera.addItem(a.toString());
+		}
+	}
 }

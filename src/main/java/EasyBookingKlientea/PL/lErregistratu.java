@@ -292,9 +292,11 @@ public class lErregistratu extends JFrame {
 
 	private void kargatuAireportuak() {
 		ArrayList<aireportuaDTO> aireportuak = controller.kargatuAireportuak();
-		for(aireportuaDTO a: aireportuak) {
-			aireportua.addItem(a);
+		if(aireportuak.size()!=0) {
+			for(aireportuaDTO a: aireportuak) {
+				aireportua.addItem(a);
+			}
+			repaint();
 		}
-		repaint();
 	}
 }
