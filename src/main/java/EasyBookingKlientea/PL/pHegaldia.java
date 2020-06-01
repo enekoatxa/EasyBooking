@@ -29,13 +29,6 @@ public class pHegaldia extends JPanel {
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 		JLabel data = new JLabel(format.format(h.getData()));
 		JLabel aerolinea = new JLabel(h.getAerolinea().toString().toUpperCase());
-		JButton erosi = new JButton("EROSI");
-		erosi.addActionListener(new ActionListener() {
-
-			public void actionPerformed(ActionEvent e) {
-				// Hegaldia erosteko metodoa idatzi
-			}
-		});
 
 		irteera.setBounds(80, 20, 200, 30);
 		helmuga.setBounds(320, 20, 200, 30);
@@ -43,7 +36,6 @@ public class pHegaldia extends JPanel {
 		prezioa.setBounds(560, 45, 100, 30);
 		data.setBounds(80, 135, 100, 30);
 		aerolinea.setBounds(330, 110, 200, 30);
-		erosi.setBounds(530, 110, 120, 60);
 
 		lfondoa.add(irteera);
 		lfondoa.add(helmuga);
@@ -51,7 +43,6 @@ public class pHegaldia extends JPanel {
 		lfondoa.add(prezioa);
 		lfondoa.add(data);
 		lfondoa.add(aerolinea);
-		lfondoa.add(erosi);
 		this.add(lfondoa);
 		this.setVisible(true);
 	}

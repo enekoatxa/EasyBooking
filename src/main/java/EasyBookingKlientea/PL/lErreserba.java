@@ -79,7 +79,7 @@ public class lErreserba extends JFrame {
 
 		btnOrdaindu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String a = null;
+				String a = "";
 				// ordainketa egin
 				try {
 
@@ -90,15 +90,14 @@ public class lErreserba extends JFrame {
 
 					String email = orokorra.sesioEmaila();
 
-					a = controller.ordaindu(email, kantitatea, kontzeptua);// ordainketa
-																			// eginda
-
+					a = controller.ordaindu(email, kantitatea, kontzeptua);
+																	
 				} catch (RemoteException e1) {
 
 					e1.printStackTrace();
 				}
-				if (a != null) {
-					JOptionPane.showMessageDialog(b, "Arazorik gabe egin da ordainketa.", "Ordainduta", 1);
+				if (!a.equals("")) {
+					JOptionPane.showMessageDialog(b, "Arazorik gabe egin da ordainketa. Rezibo zenbakia: "+ a, "Ordainduta", 1);
 					dispose();
 				} else {
 					JOptionPane.showMessageDialog(b, "Arazoak egon dira ordaintzean, saiatu berriro mesedez.",
@@ -114,9 +113,7 @@ public class lErreserba extends JFrame {
 
 		btnEzeztatu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
 				dispose();
-
 			}
 		});
 	}
