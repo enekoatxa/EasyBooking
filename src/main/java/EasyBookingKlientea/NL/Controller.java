@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import EasyBookingKlientea.DLDTO.aireportuaDTO;
 import EasyBookingKlientea.DLDTO.hegaldiaDTO;
 import EasyBookingKlientea.PL.lHasi;
-import EasyBookingZerbitzaria.NL.FacadeAppService.IEasyZerbitzaria;
 
 public class Controller {
 
@@ -15,7 +14,7 @@ public class Controller {
 	public Controller(String[] args) throws RemoteException {
 		rsl = new RMIServiceLocator();
 		rsl.setService(args[0], args[1], args[2]);
-	
+
 		lHasi hasi = new lHasi(this);
 		hasi.setVisible(true);
 
@@ -29,7 +28,8 @@ public class Controller {
 		System.exit(0);
 	}
 
-	public String sortuErabiltzailea(String email, String izena, String abizena, int adina, String nan, String nick, String pasahitza, aireportuaDTO a2) {
+	public String sortuErabiltzailea(String email, String izena, String abizena, int adina, String nan, String nick,
+			String pasahitza, aireportuaDTO a2) {
 		String a = "";
 		try {
 			a = rsl.getService().sortuErabiltzailea(email, izena, abizena, adina, nan, nick, pasahitza, a2);
@@ -81,16 +81,6 @@ public class Controller {
 		return hegaldiak;
 	}
 
-	public boolean eguneratuMoneta(String email, float kantitatea) throws RemoteException {
-		boolean a = true;
-		try {
-			rsl.getService().eguneratuMoneta(email, kantitatea);
-		} catch (Exception e) {
-			System.err.println("Errorea helgaldiak bilatzerako garaian: " + e.getMessage());
-		}
-		return a;
-	}
-
 	public String ordaindu(String email, float kantitatea, String kontzeptua) throws RemoteException {
 		String a = "";
 		try {
@@ -101,8 +91,8 @@ public class Controller {
 		return a;
 	}
 
-	public ArrayList <aireportuaDTO> kargatuAireportuak() {
-		ArrayList<aireportuaDTO>aireportuak = null;
+	public ArrayList<aireportuaDTO> kargatuAireportuak() {
+		ArrayList<aireportuaDTO> aireportuak = null;
 		try {
 			aireportuak = rsl.getService().kargatuAireportuak();
 		} catch (Exception e) {

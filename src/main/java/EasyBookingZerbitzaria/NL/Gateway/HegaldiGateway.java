@@ -62,7 +62,7 @@ public class HegaldiGateway {
 		return espezifikazioak;
 	}
 
-	private ArrayList<hegaldiaDTO> unmarshallHegaldiak(Response response) {
+	public ArrayList<hegaldiaDTO> unmarshallHegaldiak(Response response) {
 		ArrayList<hegaldiaDTO> ret = new ArrayList<hegaldiaDTO>();
 
 		try {
@@ -90,7 +90,6 @@ public class HegaldiGateway {
 			e.printStackTrace();
 			e.toString();
 		}
-
 		return ret;
 
 	}

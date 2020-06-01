@@ -33,26 +33,6 @@ public class OrdainketaGateway {
 		return reply;
 	};
 
-	public boolean eguneratuMoneta(String email, float moneta) throws RemoteException {
-		JSONObject obj = erabiltzaileaJSON(email, moneta, 0, null, true);
-
-		Response response = null;
-
-		RestClient_konexioa c1 = new RestClient_konexioa(hostname, port_auth);
-
-		String path = "/Payments/Update_currency";
-		System.out.println("Trying POST at " + path + " (Update currency)");
-		try {
-			response = c1.makePostRequest(c1.createInvocationBuilder(path), obj);
-		} catch (Exception e) {
-			e.printStackTrace();
-			e.toString();
-		}
-		String reply = response.readEntity(String.class);
-
-		return Boolean.valueOf(reply);
-	};
-
 	private JSONObject erabiltzaileaJSON(String email, float moneta, float kantitatea, String kontzeptua, boolean a) {
 		JSONObject erabiltzailea = new JSONObject();
 		if (a == true) {

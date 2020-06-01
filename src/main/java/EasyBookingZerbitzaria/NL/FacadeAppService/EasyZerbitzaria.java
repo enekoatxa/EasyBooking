@@ -23,9 +23,11 @@ public class EasyZerbitzaria extends UnicastRemoteObject implements IEasyZerbitz
 		hegaldiKud = HegaldiKudeatzailea.getInstance();
 		ordainketaKud = OrdainketaKudeatzailea.getInstance();
 	}
-	
-	public String sortuErabiltzailea(String email, String izena, String abizena, int adina, String nan, String nick, String pasahitza, aireportuaDTO gustokoAireportua) throws RemoteException {
-		return autentikazioKud.sortuErabiltzailea(email, izena, abizena, adina, nan, nick, pasahitza, gustokoAireportua);
+
+	public String sortuErabiltzailea(String email, String izena, String abizena, int adina, String nan, String nick,
+			String pasahitza, aireportuaDTO gustokoAireportua) throws RemoteException {
+		return autentikazioKud.sortuErabiltzailea(email, izena, abizena, adina, nan, nick, pasahitza,
+				gustokoAireportua);
 	}
 
 	public boolean ezabatuErabiltzailea(String email, String pasahitza) throws RemoteException {
@@ -46,10 +48,6 @@ public class EasyZerbitzaria extends UnicastRemoteObject implements IEasyZerbitz
 
 	public String ordaindu(String email, float kantitatea, String kontzeptua) throws RemoteException {
 		return ordainketaKud.ordaindu(email, kantitatea, kontzeptua);
-	}
-
-	public boolean eguneratuMoneta(String email, float kantitatea) throws RemoteException {
-		return ordainketaKud.eguneratuMoneta(email, kantitatea);
 	}
 
 	public static void main(String[] args) {
