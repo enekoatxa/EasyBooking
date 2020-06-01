@@ -1,5 +1,7 @@
 package EasyBookingZerbitzaria.DL;
 
+import java.io.Serializable;
+
 import javax.jdo.annotations.Inheritance;
 import javax.jdo.annotations.InheritanceStrategy;
 import javax.jdo.annotations.NotPersistent;
@@ -8,7 +10,7 @@ import javax.jdo.annotations.PrimaryKey;
 
 @PersistenceCapable
 @Inheritance(strategy = InheritanceStrategy.SUBCLASS_TABLE)
-public abstract class pertsona {
+public abstract class pertsona implements Serializable {
 	@PrimaryKey
 	private String nan;
 	private String izena;

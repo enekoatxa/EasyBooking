@@ -2,7 +2,7 @@ package EasyBookingKlientea.DLDTO;
 
 import java.io.Serializable;
 
-public class aerolineaDTO 
+public class aerolineaDTO implements Serializable
  {
 
 	private String kodea;

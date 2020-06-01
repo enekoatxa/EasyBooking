@@ -1,6 +1,8 @@
 package EasyBookingKlientea.DLDTO;
 
-public class erreserbaDTO {
+import java.io.Serializable;
+
+public class erreserbaDTO implements Serializable {
 
 	private String kodea;
 	private int prezioa;

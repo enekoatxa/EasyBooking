@@ -1,8 +1,9 @@
 package EasyBookingKlientea.DLDTO;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class hegaldiaDTO {
+public class hegaldiaDTO implements Serializable{
 
 	private aireportuaDTO irteera;
 	private aireportuaDTO helmuga;

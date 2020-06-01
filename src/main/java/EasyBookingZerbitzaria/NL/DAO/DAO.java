@@ -223,6 +223,7 @@ public class DAO {
 	public ArrayList<aireportuaDTO> kargatuAireportuak() {
 		ArrayList<aireportuaDTO>DTOaireportuak= new ArrayList<aireportuaDTO>();
 		DTOaireportuak.add(new aireportuaDTO("a001", "lehena"));
+		DTOaireportuak.add(new aireportuaDTO("a002", "bigarrea"));
 	
 		PersistenceManagerFactory persistentManagerFactory = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
 		PersistenceManager persistentManager = persistentManagerFactory.getPersistenceManager();

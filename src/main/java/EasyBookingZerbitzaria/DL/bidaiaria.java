@@ -1,6 +1,8 @@
 package EasyBookingZerbitzaria.DL;
 
-public class bidaiaria extends pertsona {
+import java.io.Serializable;
+
+public class bidaiaria extends pertsona implements Serializable{
 
 	public bidaiaria(String nan, String izena, String abizena, int adina) {
 		this.setNan(nan);

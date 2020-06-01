@@ -1,6 +1,8 @@
 package EasyBookingKlientea.DLDTO;
 
-public class bidaiariaDTO {
+import java.io.Serializable;
+
+public class bidaiariaDTO implements Serializable{
 
 	private String nan;
 	private String izena;

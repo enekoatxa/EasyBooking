@@ -1,6 +1,8 @@
 package EasyBookingKlientea.DLDTO;
 
-public class erabiltzaileaDTO {
+import java.io.Serializable;
+
+public class erabiltzaileaDTO implements Serializable {
 
 	private String emaila;
 	private String nick;
